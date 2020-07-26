@@ -55,6 +55,8 @@ TODO: fix naming conventions, clean up code examples
 	- Example of using BeautifulSoup and lxml to "pretty print" XML data
 - sampleCsv.csv
 	- Four lines of test data
+- shell_address.c / exe
+	- Estimate the address of the SHELL environment variable
 - splitHashCombiner.py
 	- Identifies and matches sessions where data fields are potentially reversed using hash keys
 - splunk-analyst-annotation-maker-dashboard.txt
