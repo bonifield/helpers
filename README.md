@@ -59,8 +59,6 @@ TODO: fix naming conventions, clean up code examples
 	- Four lines of test data
 - shell_address.c / exe
 	- Estimate the address of the SHELL environment variable
-- snort-helper.sh
-	- Simple usage of Snort running a custom configuration to test rules, generating logs and PCAP
 - splitHashCombiner.py
 	- Identifies and matches sessions where data fields are potentially reversed using hash keys
 - splunk-analyst-annotation-maker-dashboard.txt
