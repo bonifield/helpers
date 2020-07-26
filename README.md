@@ -21,6 +21,8 @@ TODO: fix naming conventions, clean up code examples
 	- Various loops in C
 - c-structs.c
 	- Using C structures to create complex objects
+- esp.c / exe
+	- Estimate the location of the ESP register
 - powershell-examples.ps1
 	- Many examples of PowerShell variables, string manipulation, functions, custom objects, arrays, hashtables, output colorization, and more
 - python-argparse.py
