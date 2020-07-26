@@ -1,0 +1,390 @@
+<!-- the onunloadCancelJobs argument will cancel the whole dashboard if one panel is told to stop, instead of rushing to click the cancel button on tons of panels -->
+<form onunloadCancelJobs="true">
+	<label>Splunk Dashboard Example Features</label>
+	<!-- v 1.5 11 July 2020 -->
+	<description>description goes here</description>
+
+	<!-- initialize a token, such as a placeholder or color token -->
+	<init>
+		<!-- the CDATA wrapper is for the Splunk XML parser, because it doesn't like curly brackets in the dashboard code -->
+		<!-- the color dictionary works like this:  fieldValue:displayBackgroundColor (used with format map in a panel, see below) -->
+		<set token="colorizeData"><![CDATA[{"low":#adff22, "medium":#ffd700, "high":#ff0000}]]></set>
+		<set token="unusedExample"></set>
+	</init>
+
+	<fieldset submitButton="false">
+		<!-- text searchbox -->
+		<!-- setting searchWhenChanged to false allows you to change the time without the dashboard automatically reloading -->
+		<!-- default, prefix, and suffix tags are optional, but they can help force a user to stay "on the rails" and not break too many things with crazy wildcard searches -->
+		<input type="text" token="textBox" searchWhenChanged="false">
+			<label>Text</label>
+			<default>SOME TEXT THAT GOT TYPED</default>
+			<prefix>enforced_prefix_with_trailing_space </prefix>
+			<suffix> enforced_suffix_with_preceding_space</suffix>
+		</input>
+		<!-- time selector -->
+		<!-- the dashTime token is referenced below in mainQuery to constrain the time on that search -->
+		<input type="time" token="dashTime" searchWhenChanged="false">
+			<label>Time</label>
+			<default>
+				<earliest>-60m@m</earliest>
+				<latest>now</latest>
+			</default>
+		</input>
+		<!-- dropdown -->
+		<!-- not putting something in the choice tags will cause the dropdown options to display the tag value, ex "dropdown01", as opposed to "Choice 1" etc -->
+		<input type="dropdown" token="dropdownPanel" searchWhenChanged="false">
+			<label>Dropdown</label>
+			<choice value="dropdown01">Choice 1</choice>
+			<choice value="dropdown02">Choice 2</choice>
+			<choice value="">Choice 3 - empty selection</choice>
+			<default>dropdown01</default>
+		</input>
+		<!-- checkbox -->
+		<!-- options will be displayed in the order of the choice tags, and be sure to put a space around the delimiter if it's being used in an argument string -->
+		<!-- useful for resetting token values (use a dedicated checkbox input for resets, combined with dedicated inline tokens in secondary searches) -->
+		<input type="checkbox" token="checkBox" searchWhenChanged="false">
+			<label>Checkbox</label>
+			<choice value="somefield1=somevalue1">checkboxValue1</choice>
+			<choice value="somefield2=somevalue2">checkboxValue2</choice>
+			<delimiter> AND </delimiter>
+			<default>checkboxValue1</default>
+		</input>
+		<!-- radio button -->
+		<!-- options will be displayed in the order of the choice tags -->
+		<input type="radio" token="radioBox" searchWhenChanged="false">
+			<label>Radio</label>
+			<default>No</default>
+			<choice value="Yes">Yes</choice>
+			<choice value="No">No</choice>
+			<change>
+				<condition value="Yes">
+					<set token="radioBox">This is the radio token!</set>
+				</condition>
+				<condition value="No">
+					<unset token="radioBox"></unset>
+				</condition>
+			</change>
+		</input>
+		<!-- show/hide a panel using radio buttons -->
+		<input type="radio" token="radioBoxTwo" searchWhenChanged="false">
+			<label>Radio Two - Show or Hide Panel</label>
+			<default>No</default>
+			<choice value="Yes">Show</choice>
+			<choice value="No">Hide</choice>
+			<change>
+				<condition value="Yes">
+					<set token="radioBoxTwo">True</set>
+				</condition>
+				<condition value="No">
+					<unset token="radioBoxTwo"></unset>
+				</condition>
+			</change>
+		</input>
+		<!-- this checkbox resets all drilldowns via "soft reset" of the mainQuery token -->
+		<input type="checkbox" token="drillDown" searchWhenChanged="true">
+			<label>Reset Drilldowns</label>
+			<choice value="| search *">Check/Re-Check to Reset</choice>
+		</input>
+	</fieldset>
+
+	<!-- initialize the drillDown token with an asterisk, so it initially captures all values on the dashboard, before the user clicks or hides anything -->
+	<init>
+		<set token="drillDown">| search *</set>
+	</init>
+
+	<!-- main query that feeds the dashboard panels, note that in practice this should include all panels vs two on this example -->
+	<!-- PRO TIP:  run a scheduled search, then make the dashboard's mainQuery a loadjob statement; this prevents needless hammering on the database -->
+	<!-- ...index/sourcetype args, field/value args, evals, renames, etc, THEN A fields COMMAND WITH ALL FIELDS EXPLICITLY NAMED that you wish to use in the dashboard -->
+	<!-- all post-pipe args, like stats, table, etc, should be PUT IN THEIR OWN INDIVIDUAL PANELS, with a search base of mainQuery -->
+	<!-- makeresults + evals will create a row of fake test data; insert your pre-pipe args or loadjob in actual usage -->
+	<!-- the done and set tags capture the job SID as a token for usage, passing to another dashboard, etc (or use it in a mainQuery2 which uses loadjob and the SID)-->
+	<!-- -->
+	<!-- normal query (example data) which should be saved as a schduled search: -->
+	<!-- index=firewall sourcetype=firewall_location action IN ("block", "drop") | fields _time transport protocol sip dip sport dport icmptype icmpcode-->
+	<!-- -->
+	<!-- loadjob formatting from a scheduled report: -->
+	<!-- | loadjob savedsearch="YOUR-USERNAME:APPLICATION-NAME:REPORT-NAME" -->
+	<!--                  ex.  "bobtheuser:search:overnight-firewall-report" -->
+	<!-- -->
+	<!-- the CDATA portion safely wraps certain characters for Splunk's XML parser; they aren't always needed, only with greater/less than signs, percents, curly brackets -->
+	<!-- this example makes a quick table of random numbers, then assigns a "priority" to them based on a range of values -->
+	<search id="mainQuery">
+		<!--<query><![CDATA[| makeresults count=10 | eval level = random() % 10, priority = case(level<=3, "low", level>3 AND level<=6, "medium", level>6, "high") | search $drillDown$]]></query>-->
+		<query><![CDATA[| makeresults count=100 | eval level = random() % 10000, priority = case(level<=3000, "low", level>3000 AND level<=6000, "medium", level>6000, "high") | search $drillDown$]]></query>
+		<earliest>$dashTime.earliest$</earliest>
+		<latest>$dashTime.latest$</latest>
+		<done>
+			<set token="jobSid">$job.sid$</set>
+		</done>
+	</search>
+
+	<!-- optionally, if querying a database and not using makeresults for test data, use mainQuery2 as the base for all subsequent panels to create an easy drilldown reset button -->
+	<!-- <search id="mainQuery2" base="mainQuery">
+		<query>| loadjob $jobSid$ | search $drillDown$</query>
+	</search> -->
+
+	<!-- simple HTML formatting to show the different token (variable) states -->
+	<row>
+		<html>
+			<h1>text token:  $textBox$</h1>
+		</html>
+	</row>
+
+	<!-- like with the mainQuery search, access the time picker conditions with .earliest and .latest -->
+	<row>
+		<html>
+			<h1>time earliest:  $dashTime.earliest$</h1>
+			<h1>time latest:  $dashTime.latest$</h1>
+		</html>
+	</row>
+
+	<row>
+		<html>
+			<h1>dropdown token:  $dropdownPanel$</h1>
+		</html>
+	</row>
+
+	<row>
+		<html>
+			<h1>checkbox token:  $checkBox$</h1>
+		</html>
+	</row>
+
+	<row>
+		<html>
+			<h1>radio token:  $radioBox$</h1>
+		</html>
+	</row>
+
+	<!-- this row will be invisible unless radioBoxTwo is set to Show (True) -->
+	<row depends="$radioBoxTwo$">
+		<html>
+			<h1>radio token:  $radioBoxTwo$</h1>
+			<h1>Now the box magically appears!</h1>
+		</html>
+	</row>
+
+	<!-- this row will be invisible until the mainQuery produces results -->
+	<!-- you don't need progress, format, or drilldown tags, but they give additional functionality and are shown for sake of example -->
+	<row depends="$hidePanel$">
+		<panel>
+			<title>colorized values in a table (note different font when using the panel title vs table title)</title>
+			<table>
+				<title>whole row depends on results from the main query, otherwise it will be invisible</title>
+				<!-- base references the mainQuery (or mainQuery2 if using it) -->
+				<search base="mainQuery">
+					<!-- note the query is a post-pipe final-output for display purposes, and is not running a brand-new query just to create a table -->
+					<!-- the eval uses the ASCII code for the "circle with a strike" symbol -->
+					<query> | eval hide = "&#8856;" | table priority level hide</query>
+					<progress>
+						<!-- if there are more than 0 results, unset the token that hides other panels -->
+						<!-- alternatively, make panels dependent on their own progress tags, and set the tokens when they get results (the opposite of the method below) -->
+						<condition match="'job.resultCount' == 0">
+							<unset token="hidePanel"></unset>
+						</condition>
+						<condition>
+							<set token="hidePanel">true</set>
+						</condition>
+					</progress>
+				</search>
+				<!-- force the panel to show 10 rows before pagination occurs; 15 is a comfortable limit in production -->
+				<option name="count">10</option>
+				<!-- add format map to colorize the displayed values, add a format and colorPalette tag for each row you want to see colors in (if they are defined up top!) -->
+				<!-- uses a pre-defined array at the top of the dashboard -->
+				<!-- format isn't necessary, and can add unnecessary frustration for colorblind users -->
+				<format type="color" field="priority">
+					<colorPalette type="map">$colorizeData$</colorPalette>
+				</format>
+				<!-- colorize a range of values using a min-mid-max instead of a pre-defined array -->
+				<format type="color" field="level">
+					<colorPalette type="minMidMax" minColor="#adff22" midColor="#ffd700" maxColor="#ff0000"></colorPalette>
+					<scale type="threshold">0, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 9500, 10000</scale>
+				</format>
+				<drilldown>
+					<!-- the AND statement is a simple way to "set the token to everything it already is, AND the new stuff" -->
+					<!-- click.value2 captures the value of the item clicked by the user, row.somecolumnname specifies a field in the row -->
+					<!-- the row.somecolumnname format can be used to enforce drilling into a field no matter what the user clicks -->
+					<!-- don't forget set the drillDown token here -->
+					<condition field="priority">
+						<set token="drillDown"> $drillDown$ AND priority="$click.value2$" </set>
+					</condition>
+					<!-- an empty condition field for a specific field will disable click actions, great for using on the "count" column in a stats table -->
+					<condition field="level">
+					</condition>
+					<!-- don't forget set the drillDown token here as well -->
+					<condition field="hide">
+						<set token="drillDown">$drillDown$ NOT priority="$row.priority$"</set>
+					</condition>
+				</drilldown>
+			</table>
+		</panel>
+		<panel>
+			<title>bar chart with values and logarithmic y-axis</title>
+			<chart>
+				<title>whole row depends on results from the main query, otherwise it will be invisible</title>
+				<!-- base references the mainQuery -->
+				<search base="mainQuery">
+					<!-- note the query is a post-pipe final-output for display purposes, and is not running a brand-new query just to create a chart -->
+					<!--<query> | timechart span=1d@d count(_time) AS events </query>-->
+					<query> | stats count by priority | sort -count </query>
+				</search>
+				<option name="charting.chart">column</option>
+				<!-- adds labels to the chart -->
+				<option name="charting.chart.showDataLabels">all</option>
+				<!-- logarithmic y-axis so small values don't get lost -->
+				<option name="charting.axisY.scale">log</option>
+				<!-- capture values if a column on the chart gets clicked -->
+				<drilldown>
+					<set token="graph_earliest">$earliest$</set>
+					<set token="graph_latest">$latest$</set>
+					<set token="graph_clicked">$click.name2$</set>
+					<set token="graph_clicked_time_drilldown">(somefield=$graph_earliest$ AND somefield=$graph_latest$)</set>
+				</drilldown>
+				<!-- capture values on the graph drag-selected by the user -->
+				<selection>
+					<set token="selection_earliest">$start$</set>
+					<set token="selection_latest">$end$</set>
+				</selection>
+			</chart>
+		</panel>
+	</row>
+
+	<row depends="$hidePanel$">
+		<html>
+			<h3>note the above panel uses makeresults, so the panel may change when clicked (new results are generated every time...  it won't do that when using real data though)</h3>
+			<h1>clicking fields changes the drillDown token, which in turn affects mainQuery:</h1>
+			<h1>$drillDown$</h1>
+		</html>
+	</row>
+
+	<row depends="$hidePanel$">
+		<html>
+			<h1>graph clicked earliest time:  $graph_earliest$</h1>
+			<h1>graph clicked latest time:  $graph_latest$</h1>
+			<h1>graph clicked value:  $graph_clicked$</h1>
+			<h1>graph clicked time drilldown:  $graph_clicked_time_drilldown$</h1>
+			<h1>graph selection earliest time:  $selection_earliest$</h1>
+			<h1>graph selection latest time:  $selection_latest$</h1>
+		</html>
+	</row>
+
+	<row depends="$hidePanel$">
+		<html>
+			<h1>mainQuery job SID:  $jobSid$</h1>
+		</html>
+	</row>
+
+	<!-- example of linking to an external dashboard via iframe -->
+	<!-- this is NOT a recommended process, but it is possible -->
+	<!--<row>
+		<html>
+			<h3>External Dashboard in 1200x2500 iframe:</h3>
+			<iframe src="https://your-splunk-location/your-splunk-app-name/analyst_annotations" frameborder="no" scrolling="yes" width="1200" height="2500"></iframe>
+		</html>
+	</row>-->
+
+	<!-- adding another input later in the dashboard requires the element to be nested in a row and panel -->
+	<row>
+		<panel>
+			<input type="radio" token="hideExampleFirstLastHitsRow" searchWhenChanged="false">
+				<label>Hide Example First Hits / Last Seen</label>
+				<default>Yes</default>
+				<choice value="Yes">Yes</choice>
+				<choice value="No">No</choice>
+				<change>
+					<condition value="Yes">
+						<unset token="hideExampleFirstLastHitsRow"></unset>
+					</condition>
+					<condition value="No">
+						<set token="hideExampleFirstLastHitsRow"></set>
+					</condition>
+				</change>
+			</input>
+		</panel>
+	</row>
+
+	<row>
+		<html>
+			<h3>example first-hits with table colorization (un-hide to display)</h3>
+		</html>
+	</row>
+
+	<row depends="$hideExampleFirstLastHitsRow$">
+		<panel depends="$hideTESTDATAfirstlasthitschart$">
+			<title>Example First Hits / Last Seen</title>
+			<table>
+				<title>Simulates assets appearing and/or disappearing on the network, sensors going down, etc</title>
+				<search>
+					<!-- the eval uses the ASCII code for the "circle with a strike" symbol -->
+					<!-- instead of makeresults, eval, makemv, mvexpand etc, use this actual query example in a saved search or on the dashboard -->
+					<!-- first-hits mechanism (fields used are just examples for ideas) -->
+					<!-- (sourcetype and pre-pipe query goes here) | stats sparkline(count) AS trend, earliest(_time) AS first_hit, latest(_time) AS latest_hit, count BY sourcetype | eval hours_since_first_hit=(now()-first_hit)/60/60, hours_since_latest_hit=(now()-latest_hit)/60/60, first_hit=strftime(first_hit, "%x %X"), latest_hit=strftime(latest_hit, "%x %X") | table ... -->
+					<!-- or a gap-detection mechanism (fields used are just examples for ideas) -->
+					<!-- (sourcetype and pre-pipe query goes here) | streamstats current=f last(_time) as gap_end by Computer EventCode EventCodeName | eval gap = gap_end - _time | where gap > 900 | convert ctime(gap_end) as gap_end | rename _time AS gap_start | convert ctime(gap_start) as gap_start | eval gap_length_hours = gap/60/60, gap_length_minutes = gap/60 | rename gap AS gap_length_seconds | table ... -->
+					<query>| makeresults | eval Computer="box01 box02", trend="test", first_hit="test", latest_hit="test", hours_since_first_hit="0.00 0.50 1.00 2 4 6 8 10 12 16 20 24", hours_since_latest_hit="0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1 2 20", count=99 | makemv Computer | makemv hours_since_first_hit | makemv hours_since_latest_hit | mvexpand Computer | mvexpand hours_since_first_hit | mvexpand hours_since_latest_hit | table Computer trend first_hit latest_hit hours_since_first_hit hours_since_latest_hit count | eval hide="&#8856;" $drillDown$</query>
+					<progress>
+						<condition match="'job.resultCount' > 0">
+							<set token="hideTESTDATAfirstlasthitschart">true</set>
+						</condition>
+						<condition>
+							<unset token="hideTESTDATAfirstlasthitschart"/>
+						</condition>
+					</progress>
+				</search>
+				<option name="count">40</option>
+				<!-- hours_since_first_hit -->
+				<!-- check if any new boxes recently appeared on the network (flip the color palette, highest value is green) -->
+				<!-- longer threshold scale to see new items that appeared overnight, between shifts, etc -->
+				<format type="color" field="hours_since_first_hit">
+					<colorPalette type="minMidMax" minColor="#ff0000" midColor="#f8de7e" maxColor="#adff22"></colorPalette>
+					<scale type="threshold">0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 12, 23.5, 24</scale>
+				</format>
+				<!-- hours_since_latest_hit -->
+				<!-- check if any new boxes have fallen off the network or stopped reporting -->
+				<!-- shorter threshold so assets powering on for the day don't clog the panel -->
+				<format type="color" field="hours_since_latest_hit">
+					<colorPalette type="minMidMax" minColor="#adff22" midColor="#ffd700" maxColor="#ff0000"></colorPalette>
+					<scale type="threshold">0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 2</scale>
+				</format>
+				<!-- add "hours" as a suffix, and round to two decimal places -->
+				<format type="number" field="hours_since_first_hit">
+					<option name="precision">2</option>
+					<option name="unit">hours</option>
+				</format>
+				<!-- add "hours" as a suffix, and round to two decimal places -->
+				<format type="number" field="hours_since_latest_hit">
+					<option name="precision">2</option>
+					<option name="unit">hours</option>
+				</format>
+				<drilldown>
+					<condition field="Computer">
+						<set token="drillDown">$drillDown$ AND (Computer="$row.Computer$" OR client_name="$row.Computer$")</set>
+					</condition>
+					<condition field="trend">
+						<set token="drillDown">$drillDown$ AND (Computer="$row.Computer$" OR client_name="$row.Computer$")</set>
+					</condition>
+					<condition field="first_hit">
+						<set token="drillDown">$drillDown$ AND (Computer="$row.Computer$" OR client_name="$row.Computer$")</set>
+					</condition>
+					<condition field="latest_hit">
+						<set token="drillDown">$drillDown$ AND (Computer="$row.Computer$" OR client_name="$row.Computer$")</set>
+					</condition>
+					<condition field="hours_since_first_hit">
+						<set token="drillDown">$drillDown$ AND (Computer="$row.Computer$" OR client_name="$row.Computer$")</set>
+					</condition>
+					<condition field="hours_since_latest_hit">
+						<set token="drillDown">$drillDown$ AND (Computer="$row.Computer$" OR client_name="$row.Computer$")</set>
+					</condition>
+					<condition field="hide">
+						<set token="drillDown">$drillDown$ AND (Computer="$row.Computer$" OR client_name="$row.Computer$")</set>
+					</condition>
+					<condition field="count">
+						<set token="drillDown">$drillDown$ AND (Computer="$row.Computer$" OR client_name="$row.Computer$")</set>
+					</condition>
+				</drilldown>
+			</table>
+		</panel>
+	</row>
+
+</form>

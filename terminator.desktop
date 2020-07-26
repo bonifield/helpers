@@ -1,0 +1,12 @@
+#!/usr/bin/env xdg-open
+# wget https://terminator-gtk3.readthedocs.io/en/latest/_images/icon_terminator.png
+
+[Desktop Entry]
+Type=Application
+Terminal=false
+Exec=terminator
+Name=Terminator
+Comment=not a robot
+Icon=/home/user/Downloads/icon_terminator.png
+
+# chmod +x terminator.desktop

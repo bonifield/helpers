@@ -1,0 +1,201 @@
+<form>
+	<label>Byte and Packet Summary - zeek_conn</label>
+	<description>Simple In/Out Statistics. Un-comment src_device queries if the corresponding lookup to map IPs to hostnames is in place.</description>
+	<!--  -->
+	<!-- DEPENDS ON A LOOKUP TABLE TO MAP IP ADDRESSES TO HOSTNAMES -->
+	<!-- UN-COMMENT ALTERNATIVE src_device QUERIES IF THAT AUTOMATIC LOOKUP IS IN PLACE -->
+	<!--  -->
+	<!-- USE SCHEDULED SEARCHES IN PRODUCTION -->
+	<!--  -->
+	<!-- v0.1 - 25 June 2020 -->
+	<!--  -->
+
+	<!--<fieldset submitButton="true" autoRun="False">-->
+	<fieldset submitButton="false" autoRun="True">
+		<input type="text" token="ip">
+			<label>IP Address</label>
+			<default>*</default>
+		</input>
+		<input type="time" token="dashTime" searchWhenChanged="true">
+			<label>Time</label>
+			<default>
+				<earliest>-24h@h</earliest>
+				<latest>now</latest>
+			</default>
+		</input>
+		<!-- flip the drillDown token back to init values as a "soft reset" of the token -->
+		<input type="checkbox" token="drillDown" searchWhenChanged="true">
+			<label>Reset Drilldowns</label>
+			<choice value=" | search * ">Check/Re-Check to Reset</choice>
+		</input>
+	</fieldset>
+
+	<!-- BASE QUERY - job sid will be stored in a variable to make drilldowns instant (see notes below) -->
+	<search id="mainQuery1">
+		<!-- define homenets as needed -->
+		<query>sourcetype=zeek_conn | where cidrmatch("192.168.1.0/24",src_ip) OR cidrmatch("10.0.0.0/8",src_ip) | fields src_ip orig_pkts orig_bytes orig_ip_bytes resp_pkts resp_bytes resp_ip_bytes src_device dest_device | fields - _raw</query>
+		<earliest>$dashTime.earliest$</earliest>
+		<latest>$dashTime.latest$</latest>
+		<done>
+			<set token="jobSid">$job.sid$</set>
+		</done>
+	</search>
+
+	<!-- store the job sid for mainQuery1 -->
+	<!-- load the job sid in mainQuery2 -->
+	<!-- all drill downs reference mainQuery2, making them near-instant -->
+	<!-- the text input still functions as intended due to being placed at the end -->
+
+	<search id="mainQuery2">
+		<query>| loadjob $jobSid$ $drillDown$ | search src_ip=$ip$</query>
+	</search>
+
+	<init>
+		<set token="drillDown"> | search * </set>
+	</init>
+
+	<!--<row>
+		<html>
+			<h1>$jobSid$</h1>
+			<h1>$drillDown$</h1>
+			<h1>$ip$</h1>
+		</html>
+	</row>-->
+
+	<!-- ROW 1 -->
+	<row>
+		<table>
+			<title>Sender Summary (MB and GB based on orig_ip_bytes)</title>
+			<search base="mainQuery2">
+				<!--<query> | stats sum(orig_pkts) as orig_pkts, sum(orig_bytes) as orig_bytes, sum(orig_ip_bytes) as orig_ip_bytes by src_ip src_device | eval megabytes=((orig_ip_bytes/1024)/1024), gigabytes=(((orig_ip_bytes/1024)/1024)/1024) | eval hide="&#8856;" | table src_ip src_device orig_pkts orig_bytes orig_ip_bytes megabytes gigabytes hide | sort -orig_ip_bytes | fields - count</query>-->
+				<query> | stats sum(orig_pkts) as orig_pkts, sum(orig_bytes) as orig_bytes, sum(orig_ip_bytes) as orig_ip_bytes by src_ip | eval megabytes=((orig_ip_bytes/1024)/1024), gigabytes=(((orig_ip_bytes/1024)/1024)/1024) | eval hide="&#8856;" | table src_ip orig_pkts orig_bytes orig_ip_bytes megabytes gigabytes hide | sort -orig_ip_bytes | fields - count</query>
+			</search>
+			<format type="color" field="megabytes">
+				<colorPalette type="minMidMax" minColor="#adff22" midColor="#ffd700" maxColor="#ff0000"></colorPalette>
+				<scale type="threshold">0, 1, 2, 3, 4, 5, 10, 15, 20, 25</scale>
+			</format>
+			<format type="number" field="megabytes">
+				<option name="precision">2</option>
+				<option name="unit">MB</option>
+			</format>
+			<format type="number" field="gigabytes">
+				<option name="precision">2</option>
+				<option name="unit">GB</option>
+			</format>
+			<drilldown>
+				<condition field="src_ip">
+					<set token="drillDown">$drillDown$ AND (src_ip="$row.src_ip$")</set>
+				</condition>
+				<condition field="orig_pkts">
+					<set token="drillDown">$drillDown$ AND (src_ip="$row.src_ip$")</set>
+				</condition>
+				<condition field="orig_bytes">
+					<set token="drillDown">$drillDown$ AND (src_ip="$row.src_ip$")</set>
+				</condition>
+				<condition field="orig_ip_bytes">
+					<set token="drillDown">$drillDown$ AND (src_ip="$row.src_ip$")</set>
+				</condition>
+				<condition field="megabytes">
+					<set token="drillDown">$drillDown$ AND (src_ip="$row.src_ip$")</set>
+				</condition>
+				<condition field="gigabytes">
+					<set token="drillDown">$drillDown$ AND (src_ip="$row.src_ip$")</set>
+				</condition>
+				<condition field="hide">
+					<set token="drillDown">$drillDown$ AND NOT (src_ip="$row.src_ip$")</set>
+				</condition>
+			</drilldown>
+		</table>
+	</row>
+
+	<!-- ROW 2 -->
+	<row>
+		<chart>
+			<option name="charting.chart">line</option>
+			<option name="charting.axisY.scale">log</option>
+			<title>orig_pkts</title>
+			<search base="mainQuery2">
+				<!--<query> | timechart span=10m sum(orig_pkts) by src_device</query>-->
+				<query> | timechart span=10m sum(orig_pkts) by src_ip</query>
+			</search>
+		</chart>
+		<chart>
+			<option name="charting.chart">line</option>
+			<option name="charting.axisY.scale">log</option>
+			<title>orig_ip_bytes</title>
+			<search base="mainQuery2">
+				<!--<query> | timechart span=10m sum(orig_ip_bytes) by src_device</query>-->
+				<query> | timechart span=10m sum(orig_ip_bytes) by src_ip</query>
+			</search>
+		</chart>
+	</row>
+
+	<!-- ROW 3 -->
+	<row>
+		<table>
+			<title>Recipient Summary (MB and GB based on resp_ip_bytes)</title>
+			<search base="mainQuery2">
+				<!--<query> | stats sum(resp_pkts) as resp_pkts, sum(resp_bytes) as resp_bytes, sum(resp_ip_bytes) as resp_ip_bytes by src_ip src_device | eval megabytes=((resp_ip_bytes/1024)/1024), gigabytes=(((resp_ip_bytes/1024)/1024)/1024) | eval hide="&#8856;" | table src_ip src_device resp_pkts resp_bytes resp_ip_bytes megabytes gigabytes hide | sort -resp_ip_bytes | fields - count</query>-->
+				<query> | stats sum(resp_pkts) as resp_pkts, sum(resp_bytes) as resp_bytes, sum(resp_ip_bytes) as resp_ip_bytes by src_ip | eval megabytes=((resp_ip_bytes/1024)/1024), gigabytes=(((resp_ip_bytes/1024)/1024)/1024) | eval hide="&#8856;" | table src_ip resp_pkts resp_bytes resp_ip_bytes megabytes gigabytes hide | sort -resp_ip_bytes | fields - count</query>
+			</search>
+			<format type="color" field="megabytes">
+				<colorPalette type="minMidMax" minColor="#adff22" midColor="#ffd700" maxColor="#ff0000"></colorPalette>
+				<scale type="threshold">0, 100, 250, 500, 750, 1000, 2000, 3000</scale>
+			</format>
+			<format type="number" field="megabytes">
+				<option name="precision">2</option>
+				<option name="unit">MB</option>
+			</format>
+			<format type="number" field="gigabytes">
+				<option name="precision">2</option>
+				<option name="unit">GB</option>
+			</format>
+			<drilldown>
+				<condition field="src_ip">
+					<set token="drillDown">$drillDown$ AND (src_ip="$row.src_ip$")</set>
+				</condition>
+				<condition field="resp_pkts">
+					<set token="drillDown">$drillDown$ AND (src_ip="$row.src_ip$")</set>
+				</condition>
+				<condition field="resp_bytes">
+					<set token="drillDown">$drillDown$ AND (src_ip="$row.src_ip$")</set>
+				</condition>
+				<condition field="resp_ip_bytes">
+					<set token="drillDown">$drillDown$ AND (src_ip="$row.src_ip$")</set>
+				</condition>
+				<condition field="megabytes">
+					<set token="drillDown">$drillDown$ AND (src_ip="$row.src_ip$")</set>
+				</condition>
+				<condition field="gigabytes">
+					<set token="drillDown">$drillDown$ AND (src_ip="$row.src_ip$")</set>
+				</condition>
+				<condition field="hide">
+					<set token="drillDown">$drillDown$ AND NOT (src_ip="$row.src_ip$")</set>
+				</condition>
+			</drilldown>
+		</table>
+	</row>
+
+	<!-- ROW 4 -->
+	<row>
+		<chart>
+			<option name="charting.chart">line</option>
+			<option name="charting.axisY.scale">log</option>
+			<title>resp_pkts</title>
+			<search base="mainQuery2">
+				<!--<query> | timechart span=10m sum(resp_pkts) by src_device</query>-->
+				<query> | timechart span=10m sum(resp_pkts) by src_ip</query>
+			</search>
+		</chart>
+		<chart>
+			<option name="charting.chart">line</option>
+			<option name="charting.axisY.scale">log</option>
+			<title>resp_ip_bytes</title>
+			<search base="mainQuery2">
+				<!--<query> | timechart span=10m sum(resp_ip_bytes) by src_device</query>-->
+				<query> | timechart span=10m sum(resp_ip_bytes) by src_ip</query>
+			</search>
+		</chart>
+	</row>
+
+</form>

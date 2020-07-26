@@ -1,0 +1,131 @@
+<!--
+
+IF ADDING OR REMOVING FIELDS FROM THE LOOKUP
+- delete the old lookup (back it up first!)
+	- use an inputlookup and eval statement to make the new field, push it to a temp file, then inputlookup/outputlookup back to the original name
+- in a new search window, run an inputlookup for the new file (MUST do this before trying any dashboard changes)
+- make changes to your dashboard to send the new annotation field
+	- make changes on the Annotation Maker dashboard
+	- make changes on the Annotation Viewer dashboard
+- proceed with work as usual
+
+-->
+<form onunloadCancelJobs="true">
+	<label>Analyst Annotation Maker</label>
+	<!-- v 0.2 - 23 June 2020 -->
+	<!-- v 0.1 - 22 Feb 2019 -->
+	<!-- Use lookups (or autos if desired) in other queries/dashboards to marry the annotations table into your main analysis dashboard results (could save as a macro). -->
+	<!-- Utilize scheduled reports to back up your annotation lookup table! -->
+	<description>use makeresults to generate fields, then capture user input and push it to an annotations lookup</description>
+
+	<fieldset>
+		<input type="dropdown" token="annotatedRating" searchWhenChanged="false">
+			<label>Severity Rating</label>
+			<choice value="benign">Benign</choice>
+			<choice value="suspicious">Suspicious</choice>
+			<choice value="malicious">Malicious</choice>
+		</input>
+		<input type="dropdown" token="annotatedPhase" searchWhenChanged="false">
+			<label>CKC Phases</label>
+			<choice value="reconnaissance">Reconnaissance</choice>
+			<choice value="weaponization">Weaponization</choice>
+			<choice value="delivery">Delivery</choice>
+			<choice value="exploitation">Exploitation</choice>
+			<choice value="installation">Installation</choice>
+			<choice value="commandandcontrol">Command and Control</choice>
+			<choice value="actionsonobjectives">Actions on Objectives</choice>
+			<choice value="splunk_changelog">splunk_changelog</choice>
+		</input>
+		<input type="text" token="annotatedEventStart" id="annotatedEventStart" searchWhenChanged="false">
+			<label>Event Start (YYYY-MM-DD hh:mm:ss)</label>
+			<!--<default>2000-01-01 12:00:00</default-->
+			<default></default>
+		</input>
+		<input type="text" token="annotatedEventEnd" id="annotatedEventEnd" searchWhenChanged="false">
+			<label>Event End (date+time or ongoing)</label>
+			<default></default>
+		</input>
+		<input type="text" token="annotatedAffectedAsset" id="annotatedAffectedAsset" searchWhenChanged="false">
+			<label>Affected Asset</label>
+			<default>hostname or asset description</default>
+		</input>
+		<input type="dropdown" token="annotatedType" searchWhenChanged="false">
+			<label>Indicator Type</label>
+			<choice value="ip">IP</choice>
+			<choice value="filename">filename</choice>
+			<choice value="email">email address</choice>
+			<choice value="subject">subject</choice>
+			<choice value="hash">hash</choice>
+			<choice value="string">string</choice>
+			<choice value="splunk_changelog">splunk_changelog</choice>
+		</input>
+		<input type="text" token="annotatedIndicator" id="annotatedIndicator" searchWhenChanged="false">
+			<label>Indicator Value</label>
+			<default></default>
+		</input>
+		<html></html>
+		<input type="text" token="annotatedComment" id="annotatedComment" searchWhenChanged="false">
+			<label>Analyst Comment</label>
+			<default>BE CONCISE YET DESCRIPTIVE AS POSSIBLE</default>
+		</input>
+	</fieldset>
+
+	<!-- could just put the time query inline with sendAnnotation (usage of eval strftime here is just an example of how to extract values)-->
+	<search id="getTime">
+		<query>| makeresults | eval annotatedSubmissionTime=strftime(_time,"%Y-%m-%d %H:%M:%S") | table annotatedSubmissionTime | head 1</query>
+		<done>
+			<set token="annotatedSubmissionTime">$result.annotatedSubmissionTime$</set>
+		</done>
+	</search>
+
+	<search id="sendAnnotation">
+		<query> | makeresults | eval annotatedSubmissionTime="$annotatedSubmissionTime$", annotatedUsername="$env:user_realname$", annotatedRating="$annotatedRating$", annotatedType="$annotatedType$", annotatedPhase="$annotatedPhase$", annotatedEventStart="$annotatedEventStart$", annotatedEventEnd="$annotatedEventEnd$", annotatedAffectedAsset="$annotatedAffectedAsset$", annotatedIndicator="$annotatedIndicator$", annotatedComment="$annotatedComment$" | table annotatedSubmissionTime annotatedUsername annotatedRating annotatedType annotatedPhase annotatedEventStart annotatedEventEnd annotatedAffectedAsset annotatedIndicator annotatedComment | outputlookup append=True analyst_annotations.csv</query>
+	</search>
+	<!-- input-text is the button, input is the textbox, #value denotes the ID and is optional -->
+	<row>
+		<html>
+			<style>
+				.input-text {
+				width: 250px !important;
+				}
+				#annotatedComment {
+				width: 1500px !important;
+				}
+			</style>
+			<p>$annotatedSubmissionTime$</p>
+			<p>$env:user_realname$</p>
+			<p>$annotatedRating$</p>
+			<p>$annotatedType$</p>
+			<p>$annotatedPhase$</p>
+			<p>$annotatedEventStart$</p>
+			<p>$annotatedEventEnd$</p>
+			<p>$annotatedAffectedAsset$</p>
+			<p>$annotatedIndicator$</p>
+			<p>$annotatedComment$</p>
+		</html>
+	</row>
+
+	<!-- empty drilldown conditions (no set/unset, link, etc tags) mean the fields are not clickable -->
+	<row>
+		<panel>
+			<title>Annotation Preview</title>
+			<table>
+				<search base="sendAnnotation"></search>
+				<option name="count">1</option>
+				<drilldown>
+					<condition field="annotatedSubmissionTime"></condition>
+					<condition field="annotatedUsername"></condition>
+					<condition field="annotatedRating"></condition>
+					<condition field="annotatedType"></condition>
+					<condition field="annotatedPhase"></condition>
+					<condition field="annotatedEventStart"></condition>
+					<condition field="annotatedEventEnd"></condition>
+					<condition field="annotatedAffectedAsset"></condition>
+					<condition field="annotatedIndicator"></condition>
+					<condition field="annotatedComment"></condition>
+				</drilldown>
+			</table>
+		</panel>
+	</row>
+
+</form>
