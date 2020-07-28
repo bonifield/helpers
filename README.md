@@ -4,7 +4,7 @@ Skeleton scripts and sample data to help jog the memory.
 TODO: fix naming conventions, clean up code examples
 
 ### 2020-07-25
-- rebuilt the repo, which was originally created 4 years ago
+- rebuilt the repo, which was originally created in 2016
 
 ### Files
 - bash-array-comparison.sh
