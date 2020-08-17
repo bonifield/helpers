@@ -33,6 +33,11 @@ TODO: fix naming conventions, clean up code examples
 	- Outlines the creation and usage of parent and child classes, with output examples
 - python-collections-deque.py
 	- How to use deque to handle list-like objects, but with better options like left appends, extends, and pops
+- python-csv-worker_01_combine.py
+	- Combine only desired CSV files in a given path into a single working file (usage: script path)
+	- use with the dated sample CSVs in the sampledata folder
+- python-csv-worker_02_pandas_graph.py
+	- Use Pandas to create a multi-line graph from a given CSV (ex. as processed by python-csv-worker_01_combine.py) (usage: script file.csv)
 - python-dictionaries.py
 	- How to use dictionaries in Python
 - python-files-folders.py
