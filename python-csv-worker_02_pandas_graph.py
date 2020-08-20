@@ -1,7 +1,5 @@
 #!/usr/bin/python3
 # August 2020
-#
-# TODO: creates and visualizes a strange last bucket; identify and remove
 # 
 # basic example of using Pandas to generate a multi-line graph, with a legend, based on CSV data
 # uses subgroup iteration to generate legend names
@@ -110,8 +108,8 @@ def graphMaker(inputFile):
 		# create axis and define line graph
 		ax = grp.plot(logy=True, ax=ax, kind='line')
 		# use Scalar format for axis numbers (aka not the logarithmic 10^n format on y-axis etc)
-		for axis in [ax.xaxis, ax.yaxis]:
-			axis.set_major_formatter(ScalarFormatter())
+		# attempting to use Scalars for x-axis will scramble the name of the last bucket
+		ax.yaxis.set_major_formatter(ScalarFormatter())
 
 		# label for peak on graph
 		#annotationLabel = str("{} {}".format(str(ymaxxpos).split()[0], ymax))
