@@ -10,8 +10,8 @@ IF ADDING OR REMOVING FIELDS FROM THE LOOKUP
 - proceed with work as usual
 
 -->
-<!-- <form onunloadCancelJobs="true" theme="dark"> -->
-<form onunloadCancelJobs="true">
+
+<form onunloadCancelJobs="true" theme="dark">
 	<label>Analyst Annotation Viewer</label>
 	<!-- v 0.1 23 June 2020 -->
 	<description>view annotations from a lookup table</description>
