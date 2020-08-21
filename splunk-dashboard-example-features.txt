@@ -1,5 +1,6 @@
 <!-- the onunloadCancelJobs argument will cancel the whole dashboard if one panel is told to stop, instead of rushing to click the cancel button on tons of panels -->
-<form onunloadCancelJobs="true">
+
+<form onunloadCancelJobs="true" theme="dark">
 	<label>Splunk Dashboard Example Features</label>
 	<!-- v 1.5 11 July 2020 -->
 	<description>description goes here</description>
