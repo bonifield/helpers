@@ -1,4 +1,4 @@
-<form onunloadCancelJobs="true">
+<form onunloadCancelJobs="true" theme="dark">
 	<label>Host Last Seen and Sensor Health</label>
 	<!-- v 0.2 25 June 2020 -->
 	<!-- COLORS - green = #adff22, mellow yellow = #f8de7e, orange = #ffd700, bright red = #ff0000 -->
