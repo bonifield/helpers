@@ -107,3 +107,11 @@ TODO: fix naming conventions, clean up code examples
 	- Check if any hosts fell off the network, if new hosts appeared, and check for gaps in logs. Can also be used for sensor troubleshooting.
 - terminator.desktop
 	- Desktop launcher and icon for the Terminator terminal emulator; also a basic outline of how to make desktop launchers
+
+### Sample Data
+- sampleCSV.csv
+	- very small CSV with quoted fields
+- sample_2020-06-0x.csv
+	- dated CSVs for testing with Pandas or similar
+- testdata-2M.txt.gz
+	- text file with 2 million lines (newline-separated), each with 13 digits; approximately 27 MB decompressed
