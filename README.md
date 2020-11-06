@@ -25,6 +25,9 @@ TODO: fix naming conventions, clean up code examples
 	- Using C structures to create complex objects
 - esp.c / exe
 	- Estimate the location of the ESP register
+- javascript-bookmarklet-hide-element
+	- A bookmarklet for Firefox that, when clicked, allows the user to hover over elements on a webpage and click to remove them from view. ESC to cancel.
+	- Make a new bookmark, name it "hideElement", and paste the code into the Location field
 - powershell-examples.ps1
 	- Many examples of PowerShell variables, string manipulation, functions, custom objects, arrays, hashtables, output colorization, and more
 - python-argparse.py
