@@ -3,8 +3,10 @@ Skeleton scripts and sample data to help jog the memory.
 
 TODO: fix naming conventions, clean up code examples
 
-### 2020-07-25
-- rebuilt the repo, which was originally created in 2016
+- 2020-11-06
+	- added lots of Python threading examples
+- 2020-07-25
+	- rebuilt the repo, which was originally created in 2016
 
 ### Files
 - bash-array-comparison.sh
@@ -40,6 +42,8 @@ TODO: fix naming conventions, clean up code examples
 	- Use Pandas to create a multi-line graph from a given CSV (ex. as processed by python-csv-worker_01_combine.py) (usage: script file.csv)
 - python-dictionaries.py
 	- How to use dictionaries in Python
+- python-file-inout-processor.py
+	- How to read from one file, manipulate the content, and write to a separate output file.
 - python-files-folders.py
 	- Working with both regular and temporary files and folders
 - python-json-printer.py
@@ -54,6 +58,31 @@ TODO: fix naming conventions, clean up code examples
 	- Using in-line regex and compiled regex objects
 - python-terminal-colors.py
 	- ANSI terminal color usage in Python
+- python-threading-01-randomSleep.py
+	- Basic thread creation; threads sleep then exit
+- python-threading-02-join.py
+	- Use a join() to lock the main process until threads have finished
+- python-threading-03-daemon.py
+	- Daemonizing threads; the threads terminate when the main thread exits
+- python-threading-04-FIFOqueue.py
+	- A first-in-first-out queue
+- python-threading-05-LIFOqueue.py
+	- A last-in-first-out queue
+- python-threading-06-priorityQueue.py
+	- A queue which empties based on prioritized values (0 = highest priority)
+- python-threading-07-fillQueue.py
+	- Using threads to fill a queue which has a maximum size
+- python-threading-08-joinWithQueue.py
+	- Use daemonized threads to process items in a queue, then use join() to ensure the queue is empty
+- python-threading-09-executorBasic.py
+	- Use ThreadPoolExecutor to create worker threads, define max_worker cap
+- python-threading-10-fillAndConsumeFromQueue.py
+	- Use one thread to fill a queue, while another thread consumes from the same queue
+- python-threading-11-multipleQueues.py
+	- Uses multiple threads to process multiple queues; the first thread fills queue1, the second thread shuffles queue1 items to queue2, and the third thread drains queue2
+- python-threading-12-processFiles.py
+	- Uses one thread to read from a file and push to a queue, and another thread to read the queue, transform items, and push to an output file.
+	- Note: using queues to process files line-by-line is VERY slow; this is just an example of converging multiple threads into a queue for a single output thread to safely write files.
 - python-tkinter-gui-basics.py
 	- How to make a simple GUI in Python
 - python-web-requests.py
