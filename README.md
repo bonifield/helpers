@@ -62,7 +62,7 @@ TODO: fix naming conventions, clean up code examples
 - python-sqlite-01-makedb.py
 	- Make a SQLite database (usage: ./python-sqlite-01-writer.py mydb)
 - python-sqlite-02-writer.py
-	- Write logs to a SQLite database (usage: ./python-sqlite-02-writer.py mydb)
+	- Write records to a SQLite database (usage: ./python-sqlite-02-writer.py mydb)
 - python-sqlite-03-reader.py
 	- Read records from a SQLite database (usage: ./python-sqlite-03-reader.py -i mydb -f Alice -a 42)
 - python-terminal-colors.py
