@@ -96,6 +96,8 @@ TODO: fix naming conventions, clean up code examples
 	- How to make a simple GUI in Python
 - python-web-requests.py
 	- Usage of Python 3's Requests library to interact with network/web objects
+- python-wifi-sniffing.py
+	- Use Scapy to sniff basic WiFi information, such as base station IDs and transmitting device addresses
 - python-xml-prettify
 	- Example of using BeautifulSoup and lxml to "pretty print" XML data
 - sampleCsv.csv
