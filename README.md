@@ -65,6 +65,8 @@ TODO: fix naming conventions, clean up code examples
 	- Write records to a SQLite database (usage: ./python-sqlite-02-writer.py mydb)
 - python-sqlite-03-reader.py
 	- Read records from a SQLite database (usage: ./python-sqlite-03-reader.py -i mydb -f Alice -a 42)
+- python-syslog.py
+	- Use the logging module to send syslog messages to a remote server
 - python-terminal-colors.py
 	- ANSI terminal color usage in Python
 - python-threading-01-randomSleep.py
