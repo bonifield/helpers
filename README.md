@@ -1,5 +1,5 @@
 # helpers
-Code examples, templates, and sample data for quick reference.
+Brief code examples, templates, and sample data for quick reference.
 
 TODO: fix naming conventions, clean up code examples
 
