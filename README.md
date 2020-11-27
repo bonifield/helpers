@@ -9,17 +9,6 @@ TODO: fix naming conventions, clean up code examples
 	- rebuilt the repo, which was originally created in 2016
 
 ### Files
-- c-loops.c
-	- Various loops in C
-- c-structs.c
-	- Using C structures to create complex objects
-- esp.c / exe
-	- Estimate the location of the ESP register
-- javascript-bookmarklet-hide-element
-	- A bookmarklet for Firefox that, when clicked, allows the user to hover over elements on a webpage and click to remove them from view. ESC to cancel.
-	- Make a new bookmark, name it "hideElement", and paste the code into the Location field
-- powershell-examples.ps1
-	- Many examples of PowerShell variables, string manipulation, functions, custom objects, arrays, hashtables, output colorization, and more
 - python-argparse.py
 	- Basic way to add switches to a Python script (better than getopt)
 - python-class-py2.py
@@ -94,22 +83,8 @@ TODO: fix naming conventions, clean up code examples
 	- Example of using BeautifulSoup and lxml to "pretty print" XML data
 - sampleCsv.csv
 	- Four lines of test data
-- shell_address.c / exe
-	- Estimate the address of the SHELL environment variable
 - splitHashCombiner.py
 	- Identifies and matches sessions where data fields are potentially reversed using hash keys
-- splunk-analyst-annotation-maker-dashboard.txt
-	- A method of using text inputs to capture analyst annotations into lookup tables (a workaround for Splunk's lack of built-in knowledge management tools); use with the Annotation Viewer dashboard
-- splunk-analyst-annotation-viewer-dashboard.txt
-	- View analyst annotations; use with the Annotation Maker dashboard
-- splunk-byte-and-packet-summary-dashboard.txt
-	- Examples of input/output monitoring, with drilldown examples based on loadjob. Includes commented-out queries in case an IP-to-hostname lookup is in place
-- splunk-dashboard-example-features.txt
-	- Several examples of input types in Splunk's Simple XML, and other features like colorization, drilldowns, and token usage
-- splunk-host-last-seen-dashboard.txt
-	- Check if any hosts fell off the network, if new hosts appeared, and check for gaps in logs. Can also be used for sensor troubleshooting.
-- terminator.desktop
-	- Desktop launcher and icon for the Terminator terminal emulator; also a basic outline of how to make desktop launchers
 
 ### Sample Data
 - sampleCSV.csv
