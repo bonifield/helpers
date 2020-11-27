@@ -1,0 +1,11 @@
+### Files
+- splunk-analyst-annotation-maker-dashboard.txt
+	- A method of using text inputs to capture analyst annotations into lookup tables (a workaround for Splunk's lack of built-in knowledge management tools); use with the Annotation Viewer dashboard
+- splunk-analyst-annotation-viewer-dashboard.txt
+	- View analyst annotations; use with the Annotation Maker dashboard
+- splunk-byte-and-packet-summary-dashboard.txt
+	- Examples of input/output monitoring, with drilldown examples based on loadjob. Includes commented-out queries in case an IP-to-hostname lookup is in place
+- splunk-dashboard-example-features.txt
+	- Several examples of input types in Splunk's Simple XML, and other features like colorization, drilldowns, and token usage
+- splunk-host-last-seen-dashboard.txt
+	- Check if any hosts fell off the network, if new hosts appeared, and check for gaps in logs. Can also be used for sensor troubleshooting.
