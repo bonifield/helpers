@@ -1,0 +1,4 @@
+# renames all *.jpg to *_m.jpg
+# can also use the aliases "gci" and "ren"
+
+Get-ChildItem *.jpg | Rename-Item -NewName { $_.Name -replace '\.jpg','_m.jpg' } -whatif
