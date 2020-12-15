@@ -1,9 +1,19 @@
 ### Files
-- c-loops.c
-	- Various loops in C
-- c-structs.c
-	- Using C structures to create complex objects
 - esp.c
 	- Estimate the location of the ESP register
+- if-else.c
+	- Use an if/else-if/else statement
+- loops.c
+	- For, while, do, and nested loops
+- pointers.c
+	- How to access the referenced location, referenced value, and actual location of a pointer
 - shell_address.c
 	- Estimate the address of the SHELL environment variable
+- structs.c
+	- Using C structures to create complex objects
+- swap-pointers.c
+	- Use pointers to swap values of two variables
+- swap.c
+	- Use functions to swap values of two variables
+- switch-case.c
+	- Use a switch/case statement to determine a result
