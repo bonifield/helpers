@@ -1,0 +1,22 @@
+input {
+	pipeline {
+		address => "to_notice_pipeline"
+	}
+}
+filter {
+	if [rule] {
+		split {
+			field => rule
+			add_field => { "split_log" => "True" }
+		}
+	}
+	mutate {
+		add_field => { "processed_as_type" => "notice" }
+		add_field => { "added_field_test" => "log from %{host}"}
+		remove_field => "@version"
+		remove_field => "headers"
+	}
+}
+output {
+	file { path => "/var/log/logstash/logstash-test.log" }
+}
