@@ -1,0 +1,29 @@
+- pipeline.id: intake
+  config.string: |
+    input {
+      http {
+        host => "127.0.0.1"
+        port => "8080"
+      }
+    }
+    output {
+      if "alert" in [type] {
+        pipeline {
+          send_to => "to_alert_pipeline"
+        }
+      } else if "notice" in [type] {
+        pipeline {
+          send_to => "to_notice_pipeline" 
+        }
+      }
+    }
+
+- pipeline.id: to_alert_pipeline
+  path.config: "/etc/logstash/conf.d/alert-pipeline.conf"
+  #queue.type: persistent
+  #pipeline.workers: 3
+
+- pipeline.id: to_notice_pipeline
+  path.config: "/etc/logstash/conf.d/notice-pipeline.conf"
+  #queue.type: persistent
+  #pipeline.workers: 3
