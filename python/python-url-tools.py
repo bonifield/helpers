@@ -5,6 +5,7 @@
 # https://docs.python.org/3/library/urllib.parse.html
 #////////////////////
 
+import os
 from html import escape
 from html import unescape
 #from urllib import parse
@@ -64,6 +65,7 @@ print("qsl\n\t", ddd)
 u = urlparse("https://www.google.com/search?client=firefox-b-1-d&q=reddit&%3Cscript%3Ealert%281%29%3B%3C%2Fscript%3E")
 
 print("full url\n\t", u.geturl())
+print("filename\n\t", os.path.basename(u.path))
 print("result tuple\n\t", u)
 print("scheme\n\t", u.scheme)
 print("netloc\n\t", u.netloc)
