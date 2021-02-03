@@ -9,6 +9,8 @@ import os
 from html import escape
 from html import unescape
 #from urllib import parse
+from urllib.parse import quote
+from urllib.parse import unquote
 from urllib.parse import quote_plus
 from urllib.parse import unquote_plus
 from urllib.parse import urlencode
@@ -24,8 +26,17 @@ s = "'<script>alert(1);</script>"
 e = "%27%3Cscript%3Ealert%281%29%3B%3C%2Fscript%3E"
 
 #=============
-# quote_plus / unquote_plus
+# quote / unquote / quote_plus / unquote_plus
 #=============
+
+q = quote(s)
+print("quote\n\t", q) # %27%3Cscript%3Ealert%281%29%3B%3C/script%3E
+
+q = quote(s, safe='')
+print("quote nosafe\n\t", q) # %27%3Cscript%3Ealert%281%29%3B%3C/script%3E
+
+q = unquote(q)
+print("unquote\n\t", q) # '<script>alert(1);</script>
 
 q = quote_plus(s)
 print("quote_plus\n\t", q) # %27%3Cscript%3Ealert%281%29%3B%3C%2Fscript%3E
