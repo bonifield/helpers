@@ -33,7 +33,7 @@ q = quote(s)
 print("quote\n\t", q) # %27%3Cscript%3Ealert%281%29%3B%3C/script%3E
 
 q = quote(s, safe='')
-print("quote nosafe\n\t", q) # %27%3Cscript%3Ealert%281%29%3B%3C/script%3E
+print("quote nosafe\n\t", q) # %27%3Cscript%3Ealert%281%29%3B%3C%2Fscript%3E
 
 q = unquote(q)
 print("unquote\n\t", q) # '<script>alert(1);</script>
