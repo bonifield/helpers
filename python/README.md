@@ -38,6 +38,8 @@
 	- Use the logging module to send syslog messages to a remote server
 - python-terminal-colors.py
 	- ANSI terminal color usage in Python
+- python-thread-dispatcher.py
+	- reliably start a daemon thread running an OS command, while allowing the calling function to return instantly
 - python-threading-01-randomSleep.py
 	- Basic thread creation; threads sleep then exit
 - python-threading-02-join.py
