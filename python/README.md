@@ -34,6 +34,8 @@
 	- Write records to a SQLite database (usage: ./python-sqlite-02-writer.py mydb)
 - python-sqlite-03-reader.py
 	- Read records from a SQLite database (usage: ./python-sqlite-03-reader.py -i mydb -f Alice -a 42)
+- python-string-formatting.py
+- 	- Examples of the string formatting mini-language
 - python-syslog.py
 	- Use the logging module to send syslog messages to a remote server
 - python-terminal-colors.py
