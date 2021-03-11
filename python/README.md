@@ -71,6 +71,8 @@
 	- How to make a simple GUI in Python
 - python-web-requests.py
 	- Usage of Python 3's Requests library to interact with network/web objects
+- python-web-scraping.py
+	- Examples of acquiring web content via Selenium-Wire, headless Chromium, and Requests
 - python-wifi-sniffing.py
 	- Use Scapy to sniff basic WiFi information, such as base station IDs and transmitting device addresses
 - python-xml-prettify
