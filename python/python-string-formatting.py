@@ -12,6 +12,14 @@ for x in l:
 #	7777                 8888
 #	99999                100000
 
+
+
+# https://stackoverflow.com/questions/10411085/converting-integer-to-binary-in-python
+ipa = "192.168.1.1"
+b = ["{0:08b}".format(int(x)) for x in ipa.split(".")] # ['11000000', '10101001', '00000001', '00000001']
+
+
+
 #
 # examples below from
 #	https://docs.python.org/3/library/string.html#format-specification-mini-language
