@@ -27,3 +27,8 @@
   path.config: "/etc/logstash/conf.d/notice-pipeline.conf"
   #queue.type: persistent
   #pipeline.workers: 3
+
+- pipeline.id: tcp9088_json_streaming
+  path.config: "/etc/logstash/conf.d/tcp9088-json-streaming.conf"
+  #queue.type: persistent
+  #pipeline.workers: 3
