@@ -1,5 +1,9 @@
 #!/usr/bin/python3
 
+#
+# stream a JSON file to Logstash via TCP socket (use with tcp9088-json-streaming.conf)
+#
+
 import json, socket, sys
 
 try:
