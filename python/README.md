@@ -22,6 +22,8 @@
 	- Ingest then dump a JSON file for review
 - python-lists.py
 	- How to use lists in Python
+- python-flatten-json.py
+	- Flatten a JSON structure into single-string dotted notation, ex. "topkey.middlekey.bottomkey = value"
 - python-generators-comprehensions-yield.py
 	- How to use generator expressions, list comprehensions, and an example of yield generator expressions in a function
 - python-os-commands.py
