@@ -22,6 +22,8 @@
 	- Flatten a JSON structure into single-string dotted notation, ex. "topkey.middlekey.bottomkey = value", and also un-flatten back into a nested structure
 - python-generators-comprehensions-yield.py
 	- How to use generator expressions, list comprehensions, and an example of yield generator expressions in a function
+- python-hashes.py
+- 	- Use hashlib to generate multiple types hashes
 - python-json-printer.py
 	- Ingest then dump a JSON file for review
 - python-lists.py
