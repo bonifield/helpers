@@ -1,6 +1,8 @@
 ### Files
 - python-argparse.py
 	- Basic way to add switches to a Python script (better than getopt)
+- python-args-kwargs.py
+	- using "\*args" and "\*\*kwargs" to easily expand interables
 - python-class-py2.py
 	- Outlines the creation and usage of parent and child classes, with output examples
 - python-class-py3.py
