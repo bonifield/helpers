@@ -4,9 +4,11 @@
 - python-args-kwargs.py
 	- using "\*args" and "\*\*kwargs" to easily expand interables
 - python-class-py2.py
-	- Outlines the creation and usage of parent and child classes, with output examples
-- python-class-py3.py
-	- Outlines the creation and usage of parent and child classes, with output examples
+	- Creation and usage of parent and child classes, with output examples (Python 2.7)
+- python-class-py3_1.py
+	- Creation and usage of parent and child classes, with output examples (Python 3)
+- python-class-py3_2.py
+	- Creation and usage of parent and child classes, with output examples (Python 3)
 - python-collections-deque.py
 	- How to use deque to handle list-like objects, but with better options like left appends, extends, and pops
 - python-csv-worker_01_combine.py
