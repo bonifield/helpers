@@ -27,7 +27,9 @@
 - python-generators-comprehensions-yield.py
 	- How to use generator expressions, list comprehensions, and an example of yield generator expressions in a function
 - python-hashes.py
-- 	- Use hashlib to generate multiple types hashes
+	- Use hashlib to generate multiple types hashes
+- python-json-enrich.py
+	- insert new key/value pairs to a JSON file (creates a new file)
 - python-json-printer.py
 	- Ingest then dump a JSON file for review
 - python-lists.py
