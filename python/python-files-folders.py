@@ -72,9 +72,11 @@ print(outname) # /home/user/folder/file.txt
 
 #=============
 
-# get just the filename from a path
+# get just the path or just the filename
 fullpath = "/home/user/folder/file.txt"
+justpath = os.path.dirname(fullpath)
 justfilename = os.path.basename(fullpath)
+print(justpath) # /home/user/folder (note the trailing slash has been removed)
 print(justfilename) # file.txt
 
 #=============
