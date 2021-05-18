@@ -1,5 +1,9 @@
 #!/usr/bin/python3
 
+
+import sys
+
+
 #====================
 # precendence of operators in a function: standard operators, *args, **kwargs
 # ex. somefunc(a, b, *args, **kwargs)
@@ -102,6 +106,31 @@ print()
 # same as calling key=value inside the function directly
 print("using key=value format for each pair in the function input")
 print_dict(apple="red", orange="orange", cherry="red", watermelon="green", lemon="yellow")
+
+
+#====================
+# load a dictionary with command line arguments
+#====================
+
+
+def get_cli_arguments(*args):
+	d = {}
+	for arg in args:
+		a = arg.split("=") # split each argument
+		k = a[0] # set the key
+		v = a[1] # set the value
+		d[k] = v # load the dict
+		print(k, v) # just for show
+	print(d) # do something with d
+
+# get_cli_arguments(*sys.argv[1:]) # commented because this script does not otherwise expect inputs like this
+# usage:
+#	script.py a=b c=d
+# outputs:
+#	a b
+#	c d
+#	{'a': 'b', 'c': 'd'}
+
 
 
 print()
