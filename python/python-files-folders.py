@@ -61,3 +61,16 @@ for h in homefiles[:10]:
 		print(h+"\tdirectory")
 	else:
 		print(h+"\tsomething else")
+
+#=============
+
+somepath = "/home/user/folder/"
+somefile = "file.txt"
+outname = os.path.join(somepath, somefile)
+print(outname) # /home/user/folder/file.txt
+
+#=============
+
+fullpath = "/home/user/folder/file.txt"
+justfilename = os.path.basename(fullpath)
+print(fullpath) # file.txt
