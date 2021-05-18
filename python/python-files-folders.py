@@ -73,4 +73,4 @@ print(outname) # /home/user/folder/file.txt
 
 fullpath = "/home/user/folder/file.txt"
 justfilename = os.path.basename(fullpath)
-print(fullpath) # file.txt
+print(justfilename) # file.txt
