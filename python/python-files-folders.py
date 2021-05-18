@@ -64,6 +64,7 @@ for h in homefiles[:10]:
 
 #=============
 
+# combine a path and filename safely (Windows-safe as well); alternatively, safely combine folder paths
 somepath = "/home/user/folder/"
 somefile = "file.txt"
 outname = os.path.join(somepath, somefile)
@@ -71,6 +72,18 @@ print(outname) # /home/user/folder/file.txt
 
 #=============
 
+# get just the filename from a path
 fullpath = "/home/user/folder/file.txt"
 justfilename = os.path.basename(fullpath)
 print(justfilename) # file.txt
+
+#=============
+
+# make a folder if it does not exist
+somepath = "/home/user/folder/"
+homework = "homework"
+h = os.path.join(somepath, homework)
+if not os.path.exists(h):
+	os.makedirs(h)
+
+
