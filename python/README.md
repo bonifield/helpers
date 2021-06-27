@@ -34,6 +34,8 @@
 	- Flatten a JSON structure into single-string dotted notation, ex. "topkey.middlekey.bottomkey = value", and also un-flatten back into a nested structure
 - python-json-printer.py
 	- Ingest then dump a JSON file for review
+- python-lambdas-filter-map.py
+	- How to use standalone lambda functions, as well as inside filter() and map()
 - python-lists.py
 	- How to use lists in Python
 - python-os-commands.py
