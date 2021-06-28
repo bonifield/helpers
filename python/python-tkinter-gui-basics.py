@@ -1,5 +1,8 @@
 #!/usr/bin/python3
 
+# if using Ubuntu
+# sudo apt install python3-tk
+
 #=============
 # imports and instances
 #=============
