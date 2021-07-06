@@ -1,3 +1,9 @@
+# https://stackoverflow.com/questions/798040/how-do-i-find-the-10-largest-files-in-a-directory-structure
+#
+# one-liner with just names
+# gci . -r | sort Length -desc | select fullname -f 10
+#
+
 Get-ChildItem -Path 'C:\' -Recurse -Force -File |
 	Select-Object -Property FullName `
 		,@{Name='SizeGB';Expression={$_.Length / 1GB}} `
