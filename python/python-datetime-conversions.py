@@ -7,6 +7,7 @@ from datetime import datetime
 #
 
 EPOCHEXAMPLE = 1622299682.128648 # float
+# make an epoch timestamp with datetime.now().timestamp()
 
 print()
 print("convert epoch to local timestamp")
