@@ -57,7 +57,7 @@ print("unescape\n\t", unescape(e)) # %3Cscript%3Ealert%281%29%3B%3C%2Fscript%3E
 
 vars = {"key1":"val1", "key2":"val2"}
 n = urlencode(vars)
-print("urlencode\n\t", n) # key1=val1&key2=val2&key%273=val%273
+print("urlencode\n\t", n) # key1=val1&key2=val2
 
 x = quote_plus(n)
 print("urlencode with quote_plus\n\t", x) # key1%3Dval1%26key2%3Dval2
