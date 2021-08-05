@@ -3,6 +3,8 @@
 	- How to compare two arrays in Bash
 - bash-array-usage.sh
 	- Examples of working with Bash arrays
+- bash-checks-comparisons.sh
+- 	- Various comparisons and equality checks
 - bash-getopts.sh
 	- Uses Bash cases to add switch functionality to scripts
 - bash-if-while-for-functions.sh
