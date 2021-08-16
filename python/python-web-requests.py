@@ -2,6 +2,9 @@
 
 import requests
 from requests import Request, Session
+# suppress InsecureRequestWarning from urllib3 if using verify=False to access websites using self-signed certs
+import urllib3
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 #
 # UN-COMMENT ONE BLOCK AT A TIME TO SEE IT IN ACTION
@@ -13,8 +16,14 @@ from requests import Request, Session
 #=============
 # set custom headers
 #=============
-heady={
-	'User-Agent': 'python_requests_test_ua'
+# as a best practice, use legit User-Agent and Accept strings, and any other "recommended" headers your customer has documented
+heady = {
+	'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101 Firefox/91.0',
+	'Accept': 'text/html'
+}
+proxy = {
+	'http': 'http://127.0.0.1:8080',
+	'https': 'https://127.0.0.1:8080'
 }
 ## or in-line
 ## r = requests.get('https://www.google.com', headers={'User-Agent':'CustomUA'}, timeout=1.0)
@@ -23,7 +32,9 @@ heady={
 # basic GET request/response
 #=============
 ## simple request (won't print on screen but it will generate req/resp traffic)
+#r = requests.get('https://www.google.com', headers=heady, proxies=proxy, timeout=1.0) # using a proxy
 r = requests.get('https://www.google.com', headers=heady, timeout=1.0)
+
 print('\n---=== Request Headers ===---')
 print(r.request.headers)
 print('\n---=== Response Headers ===---')
@@ -34,6 +45,27 @@ print('\n---=== Response Content Type ===---')
 print(r.headers['content-type'])
 print('\n')
 #print(r.content)
+print('='*50)
+
+#=============
+# basic GET request/response using streaming data to control response body access (response body is not downloaded until .content attribute is called, also preserves raw socket information)
+#	https://docs.python-requests.org/en/master/user/advanced/#body-content-workflow
+# access redirect/history objects (stream does not impact this)
+# use no TLS/SSL validation (just an example, Google most definitely uses signed certificates)
+# get the IP address (ONLY works with stream=True due to preserving socket info)
+#=============
+# will be redirected from http://google.com --> http://www.google.com --> https://www.google.com/?gws_rd=ssl
+r = requests.get('http://google.com', headers=heady, timeout=1.0, stream=True, allow_redirects=True, verify=False)
+# access raw socket information BEFORE any calls to .content
+#	ONLY works with stream=True because the connection is held open until .content is called, hence the socket information is still available, but then once .content is called the socket info gets dumped
+# returns an IP/port tuple
+# note if using proxies, the IP/port will be the proxy info, not the true remote IP address
+ip = r.raw._fp.fp.raw._sock.getpeername()
+# if the history iterable exists, access each item individually (note this does not include the most recent website / final landing page)
+if r.history:
+	for h in r.history:
+		print(h.status_code, h.url)
+print(r.status_code, ip, r.url)
 
 #=============
 # prepared requests
