@@ -8,9 +8,9 @@ import sys
 # precendence of operators in a function: standard operators, *args, **kwargs
 # ex. somefunc(a, b, *args, **kwargs)
 #====================
-# *args is the "unpacking operator" for an interable object
+# *args is the "unpacking operator" for an iterable object
 #====================
-# **kwargs is the "unpacking operator" for interable key=value pairs
+# **kwargs is the "unpacking operator" for iterable key=value pairs
 # in a nutshell, **kwargs converts key:value to key=value
 #====================
 
