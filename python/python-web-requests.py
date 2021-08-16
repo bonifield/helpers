@@ -66,6 +66,10 @@ if r.history:
 	for h in r.history:
 		print(h.status_code, h.url)
 print(r.status_code, ip, r.url)
+r.close()
+# ALWAYS close a streaming connection
+# or wrap it in a "with" statement, such as
+# with requests.get('http://google.com', stream=True) as r: ...
 
 #=============
 # prepared requests
