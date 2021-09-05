@@ -81,6 +81,8 @@
 - python-threading-12-processFiles.py
 	- Uses one thread to read from a file and push to a queue, and another thread to read the queue, transform items, and push to an output file.
 	- Note: using queues to process files line-by-line is VERY slow; this is just an example of converging multiple threads into a queue for a single output thread to safely write files.
+- python-threading-13-multipleQueues-daemonized.py
+	- a better method of using daemonized threads to load an input queue, multiple daemonized workers to consume the input queue and push to an output queue, and another daemonized thread to handle output
 - python-tkinter-gui-basics.py
 	- How to make a simple GUI in Python
 - python-web-requests.py
