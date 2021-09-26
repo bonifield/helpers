@@ -87,6 +87,10 @@
 	- a better method of using daemonized threads to load an input queue, multiple daemonized workers to consume the input queue and push to an output queue, and another daemonized thread to handle output
 - python-tkinter-gui-basics.py
 	- How to make a simple GUI in Python
+- python-toml-usage.py
+	- How to read and process TOML-formatted configuration files
+- python-toml-weather-data.toml
+	- Sample TOML config file, for use with python-toml-usage.py
 - python-web-requests.py
 	- Usage of Python 3's Requests library to interact with network/web objects
 - python-web-scraping.py
