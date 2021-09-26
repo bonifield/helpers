@@ -1,0 +1,31 @@
+title = "Weather Project Title"
+description = "another top-level key's value"
+
+[weather]
+temperature = 70.0
+marker = "farenheit"
+sunshine = true
+# line breaks allowed but not required inside lists
+keywords = [
+	"nice",
+	"pleasant",
+	"ideal"
+]
+
+[location]
+# indentation allowed but not required (spaces or tabs)
+
+	[location.continent]
+	north_america = true
+	south_america = true
+	antarctica = false
+
+	[location.country]
+	united_states_of_america = true
+	canada = true
+	uruguay = true
+	antarctica = false
+
+# a top-level key does not need to be defined first when using dot notation, though it helps to stay organized when creating a TOML file
+[planet.galaxy]
+name = "milky way"
