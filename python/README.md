@@ -51,7 +51,9 @@
 - python-sqlite-03-reader.py
 	- Read records from a SQLite database (usage: ./python-sqlite-03-reader.py -i mydb -f Alice -a 42)
 - python-string-formatting.py
-- 	- Examples of the string formatting mini-language
+	- Examples of the string formatting mini-language
+- python-syslog-tester.py
+	- Send test syslog messages to one or more servers (see also python-syslog.py)
 - python-syslog.py
 	- Use the logging module to send syslog messages to a remote server
 - python-terminal-colors.py
