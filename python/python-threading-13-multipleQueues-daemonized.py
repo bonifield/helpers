@@ -19,10 +19,10 @@ class Filler(threading.Thread):
 		self.wordlist = wordlist
 
 	def run(self):
-			for item in self.wordlist:
-				item = str(item).strip()
-				self.queue.put(item)
-				print(f"\033[95m{self.name}\033[0m placed item into queuein: {item}") # purple
+		for item in self.wordlist:
+			item = str(item).strip()
+			self.queue.put(item)
+			print(f"\033[95m{self.name}\033[0m placed item into queuein: {item}") # purple
 
 
 
