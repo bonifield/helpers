@@ -17,7 +17,9 @@
 - python-csv-worker_02_pandas_graph.py
 	- Use Pandas to create a multi-line graph from a given CSV (ex. as processed by python-csv-worker_01_combine.py) (usage: script file.csv)
 - python-datetime-conversions.py
-- 	- Common uses for datetime and working with timestamps
+	- Common uses for datetime and working with timestamps
+- python-deepcopy.py
+	- Use a deepcopy of an object when shallow copies are not sufficient (create full duplicates of objects, which is more memory-intensive)
 - python-dictionaries.py
 	- How to use dictionaries in Python
 - python-file-inout-processor.py
