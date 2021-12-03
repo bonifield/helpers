@@ -22,6 +22,8 @@
 	- Use a deepcopy of an object when shallow copies are not sufficient (create full duplicates of objects, which is more memory-intensive)
 - python-dictionaries.py
 	- How to use dictionaries in Python
+- python-dns.py
+	- gets name servers, DNS A records, and optinally attempts zone transfers against the name servers
 - python-file-inout-processor.py
 	- How to read from one file, manipulate the content, and write to a separate output file.
 - python-files-folders.py
