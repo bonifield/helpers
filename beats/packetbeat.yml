@@ -1,0 +1,19 @@
+# ADD TO THE TOP OF THE CONFIG AND COMMENT OUT OTHER OUTPUTS, KIBANA SETUP, ETC
+# THIS DOES ***NOT*** INCLUDE THE FLOWS AND TRANSACTION PROTOCOLS SECTIONS!!!
+
+output.kafka:
+  enabled: true
+  hosts: ["useast01.example.domain.internal:9093", "useast02.example.domain.internal:9093", "useast03.example.domain.internal:9093"]
+  topic: "packetbeat"
+  compression: "gzip"
+  ssl.enabled: true
+  # disabling SSL/TLS verification (very insecure) bypasses the need for ssl.certificate_authorities
+  # ssl.verification_mode: none
+  ssl.certificate_authorities:
+    - "/etc/ssl/kafka-certs/kafka-ca-cert-east"
+    # other CAs as needed if self-signed etc
+tags: ["kafka-east-01"]
+logging.level: debug
+processors:
+  - add_host_metadata: ~
+# other entries as needed, generally don't touch the protocol/service section
