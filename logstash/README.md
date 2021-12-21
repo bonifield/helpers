@@ -6,6 +6,7 @@ curl 127.0.0.1:8080 -H "Content-Type: application/json" --data '{"type":"notice"
 ```
 
 ### visual layout of Logstash pipeline configs
+- minor error correction: alert-pipeline and notice-pipeline should both me .conf, not .yml, in the middle portion of this graphic (will update in the future)
 ![logstash-pipeline-map.png](https://github.com/bonifield/helpers/raw/master/logstash/logstash-pipeline-map.png)
 
 ### helpful test commands
