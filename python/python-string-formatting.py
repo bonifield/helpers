@@ -1,5 +1,13 @@
 #!/usr/bin/python3
 
+
+
+s = "some string"
+print(s.center(20, "="))
+# ====some string=====
+
+
+
 l = [[1,2],[3,4],[555,666],[7777,8888],[99999,100000]]
 for x in l:
 	print("%-20s" % x[0], "%-20s" % x[1])
