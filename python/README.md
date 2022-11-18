@@ -54,6 +54,12 @@
 	- Write records to a SQLite database (usage: ./python-sqlite-02-writer.py mydb)
 - python-sqlite-03-reader.py
 	- Read records from a SQLite database (usage: ./python-sqlite-03-reader.py -i mydb -f Alice -a 42)
+- python-sqlite3-11-makedb.py
+	- connects to a SQLite3 database and creates a new table, if the table does not already exist
+- python-sqlite3-12-write-json
+	- simulates acquiring a JSON object and inserting it into the SQLite3 database
+- python-sqlite3-13-read-update.py
+	- simulates reading from the SQLite3 database, sending row data elsewhere, and updating the row to indicate it sent successfully
 - python-stdin.py
 	- how to accept input from stdin, for piping data into a script
 - python-string-formatting.py
