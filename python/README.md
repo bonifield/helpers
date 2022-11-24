@@ -68,7 +68,7 @@
 	- Use the logging module to send syslog messages to a remote server
 - python-syslog2.py
 	- Send test syslog messages to one or more servers (see also python-syslog.py)
-- python-syslog-tester3-rfc5424.py
+- python-syslog3-rfc5424.py
 	- Send test syslog messages to one or more servers (see also python-syslog.py) using an example RFC5424 format
 - python-terminal-colors.py
 	- ANSI terminal color usage in Python
