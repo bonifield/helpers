@@ -64,10 +64,10 @@
 	- how to accept input from stdin, for piping data into a script
 - python-string-formatting.py
 	- Examples of the string formatting mini-language
-- python-syslog-tester.py
-	- Send test syslog messages to one or more servers (see also python-syslog.py)
 - python-syslog.py
 	- Use the logging module to send syslog messages to a remote server
+- python-syslog2.py
+	- Send test syslog messages to one or more servers (see also python-syslog.py)
 - python-terminal-colors.py
 	- ANSI terminal color usage in Python
 - python-thread-dispatcher.py
