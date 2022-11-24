@@ -3,6 +3,11 @@
 # basic rfc5424 formatter
 # https://www.ietf.org/rfc/rfc5424.txt
 #
+# manual testing with https://github.com/bonifield/helpers/raw/master/logstash/conf.d/syslog-rfc5424-input.conf
+#	sudo /usr/share/logstash/bin/logstash -f /etc/logstash/conf.d/syslog-rfc5424-input.conf --config.test_and_exit
+#	sudo /usr/share/logstash/bin/logstash -f /etc/logstash/conf.d/syslog-rfc5424-input.conf --config.reload.automatic
+#	python3 python-syslog3-rfc5424.py 127.0.0.1 514
+#
 # test a single server, or a comma-delimited string of servers
 # syslog-tester.py server1 514
 # syslog-tester.py server1,server2,server3 514
