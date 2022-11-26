@@ -70,7 +70,3 @@ conn.commit()
 print(f"commited changes to {dbName}")
 conn.close()
 print(f"closed connection to {dbName}")
-
-
-
-
