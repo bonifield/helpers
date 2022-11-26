@@ -60,6 +60,8 @@
 	- simulates acquiring a JSON object and inserting it into the SQLite3 database
 - python-sqlite3-13-read-update.py
 	- simulates reading from the SQLite3 database, sending row data elsewhere, and updating the row to indicate it sent successfully
+- python-sqlite3-14-delete.py
+	- simulates reading from the SQLite3 database and deleting rows that match a condition
 - python-stdin.py
 	- how to accept input from stdin, for piping data into a script
 - python-string-formatting.py
