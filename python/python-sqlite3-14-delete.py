@@ -2,7 +2,7 @@
 
 #================================================
 #
-# simulates reading from the SQLite3 database and deleting rows that match a condition
+# simulates reading from the SQLite3 database and deleting rows that match a condition and a timeframe
 #
 # python3 python-sqlite3-14-delete.py ~/testalerts.db
 #
@@ -25,7 +25,9 @@ print(f"opened connection to {dbName}")
 #	Cursors facilitate subsequent processing in conjunction with the traversal, such as retrieval,
 #	addition and removal of database records."
 c = conn.cursor()
+
 tableName = "ALERTS"
+timeField = "time"
 
 print("< existing records before deletion >".center(50, "="))
 s = c.execute(f"SELECT * FROM {tableName};").fetchall()
@@ -35,8 +37,9 @@ for row in s:
 	print(row)
 	# alternatively send the GUID to a function for additional checks or modifications
 
+# remove older than 1 minute
 print("< removing old records >".center(50, "="))
-c.execute(f"DELETE FROM {tableName} WHERE sent = '1';")
+c.execute(f"DELETE FROM {tableName} WHERE sent = '1' AND {timeField} <= datetime('now', '-1 minute');")
 # commit the DELETE statement
 conn.commit()
 
