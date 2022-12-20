@@ -40,6 +40,27 @@ print(f"\t{b}")
 print()
 print()
 print("#--------------------")
+print("# use a given string")
+print("#--------------------")
+print()
+
+
+
+STRINGEXAMPLE = "2022-12-14 22:07:57.000"
+
+# ensure the given string is in UTC before proceding
+print(f"STRINGEXAMPLE = 2022-12-14 22:07:57.000")
+
+print()
+print("convert given timestamp string to UTC epoch: datetime.strptime(STRINGEXAMPLE, '%Y-%m-%d %H:%M:%S.%f').astimezone(timezone.utc).strftime('%s')")
+aa = datetime.strptime(STRINGEXAMPLE, '%Y-%m-%d %H:%M:%S.%f').astimezone(timezone.utc).strftime('%s') # 1671098877
+print(f"\t{aa}")
+
+
+
+print()
+print()
+print("#--------------------")
 print("# local timestamps")
 print("#--------------------")
 print()
@@ -165,6 +186,16 @@ convert given epoch to local timestamp: datetime.fromtimestamp(EPOCHEXAMPLE).str
 
 convert given epoch to UTC timestamp: datetime.utcfromtimestamp(EPOCHEXAMPLE).strftime('%Y-%m-%d %H:%M:%S')
 	2022-12-14 16:05:31
+
+
+#--------------------
+# use a given string
+#--------------------
+
+STRINGEXAMPLE = 2022-12-14 22:07:57.000
+
+convert given timestamp string to UTC epoch: datetime.strptime(STRINGEXAMPLE, '%Y-%m-%d %H:%M:%S.%f').astimezone(timezone.utc).strftime('%s')
+	1671098877
 
 
 #--------------------
