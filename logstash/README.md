@@ -1,7 +1,7 @@
 ### conf.d contains multiple examples of inputs, filters, and outputs
 
 ### visuals and curl commands for the pipeline configs:
-- **minor error correction**: alert-pipeline and notice-pipeline should both me .conf, not .yml, in the middle portion of this graphic (will update in the future)
+- **minor error correction**: alert-pipeline and notice-pipeline should both be .conf, not .yml, in the middle portion of this graphic (will update in the future)
 - this pipeline splits nested events into separate events, ex. a single array containing two "alert" items becomes two distinct events
 ![logstash-pipeline-map.png](https://github.com/bonifield/helpers/raw/master/logstash/logstash-pipeline-map.png)
 ```
