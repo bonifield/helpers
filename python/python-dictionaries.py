@@ -74,6 +74,16 @@ def recursive_dict():
 xyz = recursive_dict()
 xyz['a']['b']['c'] = 3
 xyz['a']['b']['d']['e'] = 4
-print(json.dumps(xyz))
+print(json.dumps(xyz, indent=4))
+# {
+#     "a": {
+#         "b": {
+#             "c": 3,
+#             "d": {
+#                 "e": 4
+#             }
+#         }
+#     }
+# }
 
 print()
