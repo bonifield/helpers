@@ -3,6 +3,7 @@
 # dictionaries are comprised of key-value pairs
 # keys are unique, values are not
 
+import collections
 import json
 
 dicta = {"key1":"value1","key2":"value2","key3":[3,"threethree"],4:[44, 444],5:"five"}
@@ -65,5 +66,14 @@ print('\npretty-print dicta using json.dumps()')
 j = json.loads(json.dumps(dicta))
 print(json.dumps(j, indent=4))
 #print(json.dumps(dicta, indent=4)) # this works too, if you do not want a json object at all
+
+# create a deeply-nested dictionary or create a deeply-nested key in an existing dictionary
+# https://stackoverflow.com/questions/67930334/create-a-nested-dictionary-of-arbitrary-depth-in-python/67930462#67930462
+def recursive_dict():
+	return collections.defaultdict(recursive_dict)
+xyz = recursive_dict()
+xyz['a']['b']['c'] = 3
+xyz['a']['b']['d']['e'] = 4
+print(json.dumps(xyz))
 
 print()
