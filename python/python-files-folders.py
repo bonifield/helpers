@@ -64,7 +64,7 @@ for h in homefiles[:10]:
 
 #=============
 
-# combine a path and filename safely (Windows-safe as well); alternatively, safely combine folder paths
+printy('Combine a path and filename safely (Windows-safe as well); alternatively, safely combine folder paths')
 somepath = "/home/user/folder/"
 somefile = "file.txt"
 outname = os.path.join(somepath, somefile)
@@ -72,7 +72,7 @@ print(outname) # /home/user/folder/file.txt
 
 #=============
 
-# get just the path or just the filename
+printy('Get just the path or just the filename')
 fullpath = "/home/user/folder/file.txt"
 justpath = os.path.dirname(fullpath)
 justfilename = os.path.basename(fullpath)
@@ -81,7 +81,7 @@ print(justfilename) # file.txt
 
 #=============
 
-# make a folder if it does not exist
+printy('Make a folder if it does not exist')
 somepath = "/home/user/folder/"
 homework = "homework"
 h = os.path.join(somepath, homework)
@@ -90,8 +90,9 @@ if not os.path.exists(h):
 
 #=============
 
-# print the full path of the script being executed
+printy('Print the full path of the script being executed')
 # __file__ is derived from sys.argv[0] so import sys is required
 thisscript = os.path.realpath(__file__)
+printy
 print(thisscript)
 
