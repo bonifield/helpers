@@ -88,4 +88,10 @@ h = os.path.join(somepath, homework)
 if not os.path.exists(h):
 	os.makedirs(h)
 
+#=============
+
+# print the full path of the script being executed
+# __file__ is derived from sys.argv[0] so import sys is required
+thisscript = os.path.realpath(__file__)
+print(thisscript)
 
