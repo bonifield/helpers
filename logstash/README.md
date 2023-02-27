@@ -15,6 +15,6 @@ curl 127.0.0.1:8080 -H "Content-Type: application/json" --data '{"type":"notice"
 # check the given config for errors and exit
 sudo bin/logstash -f conf.d/someconfig.conf --config.test_and_exit
 
-# manually run logstash but allow live editing of the given config in another windo
+# manually run logstash but allow live editing of the given config in another window
 sudo bin/logstash -f conf.d/someconfig.conf --config.reload.automatic
 ```
