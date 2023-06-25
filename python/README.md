@@ -30,6 +30,8 @@
 	- Working with both regular and temporary files and folders
 - python-generators-comprehensions-yield.py
 	- How to use generator expressions, list comprehensions, and an example of yield generator expressions in a function
+- python-graphviz.py
+- 	- Create a simple GraphViz-style, Dot-notation force directed graph
 - python-hashes.py
 	- Use hashlib to generate multiple types hashes
 - python-itertools-zip.py
