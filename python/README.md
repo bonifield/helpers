@@ -46,6 +46,8 @@
 	- How to use standalone lambda functions, as well as inside filter() and map()
 - python-lists.py
 	- How to use lists in Python
+- python-matplotlib-timeline.py
+	- Create a labelled timeline using matplotlib
 - python-os-commands.py
 	- Basic execution of OS commands with os and subprocess modules
 - python-regex.py
