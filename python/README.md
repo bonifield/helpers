@@ -117,6 +117,8 @@
 	- Usage of Python 3's Requests library to interact with network/web objects
 - python-web-scraping.py
 	- Examples of acquiring web content via Selenium-Wire, headless Chromium, and Requests
+- python-web-whois.py
+	- Use [python-whois](https://pypi.org/project/python-whois/) to perform whois lookups
 - python-wifi-sniffing.py
 	- Use Scapy to sniff basic WiFi information, such as base station IDs and transmitting device addresses
 - python-xml-prettify
