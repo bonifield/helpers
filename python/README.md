@@ -113,12 +113,14 @@
 	- How to read and process TOML-formatted configuration files
 - python-toml-weather-data.toml
 	- Sample TOML config file, for use with python-toml-usage.py
+- python-web-rdap.py
+	- Use [whoisit](https://github.com/meeb/whoisit) to perform RDAP lookups (the WHOIS replacement)
 - python-web-requests.py
 	- Usage of Python 3's Requests library to interact with network/web objects
 - python-web-scraping.py
 	- Examples of acquiring web content via Selenium-Wire, headless Chromium, and Requests
 - python-web-whois.py
-	- Use [python-whois](https://pypi.org/project/python-whois/) to perform whois lookups
+	- Use [python-whois](https://pypi.org/project/python-whois/) to perform WHOIS lookups
 - python-wifi-sniffing.py
 	- Use Scapy to sniff basic WiFi information, such as base station IDs and transmitting device addresses
 - python-xml-prettify
