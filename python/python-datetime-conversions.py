@@ -289,7 +289,7 @@ DO NOT DO THIS: datetime.utcnow().astimezone().strftime('%Y-%m-%d %H:%M:%S.%f %Z
 #--------------------
 
 
-futre = date.today() + timedelta(days=90)
+future = date.today() + timedelta(days=90)
 wayfuture = date.today() + timedelta(weeks=52)
 	2023-07-18 --> 2023-10-16 --> 2024-07-16
 	using strftime:	20230718 --> 20231016 --> 20240716
