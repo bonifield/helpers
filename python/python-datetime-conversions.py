@@ -2,7 +2,7 @@
 
 
 
-from datetime import datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 
 
 
@@ -163,6 +163,31 @@ print(f"\t{r}")
 
 print()
 print()
+print("#--------------------")
+print("# Calculate Future Dates")
+print("#--------------------")
+print()
+
+
+
+print()
+print("future = date.today() + timedelta(days=90)")
+print("wayfuture = date.today() + timedelta(weeks=52)")
+present = date.today()
+future = present + timedelta(days=90)
+# weeks is the largest supported argument
+wayfuture = present + timedelta(weeks=52)
+ppp = present.strftime('%Y%m%d')
+fff = future.strftime('%Y%m%d')
+www = wayfuture.strftime('%Y%m%d')
+print(f"\t{present} --> {future} --> {wayfuture}")
+print(f"\tusing strftime:\t{ppp} --> {fff} --> {www}")
+
+
+
+
+print()
+print()
 # end a timer
 end = datetime.utcnow().timestamp()
 complete = end-start
@@ -258,6 +283,16 @@ DO NOT DO THIS: datetime.utcnow().astimezone()
 DO NOT DO THIS: datetime.utcnow().astimezone().strftime('%Y-%m-%d %H:%M:%S.%f %Z %z')
 	2022-12-14 18:33:55.387287 CST -0600
 
+
+#--------------------
+# Calculate Future Dates
+#--------------------
+
+
+futre = date.today() + timedelta(days=90)
+wayfuture = date.today() + timedelta(weeks=52)
+	2023-07-18 --> 2023-10-16 --> 2024-07-16
+	using strftime:	20230718 --> 20231016 --> 20240716
 
 script took 0.00855398178100586 seconds to execute
 
