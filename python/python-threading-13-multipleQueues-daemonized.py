@@ -13,7 +13,8 @@ class Filler(threading.Thread):
 	"""fills a queue with words from the provided wordlist"""
 	def __init__(self, queue, wordlist):
 		threading.Thread.__init__(self)
-		self.setDaemon(True)
+		#self.setDaemon(True) # deprecated
+		self.daemon = True
 		self.name = threading.current_thread().name
 		self.queue = queue
 		self.wordlist = wordlist
@@ -30,7 +31,8 @@ class Worker(threading.Thread):
 	"""take an item from queuein, process it, and place it into queueout"""
 	def __init__(self, queuein, queueout):
 		threading.Thread.__init__(self)
-		self.setDaemon(True)
+		#self.setDaemon(True) # deprecated
+		self.daemon = True
 		self.queuein = queuein
 		self.queueout = queueout
 		self.name = threading.current_thread().name
@@ -63,7 +65,8 @@ class Drainer(threading.Thread):
 	"""provides output management"""
 	def __init__(self, queue):
 		threading.Thread.__init__(self)
-		self.setDaemon(True)
+		#self.setDaemon(True) # deprecated
+		self.daemon = True
 		self.queue = queue
 		self.name = threading.current_thread().name
 
