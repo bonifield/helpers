@@ -31,7 +31,6 @@ def flatten_dict(y) -> dict:
 	flatten(y)
 	return(out)
 
-#print("\n"+tcol.GREEN+"original"+tcol.RESET)
 printGreen("original")
 print(json.dumps(d, indent=4))
 
@@ -47,7 +46,6 @@ print(json.dumps(d, indent=4))
 #    }
 #}
 
-#print("\n"+tcol.GREEN+"flattened"+tcol.RESET)
 printGreen("flattened")
 dd = flatten_dict(d)
 print(json.dumps(dd, indent=4))
@@ -75,7 +73,6 @@ def unflatten_dict(dictionary) -> dict:
 		d[parts[-1]] = value
 	return(resultDict)
 
-#print("\n"+tcol.GREEN+"un-flattened / back to original"+tcol.RESET)
 printGreen("un-flattened / back to original")
 u = unflatten_dict(dd)
 print(json.dumps(u, indent=4))
@@ -92,7 +89,6 @@ print(json.dumps(u, indent=4))
 #    }
 #}
 
-#print("\n"+tcol.GREEN+"example flattening for config file dump or backup"+tcol.RESET)
 printGreen("example flattening for config file dump or backup")
 for k,v in dd.items():
 	print(str(k)+" = "+str(v))
