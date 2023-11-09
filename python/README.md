@@ -24,6 +24,8 @@
 	- Use a deepcopy of an object when shallow copies are not sufficient (create full duplicates of objects, which is more memory-intensive)
 - python-dictionaries.py
 	- How to use dictionaries in Python
+- python-dictionary-flatten-unflatten.py
+	- Flatten a dictionary structure into single-string dotted notation, ex. "topkey.middlekey.bottomkey = value", and un-flatten back into a nested structure
 - python-dns.py
 	- gets name servers, DNS A records, and optinally attempts zone transfers against the name servers
 - python-file-inout-processor.py
@@ -40,8 +42,6 @@
 	- use itertools.zip to get members of multiple lists simultaneously and create new tuples
 - python-json-enrich.py
 	- insert new key/value pairs to a JSON file (creates a new file)
-- python-json-flatten.py
-	- Flatten a JSON structure into single-string dotted notation, ex. "topkey.middlekey.bottomkey = value", and also un-flatten back into a nested structure
 - python-json-printer.py
 	- Ingest then dump a JSON file for review
 - python-lambdas-filter-map.py
