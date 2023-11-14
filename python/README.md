@@ -54,6 +54,8 @@
 	- Basic execution of OS commands with os and subprocess modules
 - python-regex.py
 	- Using in-line regex and compiled regex objects
+- python-socket-ssl.py
+	- Send JSON over a TLS-wrapped socket
 - python-sqlite-01-makedb.py
 	- Make a SQLite database (usage: ./python-sqlite-01-writer.py mydb)
 - python-sqlite-02-writer.py
