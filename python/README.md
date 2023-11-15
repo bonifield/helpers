@@ -46,6 +46,8 @@
 	- Ingest then dump a JSON file for review
 - python-lambdas-filter-map.py
 	- How to use standalone lambda functions, as well as inside filter() and map()
+- python-lists-chunking.py
+	- Break one large list, into a list of smaller lists
 - python-lists.py
 	- How to use lists in Python
 - python-matplotlib-timeline.py
