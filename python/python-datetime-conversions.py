@@ -1,6 +1,23 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 
 from datetime import date, datetime, timedelta, timezone
+
+#
+#
+#
+# PYTHON 3.12 UPDATE
+# https://docs.python.org/3/whatsnew/3.12.html
+# https://github.com/python/cpython/issues/103857
+#
+# datetime: datetime.datetime’s utcnow() and utcfromtimestamp() are deprecated and will be removed
+# in a future version. Instead, use timezone-aware objects to represent datetimes in UTC: respectively,
+# call now() and fromtimestamp() with the tz parameter set to datetime.UTC. (Contributed by Paul
+# Ganssle in gh-103857.)
+#
+# short version: use datetime.now(timezone.utc)
+#
+#
+#
 
 # start a timer
 start = datetime.utcnow().timestamp()
@@ -173,6 +190,30 @@ print(f"\t{present} --> {future} --> {wayfuture}") # 2023-11-09 --> 2024-02-07 -
 print(f"\tusing strftime:\t{ppp} --> {fff} --> {www}") # using strftime: 20231109 --> 20240207 --> 20241107
 
 print()
+print("#--------------------")
+print("# calculate lookback dates")
+print("#--------------------")
+
+print()
+print("mins_15_ago = datetime.now() - timedelta(minutes=15)")
+print("mins_10_ago = datetime.now() - timedelta(minutes=10)")
+present = datetime.now()
+# subtract 15 and 10 minutes, respectively
+mins_15_ago = present - timedelta(minutes=15)
+mins_10_ago = present - timedelta(minutes=10)
+# set 15 minutes ago to 00 seconds, and set 10 minutes ago to 59 seconds
+mins_15_ago = mins_15_ago.replace(second=0, microsecond=000000)
+mins_10_ago = mins_10_ago.replace(second=59, microsecond=999999)
+# format timestamps
+pres = present.strftime('%Y-%m-%d %H:%M:%S.%f')
+m15 = mins_15_ago.strftime('%Y-%m-%d %H:%M:%S.%f')
+m10 = mins_10_ago.strftime('%Y-%m-%d %H:%M:%S.%f')
+print(f"\tpresent:\t{pres}") # 2023-11-19 19:51:42.005456
+print(f"\t15 minutes ago:\t{m15}") # 2023-11-19 19:36:00.000000
+print(f"\t10 minutes ago:\t{m10}") # 2023-11-19 19:41:59.999999
+
+
+print()
 # end a timer
 end = datetime.utcnow().timestamp()
 complete = end-start
@@ -281,6 +322,16 @@ future = date.today() + timedelta(days=90)
 wayfuture = date.today() + timedelta(weeks=52)
 	2023-11-09 --> 2024-02-07 --> 2024-11-07
 	using strftime:	20231109 --> 20240207 --> 20241107
+
+#--------------------
+# calculate lookback dates
+#--------------------
+
+mins_15_ago = datetime.now() - timedelta(minutes=15)
+mins_10_ago = datetime.now() - timedelta(minutes=10)
+	present:	2023-11-19 19:51:42.005456
+	15 minutes ago:	2023-11-19 19:36:00.000000
+	10 minutes ago:	2023-11-19 19:41:59.999999
 
 script took 0.011044979095458984 seconds to execute
 
