@@ -1,0 +1,29 @@
+# ansible-playbook --ask-become-pass  --connection=local -i inventory.yml playbook_webservers.yml
+
+- hosts: webservers
+  become: yes
+  gather_facts: yes
+  vars_files:
+    - vars/vars.yml
+    - vars/vault.yml
+
+  tasks:
+
+    # example tasks from https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_reuse_roles.html
+    # loads tasks/webserver.yml --> conditionals run either tasks/redhat.yml or tasks/debian.yml
+    - name: Install Webserver
+      include_tasks:
+        file: tasks/webserver.yml
+
+    - name: Copy index.html to Remote
+      include_tasks:
+        file: tasks/copy-template.yml
+
+- hosts: databases
+  gather_facts: no
+
+  tasks:
+
+    - name: Debug Message Simulating Success
+      debug:
+        msg: "Installed databases."

@@ -1,0 +1,17 @@
+- name: Copy index.html to Remote
+  copy:
+    src: files/index.html
+    dest: /tmp/index.html
+    mode: 0644
+
+- name: Copy index.html with Hostname to Remote
+  copy:
+    src: files/index.html
+    dest: "/tmp/{{ hostvars[inventory_hostname].hostname }}.index.html"
+    mode: 0644
+
+- name: Copy Dynamic Template index.html with Hostname to Remote
+  template:
+    src: templates/index.html.j2
+    dest: "/tmp/{{ hostvars[inventory_hostname].hostname }}.from.template.index.html"
+    mode: 0644

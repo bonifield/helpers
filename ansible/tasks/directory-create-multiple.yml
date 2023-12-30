@@ -1,0 +1,23 @@
+# with_items for variables
+- name: Create Multiple Directories
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ some_user }}"
+    group: "{{ some_group }}"
+    mode: 0750
+  with_items:
+    - "{{ directories }}"
+
+# loop for static list
+- name: Create Multiple Directories in /tmp
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ some_user }}"
+    group: "{{ some_group }}"
+    mode: 0750
+  loop:
+    - /tmp/dir1
+    - /tmp/dir2
+    - /tmp/dir3

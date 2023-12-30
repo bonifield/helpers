@@ -1,0 +1,6 @@
+- name: Start Apache2 Systemd Service
+  systemd_service:
+    name: apache2
+    daemon_reload: true
+    state: restarted
+    enabled: true

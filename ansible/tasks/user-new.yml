@@ -1,0 +1,6 @@
+- name: Create User bob and Set Password
+  user:
+    name: bob
+    password: "{{ bob_password | password_hash('sha512') }}"
+    home: /home/bob
+    shell: /bin/bash

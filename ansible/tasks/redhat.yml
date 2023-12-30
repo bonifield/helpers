@@ -1,0 +1,7 @@
+- name: Simulate RHEL Webserver Install
+  debug:
+    msg: "Installed webserver on RHEL."
+#- name: Install web server
+#  ansible.builtin.yum:
+#    name: "httpd"
+#    state: present

@@ -1,0 +1,4 @@
+- name: Remote Double Quotes in Output File
+  delegate_to: localhost
+  run_once: true
+  command: sed -i 's/\"//g' output/openssl.cnf

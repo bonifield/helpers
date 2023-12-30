@@ -1,0 +1,25 @@
+- name: CentOS Installers
+  yum:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - libselinux-python3
+    - java-1.8.0-openjdk
+    - nmap
+    - nano
+  when:
+    ansible_facts['distribution'] == "CentOS"
+
+- name: Ubuntu Installers
+  apt:
+    update_cache: yes
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - python3-selinux
+    - default-jdk
+    - acl
+    - nmap
+    - nano
+  when:
+    ansible_facts['distribution'] == "Ubuntu"

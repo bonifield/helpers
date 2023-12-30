@@ -1,0 +1,9 @@
+# There is a module for this!
+- name: Check Service Status
+  register: apache2_service_status
+  shell: |
+    systemctl status apache2 | head -n 4
+
+- name: Show Apache2 Service Status
+  debug:
+    msg: "{{ apache2_service_status.stdout }}"

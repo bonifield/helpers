@@ -1,0 +1,8 @@
+# see get-url-file.yml
+
+- name: Add Some Apt Repository - Ubuntu
+  apt_repository:
+    repo: "deb [signed-by=/usr/share/keyrings/some-keyring.gpg] https://url/package/tool/13.x/apt stable main"
+    filename: "tool-13.x"
+    state: present
+    update_cache: true

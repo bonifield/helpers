@@ -1,0 +1,9 @@
+- name: Create Local /tmp/myfile
+  delegate_to: localhost
+  run_once: true
+  file:
+    path: /tmp/myfile
+    state: touch
+    owner: root
+    group: root
+    mode: 0755

@@ -1,0 +1,17 @@
+- name: Answer A Prompt
+  delegate_to: "{{ westweb }}"
+  run_once: true
+  expect:
+    command: /some/command/that/asks/a/question -f
+    responses:
+      (?i)name: "{{ some_variable }}"
+
+- name: Reset Some Password With Confirmations
+  delegate_to: "{{ testnode }}"
+  run_once: true
+  expect:
+    command: /usr/share/bin/reset-password -u "{{ some_user }}"
+    responses:
+      (?i)Please confirm: y
+      (?i)Enter password: "{{ some_user_password }}"
+      (?i)Re-enter password: "{{ some_user_password }}"

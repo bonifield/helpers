@@ -1,0 +1,7 @@
+- name: Create shopping.list
+  delegate_to: localhost
+  run_once: true
+  shell: |
+    touch /tmp/shopping.list
+    echo "milk" > /tmp/shopping.list
+    echo "bread" > /tmp/shopping.list

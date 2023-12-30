@@ -1,0 +1,4 @@
+welcome_message: "Hello, world!"
+paths:
+  web:
+    public: /var/www/mysite/public_html/

@@ -1,0 +1,50 @@
+#================================================
+# https://stackoverflow.com/a/72572210
+# https://docs.ansible.com/ansible/latest/collections/ansible/posix/firewalld_module.html#parameters
+# Requires the python2 bindings of firewalld, which may not be installed by default.
+# For distributions where the python2 firewalld bindings are unavailable (e.g Fedora 28 and later) you will have to set the ansible_python_interpreter for these hosts to the python3 interpreter path and install the python3 bindings.
+#================================================
+
+#-------------
+# 22
+#-------------
+- name: Open Port 22/TCP
+  #command: firewall-offline-cmd --zone=public --add-port=22/tcp
+  ansible.posix.firewalld:
+    state: enabled
+    port: 22/tcp
+    permanent: true
+    immediate: true
+  vars:
+    ansible_python_interpreter: /usr/bin/python
+  when:
+    ansible_facts['distribution'] == "CentOS"
+
+- name: Open Port 22/TCP
+  #command: ufw allow 22/tcp
+  ufw:
+    rule: allow
+    port: 22
+    proto: tcp
+  when:
+    ansible_facts['distribution'] == "Ubuntu"
+
+#-------------
+# Enable and Start Firewall
+#-------------
+
+- name: Enabled FirewallD
+  #command: systemctl enable firewalld
+  ansible.builtin.systemd:
+    state: restarted
+    daemon_reload: true
+    name: firewalld
+  when:
+    ansible_facts['distribution'] == "CentOS"
+
+- name: Enable UFW
+  #command: ufw enable
+  ufw:
+    state: enabled
+  when:
+    ansible_facts['distribution'] == "Ubuntu"

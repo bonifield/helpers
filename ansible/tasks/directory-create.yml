@@ -1,0 +1,7 @@
+- name: Create /tmp/mydir/
+  file:
+    path: /tmp/mydir/
+    state: directory
+    owner: root
+    group: root
+    mode: 0755

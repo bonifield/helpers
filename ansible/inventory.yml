@@ -1,0 +1,44 @@
+all:
+
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+
+  children:
+
+    webservers:
+
+      vars:
+        web_example_var: yes
+
+      children:
+        webservers_west:
+          hosts:
+            westweb:
+              ansible_host: 127.1.1.1
+              hostname: westweb.local
+              basename: westweb
+        webservers_east:
+          hosts:
+            eastweb:
+              ansible_host: 127.2.2.2
+              hostname: eastweb.local
+              basename: eastweb
+
+    databases:
+
+      vars:
+        database_example_var: yes
+
+      children:
+        databases_west:
+          hosts:
+            westdb:
+              ansible_host: 127.3.3.3
+              hostname: westdb.local
+              basename: westdb
+        databases_east:
+          hosts:
+            eastdb:
+              ansible_host: 127.4.4.4
+              hostname: eastdb.local
+              basename: eastdb
