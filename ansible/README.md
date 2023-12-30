@@ -72,7 +72,8 @@ vault file format
 key: value
 ```
 
-## Variables - Jinja
+## Variables and Jinja
+[Templating Documentation](https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_templating.html)
 [Special Variables Documentation](https://docs.ansible.com/ansible/latest/reference_appendices/special_variables.html)
 - add `welcome_message: "Hello, world!"` to `vars/vars.yml`
 - use the `template` module in a task, such as inside `tasks/copy-template.yml`
@@ -82,6 +83,8 @@ key: value
 
 ## Playbooks
 [Playbook Documentation](https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_intro.html)
+
+assumes directory at `/home/j/projects/helpers/ansible`
 
 playbook "plays" specify which groups or hosts perform the tasks
 
@@ -157,4 +160,5 @@ PLAY RECAP *********************************************************************
 eastdb                     : ok=1    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 eastweb                    : ok=7    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
 westdb                     : ok=1    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+westweb                    : ok=7    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
 ```
