@@ -107,7 +107,7 @@ ansible-playbook --private-key ~/.ssh/project_key --ask-vault-pass --ask-become-
 
 sample output from above connection=local playbook
 ```
-$ ansible-playbook --ask-become-pass  --connection=local -i inventory.yml playbook_webservers.yml 
+$ ansible-playbook --ask-become-pass --connection=local -i inventory.yml playbook_webservers.yml 
 BECOME password: 
 
 PLAY [webservers] **************************************************************************************
