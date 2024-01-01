@@ -1,0 +1,6 @@
+- name: Generate UUID with Hex Digits Only
+  delegate_to: localhost
+  run_once: true
+  set_fact:
+    # reference cluster_id the same as other variables
+    cluster_id: "{{ lookup('password', '/dev/null chars=hexdigits length=32') }}"

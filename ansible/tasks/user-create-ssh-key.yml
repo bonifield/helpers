@@ -1,0 +1,9 @@
+# https://docs.ansible.com/ansible/latest/collections/ansible/builtin/user_module.html
+# creates keys in /home/bob/.ssh/
+- name: Create SSH Key for User bob
+  user:
+    name: bob
+    generate_ssh_key: yes
+    ssh_key_bits: 2048
+    ssh_key_file: .ssh/id_rsa
+    ssh_key_passphrase: abcd1234
