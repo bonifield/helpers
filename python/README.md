@@ -119,6 +119,10 @@
 	- How to read and process TOML-formatted configuration files
 - python-toml-weather-data.toml
 	- Sample TOML config file, for use with python-toml-usage.py
+- python-url-tools.py
+	- parse, quote/unquote, encode/decode URL components using html and urllib
+- python-uuid.py
+	- create Universally Unique Identifiers (UUID)
 - python-web-rdap.py
 	- Use [whoisit](https://github.com/meeb/whoisit) to perform RDAP lookups (the WHOIS replacement)
 - python-web-requests.py
