@@ -1,3 +1,4 @@
+# https://docs.ansible.com/ansible/latest/collections/ansible/builtin/user_module.html
 - name: Create User bob and Set Password
   user:
     name: bob
