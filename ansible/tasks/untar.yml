@@ -1,0 +1,12 @@
+# extract tarball "myservice-11.2-linux-x86_64.tar.gz" to /opt/myservice
+- name: Extract Tarball
+  unarchive:
+    remote_src: yes
+    src: /tmp/myservice-11.2-linux-x86_64.tar.gz"
+    dest: /opt/myservice
+    owner: bob
+    group: "{{ bob_password }}"
+    mode: 0750
+    extra_opts:
+    - --strip
+    - 1
