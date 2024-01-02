@@ -1,0 +1,11 @@
+- name: Check Service Status
+  delegate_to: bossnode
+  run_once: true
+  register: service_status
+  command: curl --cacert ca.cert -u bob:"{{ bob_password }}" https://bob-service.local/api/status
+
+- name: View Service Status
+  delegate_to: bossnode
+  run_once: true
+  debug:
+    var: (service_status.stdout|from_json).my_json_key
