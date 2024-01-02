@@ -1,7 +1,0 @@
-- name: Get Status From Basic Authentication API
-  uri:
-    method: GET
-    url: "https://{{ url }}:8080"
-    user: "{{ some_user }}"
-    password: "{{ some_user_password }}"
-    ca_path: /tmp/ca.pem

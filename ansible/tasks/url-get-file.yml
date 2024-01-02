@@ -1,3 +1,5 @@
+# note module name is "uri" NOT "url"
+
 # see add-apt-repository.yml
 
 - name: Fetch GPG Key
