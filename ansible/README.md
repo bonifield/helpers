@@ -1,5 +1,8 @@
 # Ansible
 
+## SSH Setup
+[SSH Notes](https://github.com/bonifield/helpers/tree/main/ssh)
+
 ## Ad-Hoc Commands
 [Ad-Hoc Command Documentation](https://docs.ansible.com/ansible/latest/command_guide/intro_adhoc.html)
 
