@@ -77,7 +77,9 @@ key: value
 
 ## Variables and Jinja
 [Templating Documentation](https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_templating.html)
+
 [Special Variables Documentation](https://docs.ansible.com/ansible/latest/reference_appendices/special_variables.html)
+
 - add `welcome_message: "Hello, world!"` to `vars/vars.yml`
 - use the `template` module in a task, such as inside `tasks/copy-template.yml`
 - the file `templates/index.html.j2` contains `<h1>{{ welcome_message }}</h1>`, and is used to generate `index.html` which contains `<h1>Hello, world!</h1>`
