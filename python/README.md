@@ -54,6 +54,14 @@
 	- Create a labelled timeline using matplotlib
 - python-os-commands.py
 	- Basic execution of OS commands with os and subprocess modules
+- python-redis-channel-publish.py
+	- Publish JSON events to a Redis channel
+- python-redis-channel-subscribe.py
+	- Subscribe and receive JSON events from a Redis channel
+- python-redis-list-get.py
+	- Retrieve (LPOP) JSON events from a Redis list
+- python-redis-list-set.py
+	- Write (RPUSH) JSON events to a Redis list
 - python-regex.py
 	- Using in-line regex and compiled regex objects
 - python-socket-ssl.py
