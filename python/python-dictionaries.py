@@ -1,10 +1,42 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 
 # dictionaries are comprised of key-value pairs
-# keys are unique, values are not
+# keys are unique and ordered
 
 import collections
 import json
+
+
+a = {"A":1, "B":2, "C":3, "N":{"nested":19}}
+b = {"C":33, "D":4, "E":5}
+
+print()
+print(f"{a=}")
+print(f"{b=}")
+
+# merge with union operator (order matters if keys overlap)
+print()
+print("a | b")
+print(a | b)
+
+print()
+print("b | a")
+print(b | a)
+
+# merge using iterator (order matters if keys overlap)
+print()
+print("{**a, **b}")
+print({**a, **b})
+
+print()
+print("{**b, **a}")
+print({**b, **a})
+
+# need to update below this
+print("="*100)
+
+
+
 
 dicta = {"key1":"value1","key2":"value2","key3":[3,"threethree"],4:[44, 444],5:"five"}
 
