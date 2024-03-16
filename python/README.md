@@ -143,5 +143,3 @@
 	- Use Scapy to sniff basic WiFi information, such as base station IDs and transmitting device addresses
 - python-xml-prettify
 	- Example of using BeautifulSoup and lxml to "pretty print" XML data
-- splitHashCombiner.py
-	- Identifies and matches sessions where data fields are potentially reversed using hash keys
