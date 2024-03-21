@@ -1,4 +1,4 @@
-# OpenSSL Notes
+# OpenSSL
 
 Files may be PEM (base64-encoded) and DER (binary) format
 - PEM may include `.pem`, `.cert`, `.crt`, `.cer`, and `.key` extensions
@@ -14,7 +14,7 @@ Files may be PEM (base64-encoded) and DER (binary) format
 | PKCS7 | no | BEGIN PKCS7 ||
 | PKCS8 | no | BEGIN PRIVATE KEY ||
 | PKCS8 | yes | BEGIN ENCRYPTED PRIVATE KEY ||
-| PKCS12 (binary) | yes | BEGIN CERTIFICATE and BEGIN PRIVATE KEY | private keys are stored unencrypted |
+| PKCS12 (binary) | yes | BEGIN CERTIFICATE and BEGIN PRIVATE KEY | private keys are displayed unencrypted when the P12 is opened |
 | X.509 | no | BEGIN CERTIFICATE ||
 
 ## Viewing Files
