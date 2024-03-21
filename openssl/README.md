@@ -4,6 +4,8 @@ Files may be PEM (base64-encoded) and DER (binary) format
 - PEM may include `.pem`, `.cert`, `.crt`, `.cer`, and `.key` extensions
 - DER may include `.der` or `.cer`; check whether the `.cer` is binary or PEM by using `file` or opening in an editor
 
+`keytool` is part of Oracle's JDKs, not OpenSSL
+
 ## Table of Headers
 
 [OpenSSL pem.h](https://github.com/openssl/openssl/blob/master/include/openssl/pem.h)
