@@ -88,8 +88,7 @@ JKS - Import PKCS12 (contains both cert and key)
 
 ## Adding and Removing Passwords
 
-PKCS8 - Add a Password (creates a new AES256-encrypted P8 file)
-- accepts multiple input types, not just other P8 files
+PKCS8 - Add a Password (creates a new AES256-encrypted P8 file); accepts multiple input types, not just other P8 files
 
 	openssl pkcs8 -topk8 -in plaintext.key -out encrypted.key
 
