@@ -1,11 +1,11 @@
-# extract tarball "myservice-11.2-linux-x86_64.tar.gz" to /opt/myservice
+# extract tarball "elastic-agent-99.999.9-linux-x86_64.tar.gz" to /tmp/elastic-agent/
 - name: Extract Tarball
   unarchive:
     remote_src: yes
-    src: /tmp/myservice-11.2-linux-x86_64.tar.gz"
-    dest: /opt/myservice
-    owner: bob
-    group: "{{ bob_password }}"
+    src: "/tmp/{{ filename }}"
+    dest: "/tmp/{{ staging_dir }}"
+    owner: "{{ user }}"
+    group: "{{ user_password }}"
     mode: 0750
     extra_opts:
     - --strip

@@ -2,3 +2,8 @@ welcome_message: "Hello, world!"
 paths:
   web:
     public: /var/www/mysite/public_html/
+user: bob
+user_group: bob
+filename: elastic-agent-99.999.9-linux-x86_64.tar.gz
+url: "https://artifacts.elastic.co/downloads/beats/elastic-agent/{{ filename }}"
+staging_dir: elastic-agent

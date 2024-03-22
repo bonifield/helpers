@@ -1,7 +1,8 @@
 # https://docs.ansible.com/ansible/latest/collections/ansible/builtin/user_module.html
-- name: Create User bob and Set Password
+- name: Create User and Set Password
   user:
-    name: bob
-    password: "{{ bob_password | password_hash('sha512') }}"
-    home: /home/bob
+    name: "{{ user }}"
+    # kept in vault
+    password: "{{ user_password | password_hash('sha512') }}"
+    home: "/home/{{ user }}"
     shell: /bin/bash
