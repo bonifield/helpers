@@ -13,6 +13,10 @@ Add public key to remote hosts
 	ssh-copy-id -i /home/USERNAME/.ssh/USERNAME_id_rsa remoteuser@remoteaddress
 	# yes when prompted to trust the new host
 
+If you get an error due to existing SSH configs interfering, such as `Permission denied (publickey,gssapi-keyex,gssapi-with-mic,password).`
+
+	ssh-copy-id -i /home/USERNAME/.ssh/USERNAME_id_rsa -F none remoteuser@remoteaddress
+
 Test connection
 
 	ssh -i /home/USERNAME/.ssh/USERNAME_id_rsa remoteuser@remoteaddress
