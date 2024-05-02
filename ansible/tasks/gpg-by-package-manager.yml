@@ -1,0 +1,17 @@
+# Apt
+- name: Import Apt Signing Key from URL, If Fingerprint Not Present
+  ansible.builtin.apt_key:
+    id: 46095ACC8548582C1A2699A9D27D666CD88E42B4
+    url: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+    state: present
+  when:
+    ansible_facts['pkg_mgr'] == "apt"
+
+# RPM
+- name: Import Apt Signing Key from URL, If Fingerprint Not Present
+  ansible.builtin.rpm_key:
+    fingerprint: 46095ACC8548582C1A2699A9D27D666CD88E42B4
+    key: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+    state: present
+  when:
+    ansible_facts['pkg_mgr'] == "rpm"

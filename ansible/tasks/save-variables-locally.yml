@@ -1,0 +1,4 @@
+# mkdir logs
+# be sure to delegate this task to localhost
+- name: Save Facts
+  local_action: copy content="{{ ansible_facts }}" dest="logs/facts_{{ ansible_host }}"
