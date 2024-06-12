@@ -12,7 +12,7 @@ Files may be PEM (base64-encoded) and DER (binary) format
 
 | File Type | Encrypted | Begin Headers | Notes |
 | -- | -- | -- | -- |
-| PKCS1 | no | BEGIN RSA PRIVATE KEY ||
+| PKCS1 | no | BEGIN RSA PRIVATE KEY | "traditional" format |
 | PKCS7 | no | BEGIN PKCS7 ||
 | PKCS8 | no | BEGIN PRIVATE KEY ||
 | PKCS8 | yes | BEGIN ENCRYPTED PRIVATE KEY ||
