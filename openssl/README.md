@@ -98,3 +98,20 @@ PKCS8 - Remove a Password (creates a new file)
 
 	openssl rsa -in encrypted.key -out plaintext.key
 	openssl pkcs8 -in encrypted.key -out plaintext.key
+
+## Testing Connections
+
+Specify file or path to CA; `echo -n` lets the OpenSSL command to exit after running
+
+	echo -n | openssl s_client -CAfile /path/to/ca.crt -connect server:port
+	echo -n | openssl s_client -CApath /etc/ssl/certs/ -connect server:port
+
+Mutual authentication
+
+	echo -n | openssl s_client -CAfile ca.crt -cert cert.crt -key key.pem -connect server:port
+
+Use environment variables
+
+	export SSL_CERT_FILE=/path/to/cert.crt
+	export SSL_CERT_DIR=/etc/ssl/certs/
+
