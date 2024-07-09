@@ -101,7 +101,7 @@ PKCS8 - Remove a Password (creates a new file)
 
 ## Testing Connections
 
-Specify file or path to CA; `echo -n` lets the OpenSSL command to exit after running
+Specify file or path to CA; `echo -n` lets the OpenSSL command exit after running
 
 	echo -n | openssl s_client -CAfile /path/to/ca.crt -connect server:port
 	echo -n | openssl s_client -CApath /etc/ssl/certs/ -connect server:port
