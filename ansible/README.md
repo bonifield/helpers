@@ -3,12 +3,37 @@
 ## SSH Setup
 [SSH Notes](https://github.com/bonifield/helpers/tree/main/ssh)
 
+useful shortcuts
+```
+# ansible and ansible-playbook
+-K, --ask-become-pass
+   ask for privilege escalation password
+
+-b, --become
+   run operations with become (does not imply password prompting)
+
+-i, --inventory, --inventory-file
+   specify  inventory  host  path  or comma separated host list. This argument may be specified multiple times.
+
+# ansible-playbook only
+-J, --ask-vault-password, --ask-vault-pass
+   ask for vault password
+```
+
 ## Ad-Hoc Commands
 [Ad-Hoc Command Documentation](https://docs.ansible.com/ansible/latest/command_guide/intro_adhoc.html)
 
-`ansible [pattern] -m [module] -a "[module options]"`
+`ansible [pattern] -i [inventory.yml] -m [module] -a "[module options]"`
 
-run command module (default) on target ("pattern") host
+run shell module on target group "webservers" ("pattern")
+```
+# as user to IP
+ansible webservers -i inventory.yml -m shell -a "id"
+# as superuser to hostname
+ansible webservers -Kbi inventory.yml -m shell -a "id"
+```
+
+locally run command module (default) on target ("pattern") host
 ```
 # as user to IP
 ansible 127.1.2.3 -a "id"
@@ -16,29 +41,21 @@ ansible 127.1.2.3 -a "id"
 ansible localhost --become --ask-become-pass -a "id"
 ```
 
-run shell module on target host
-```
-# as user to IP
-ansible 127.1.2.3 -m shell -a "id"
-# as superuser to hostname
-ansible localhost --become --ask-become-pass -m shell -a "id"
-```
-
 reboot or shutdown inventory group
 ```
-ansible webservers --become --ask-become-pass -i inventory.yml -m reboot
-ansible webservers --become --ask-become-pass -i inventory.yml -m community.general.shutdown
+ansible webservers -Kbi inventory.yml -m reboot
+ansible webservers -Kbi inventory.yml -m community.general.shutdown
 ```
 
 transfer (SCP) local file to remote host or group
 ```
-ansible webservers -m copy -a "src=/dev/index.html dest=/var/www/mysite/public_html/index.html"
+ansible webservers -Kbi inventory.yml -m copy -a "src=/dev/index.html dest=/var/www/mysite/public_html/index.html"
 ```
 
 start(ed), restart(ed), or stop(ped) a service
 ```
-ansible webservers -m service -a "name=httpd state=restarted"
-ansible webservers -m systemd_service -a "name=apache2 daemon_reload=true enabled=true state=restarted"
+ansible webservers -Kbi inventory.yml -m service -a "name=httpd state=restarted"
+ansible webservers -Kbi inventory.yml -m systemd_service -a "name=apache2 daemon_reload=true enabled=true state=restarted"
 ```
 
 ## Vaults
@@ -97,22 +114,22 @@ playbooks can reference external tasks or run them directly
 
 run a playbook using an inventory
 ```
-ansible-playbook -i inventory.yml playbook_webservers.yml
+ansible-playbook -JKbi inventory.yml playbook_webservers.yml
 ```
 
 run a playbook using localhost connections (for this example repo)
 ```
-ansible-playbook --ask-become-pass --connection=local -i inventory.yml playbook_webservers.yml
+ansible-playbook -K --connection=local -i inventory.yml playbook_webservers.yml
 ```
 
 run a playbook that specifies a private key, becomes root, and asks for the user password for sudo to elevate
 ```
-ansible-playbook --private-key ~/.ssh/project_key --ask-vault-pass --ask-become-pass -i inventory.yml playbook_webservers.yml
+ansible-playbook --private-key ~/.ssh/project_key -JKbi inventory.yml playbook_webservers.yml
 ```
 
 sample output from above connection=local playbook
 ```
-$ ansible-playbook --ask-become-pass --connection=local -i inventory.yml playbook_webservers.yml 
+$ ansible-playbook --connection=local -Ki inventory.yml playbook_webservers.yml 
 BECOME password: 
 
 PLAY [webservers] **************************************************************************************

@@ -1,0 +1,19 @@
+# logs new service tokens to a file
+#
+# writes a timestamp
+# gets a variable (ex. some JSON structure) --> .content attribute --> conver from json to dictionary --> get .value attribute
+# writes both to ./output/fleet-service-token.txt with 0600 permissions (only the owner has read/write)
+#
+# marker with empty quotes means continuously append
+# will create the log file if it doesn't exist
+
+- name: Log Service Token
+  local_action:
+    module: ansible.builtin.blockinfile
+    marker: ""
+    path: output/fleet-service-token.txt
+    mode: 0600
+    create: true
+    block: |
+      {{ '%Y-%m-%d %H:%M:%S %z' | strftime }}
+      {{ (service_token.content|from_json).value }}

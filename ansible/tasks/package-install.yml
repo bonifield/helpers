@@ -1,4 +1,4 @@
-- name: CentOS Installers
+- name: RedHat Installers
   yum:
     name: "{{ item }}"
     state: latest
@@ -8,7 +8,7 @@
     - nmap
     - nano
   when:
-    ansible_facts['distribution'] == "CentOS"
+    ansible_facts['distribution'] == "RedHat"
 
 - name: Ubuntu Installers
   apt:

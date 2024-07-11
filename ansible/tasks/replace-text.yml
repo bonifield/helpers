@@ -1,0 +1,9 @@
+# path = file to change
+# regexp = regex for old text
+# replace = new text
+
+- name: Change Redis Bind IP to IPv4 Only
+  ansible.builtin.replace:
+    path: /etc/redis/redis.conf
+    regexp: "^bind 127.0.0.1 ::1"
+    replace: "bind 127.0.0.1"

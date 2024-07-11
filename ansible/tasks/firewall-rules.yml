@@ -6,8 +6,9 @@
 #================================================
 
 #-------------
-# 22
+# Single Port - 22
 #-------------
+
 - name: Open Port 22/TCP
   #command: firewall-offline-cmd --zone=public --add-port=22/tcp
   ansible.posix.firewalld:
@@ -18,7 +19,7 @@
   vars:
     ansible_python_interpreter: /usr/bin/python
   when:
-    ansible_facts['distribution'] == "CentOS"
+    ansible_facts['distribution'] == "RedHat"
 
 - name: Open Port 22/TCP
   #command: ufw allow 22/tcp
@@ -28,6 +29,72 @@
     proto: tcp
   when:
     ansible_facts['distribution'] == "Ubuntu"
+
+#-------------
+# Multiple IPs for Single Port
+# add item and loop as needed in a firewalld task
+#-------------
+
+- name: Open Port 6379/TCP
+  community.general.ufw:
+    rule: allow
+    port: 6379
+    proto: tcp
+    from_ip: "{{ item }}"
+  loop:
+    - 10.0.0.0/8
+    - 172.16.0.0/12
+    - 192.168.0.0/16
+
+- name: Open Port 6379/TCP
+  #command: firewall-offline-cmd --zone=public --add-port=6379/tcp
+  ansible.posix.firewalld:
+    state: enabled
+    port: 6379/tcp
+    permanent: true
+    immediate: true
+    source: "{{ item }}"
+  loop:
+    - 10.0.0.0/8
+    - 172.16.0.0/12
+    - 192.168.0.0/16
+  vars:
+    ansible_python_interpreter: /usr/bin/python
+  when:
+    ansible_facts['distribution'] == "RedHat"
+
+#-------------
+# Multiple Ports for Single IP
+# add item and loop as needed in a firewalld task; include /tcp and such for the port item
+#-------------
+
+- name: Open Ports 5044,8443,9200/TCP from 192.168.0.0/16
+  community.general.ufw:
+    rule: allow
+    port: "{{ item }}"
+    proto: tcp
+    from_ip: 192.168.0.0/16
+  loop:
+    - 5044
+    - 8443
+    - 9200
+
+- name: Open Ports 5044,8443,9200/TCP from 192.168.0.0/16
+  #command: firewall-offline-cmd --zone=public --add-port=6379/tcp
+  ansible.posix.firewalld:
+    state: enabled
+    port: "{{ item }}"
+    permanent: true
+    immediate: true
+    source: 192.168.0.0/16
+  loop:
+    - 5044/tcp
+    - 8443/tcp
+    - 9200/tcp
+  vars:
+    ansible_python_interpreter: /usr/bin/python
+  when:
+    ansible_facts['distribution'] == "RedHat"
 
 #-------------
 # Enable and Start Firewall
@@ -40,7 +107,7 @@
     daemon_reload: true
     name: firewalld
   when:
-    ansible_facts['distribution'] == "CentOS"
+    ansible_facts['distribution'] == "RedHat"
 
 - name: Enable UFW
   #command: ufw enable
