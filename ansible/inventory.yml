@@ -1,3 +1,6 @@
+# manual section spacing added for readability
+# variables moved to demonstrate adding them at the group level
+
 all:
 
   vars:
@@ -5,40 +8,41 @@ all:
 
   children:
 
-    webservers:
+    ungrouped:
+      hosts:
+        127.7.8.9:
+        127.9.8.7:
 
+    databases:
       vars:
-        web_example_var: yes
-
+        database_example_var: true
       children:
-        webservers_west:
+        east_databases:
           hosts:
-            westweb:
-              ansible_host: 127.1.1.1
-              hostname: westweb.local
-              basename: westweb
-        webservers_east:
+            eastdb:
+              ansible_host: 127.3.3.3
+              basename: eastdb
+              hostname: eastdb.local
+        west_databases:
+          hosts:
+            westdb:
+              ansible_host: 127.4.4.4
+              basename: westdb
+              hostname: westdb.local
+
+    webservers:
+      vars:
+        web_example_var: true
+      children:
+        east_webservers:
           hosts:
             eastweb:
               ansible_host: 127.2.2.2
-              hostname: eastweb.local
               basename: eastweb
-
-    databases:
-
-      vars:
-        database_example_var: yes
-
-      children:
-        databases_west:
+              hostname: eastweb.local
+        west_webservers:
           hosts:
-            westdb:
-              ansible_host: 127.3.3.3
-              hostname: westdb.local
-              basename: westdb
-        databases_east:
-          hosts:
-            eastdb:
-              ansible_host: 127.4.4.4
-              hostname: eastdb.local
-              basename: eastdb
+            westweb:
+              ansible_host: 127.1.1.1
+              basename: westweb
+              hostname: westweb.local

@@ -3,7 +3,7 @@
 ## SSH Setup
 [SSH Notes](https://github.com/bonifield/helpers/tree/main/ssh)
 
-useful shortcuts
+## Useful Ansible CLI Options
 ```
 # ansible and ansible-playbook
 -K, --ask-become-pass
@@ -19,6 +19,19 @@ useful shortcuts
 -J, --ask-vault-password, --ask-vault-pass
    ask for vault password
 ```
+
+## Inventories
+
+group hosts in INI/CONF or YAML formats
+- [inventory.ini](inventory.ini)
+- [inventory.yml](inventory.yml)
+
+convert INI/CONF to YAML
+```
+ansible-inventory -i inventory.ini --list --yaml
+```
+
+convert YAML to INI/CONF: [StackOverflow Answer](https://stackoverflow.com/questions/74311307/how-can-i-change-yaml-format-to-ini-format)
 
 ## Ad-Hoc Commands
 [Ad-Hoc Command Documentation](https://docs.ansible.com/ansible/latest/command_guide/intro_adhoc.html)
@@ -114,22 +127,22 @@ playbooks can reference external tasks or run them directly
 
 run a playbook using an inventory
 ```
-ansible-playbook -JKbi inventory.yml playbook_webservers.yml
+ansible-playbook -JKbi inventory.yml playbook_myservers.yml
 ```
 
 run a playbook using localhost connections (for this example repo)
 ```
-ansible-playbook -K --connection=local -i inventory.yml playbook_webservers.yml
+ansible-playbook -K --connection=local -i inventory.yml playbook_myservers.yml
 ```
 
 run a playbook that specifies a private key, becomes root, and asks for the user password for sudo to elevate
 ```
-ansible-playbook --private-key ~/.ssh/project_key -JKbi inventory.yml playbook_webservers.yml
+ansible-playbook --private-key ~/.ssh/project_key -JKbi inventory.yml playbook_myservers.yml
 ```
 
 sample output from above connection=local playbook
 ```
-$ ansible-playbook --connection=local -Ki inventory.yml playbook_webservers.yml 
+$ ansible-playbook --connection=local -Ki inventory.yml playbook_myservers.yml 
 BECOME password: 
 
 PLAY [webservers] **************************************************************************************

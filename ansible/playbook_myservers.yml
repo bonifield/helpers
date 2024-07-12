@@ -1,4 +1,4 @@
-# ansible-playbook --ask-become-pass  --connection=local -i inventory.yml playbook_webservers.yml
+# ansible-playbook --ask-become-pass --connection=local -i inventory.yml playbook_myservers.yml
 
 - hosts: webservers
   become: yes
@@ -9,6 +9,7 @@
 
   tasks:
 
+    # you can load tasks from external files
     # example tasks from https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_reuse_roles.html
     # loads tasks/webserver.yml --> conditionals run either tasks/redhat.yml or tasks/debian.yml
     - name: Install Webserver
