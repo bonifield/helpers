@@ -54,7 +54,7 @@ Connect to internal networks using wildcards as the current user (no USER argume
 
 Match 172.16.0.0/12 using multiple Host values with wildcards; specify user and port
 
-	Host 172.1?.*.* 172.2?.*.* 172.30.*.* 172.31.*.*
+	Host 172.16.*.* 172.17.*.* 172.18.*.* 172.19.*.* 172.2?.*.* 172.30.*.* 172.31.*.*
 	Port 2222
 	User USERNAME2
 	IdentityFile ~/.ssh/USERNAME2_id_rsa
