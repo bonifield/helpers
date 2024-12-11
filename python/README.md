@@ -28,6 +28,10 @@
 	- Flatten a dictionary structure into single-string dotted notation, ex. "topkey.middlekey.bottomkey = value", and un-flatten back into a nested structure
 - python-dns.py
 	- gets name servers, DNS A records, and optinally attempts zone transfers against the name servers
+- python-elasticsearch-query-sql.py
+	- queries Elasticsearch's SQL endpoint
+- elasticsearch-send-and-query.py
+	- send a document to Elasticsearch, retrieve a document using both search and scan (pagination), and create a Pandas DataFrame from the scan results
 - python-file-inout-processor.py
 	- How to read from one file, manipulate the content, and write to a separate output file.
 - python-files-folders.py
