@@ -41,6 +41,7 @@ Settings
 - `Port`: destination port, if not 22
 - `User`: remote username
 - `IdentityFile`: private key for remote user
+- `PreferredAuthentication`: specify preference for using keys or passwords first (this doesn't override server SSH settings)
 
 
 ### Example SSH Config Contents
@@ -51,6 +52,7 @@ Connect to internal networks using wildcards as the current user (no USER argume
 
 	Host 10.*.*.* 192.168.*.*
 	IdentityFile ~/.ssh/USERNAME1_id_rsa
+	PreferredAuthentication publickey
 
 Match 172.16.0.0/12 using multiple Host values with wildcards; specify user and port
 
@@ -58,6 +60,7 @@ Match 172.16.0.0/12 using multiple Host values with wildcards; specify user and 
 	Port 2222
 	User USERNAME2
 	IdentityFile ~/.ssh/USERNAME2_id_rsa
+	PreferredAuthentication publickey
 
 Use a Host alias so the command `ssh appserver` will *actually* connect to `appserver.local:12345`
 
@@ -66,6 +69,7 @@ Use a Host alias so the command `ssh appserver` will *actually* connect to `apps
 	Port 12345
 	User USERNAME3
 	IdentityFile ~/.ssh/USERNAME3_id_rsa
+	PreferredAuthentication publickey
 
 ## SSH Agent
 
