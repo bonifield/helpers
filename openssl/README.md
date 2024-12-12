@@ -115,20 +115,12 @@ Use environment variables
 	export SSL_CERT_FILE=/path/to/cert.crt
 	export SSL_CERT_DIR=/etc/ssl/certs/
 
-<<<<<<< HEAD
 ## Fingerprint Certificate
 
 Get SHA-256 fingerprint of a local certificate
 
-	openssl x509 -noout -fingerprint -sha256 -in cert.crt
+	openssl x509 -noout -fingerprint -sha256 -in cert.crt | cut -d '=' -f 2
 
 Get SHA-256 fingerprint of a remote certificate (elasticsearch.local)
 
 	openssl s_client -connect elasticsearch.local:9200 -servername elasticsearch.local -showcerts </dev/null 2>/dev/null | openssl x509 -noout -fingerprint -sha256 -in /dev/stdin
-=======
-## Fingerprinting Certificates
-
-Create SHA256 fingerprint
-
-	openssl x509 -noout -fingerprint -sha256 -in cert.pem | cut -d '=' -f 2
->>>>>>> 57deb68 (updated openssl readme with sha256 fingerprint command)
