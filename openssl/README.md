@@ -119,7 +119,7 @@ Use environment variables
 
 Get SHA-256 fingerprint of a local certificate
 
-	openssl x509 -noout -fingerprint -sha256 -in cert.crt
+	openssl x509 -noout -fingerprint -sha256 -in cert.crt | cut -d '=' -f 2
 
 Get SHA-256 fingerprint of a remote certificate (elasticsearch.local)
 
