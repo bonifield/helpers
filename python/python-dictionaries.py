@@ -92,7 +92,7 @@ def merger(x,y):
 	z.update(y)
 	return(z)
 dictc = merger(dicta, dictb)
-print('dictc - '+str(dictc))	
+print('dictc - '+str(dictc))
 
 print('\npretty-print dicta using json.dumps()')
 j = json.loads(json.dumps(dicta))
