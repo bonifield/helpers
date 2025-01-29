@@ -1,4 +1,7 @@
 ### Files
+- config.ini
+	- Example settings to be used with the `configparser` module
+	- Meant to be used with `python-configparser-read.py`
 - python-argparse.py
 	- Basic way to add switches to a Python script (better than getopt)
 - python-args-kwargs.py
@@ -11,6 +14,8 @@
 	- Creation and usage of parent and child classes, with output examples (Python 3)
 - python-collections-deque.py
 	- How to use deque to handle list-like objects, but with better options like left appends, extends, and pops
+- python-configparser-read.py
+	- Reads ini configs using `configparser`; use with `config.ini`
 - python-csv-worker_01_combine.py
 	- Combine only desired CSV files in a given path into a single working file (usage: script path)
 	- use with the dated sample CSVs in the sampledata folder
