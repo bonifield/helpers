@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
-from datetime import datetime
+from datetime import datetime, timezone
 
-u = datetime.utcnow()
+u = datetime.now(timezone.utc)
 
 epoch = u.timestamp()
 human = u.strftime("%Y-%m-%d %H:%M:%S") #.%f")
