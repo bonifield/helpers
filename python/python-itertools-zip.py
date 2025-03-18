@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 
 #
 # goal: for each index in multiple lists, get that index in all of the lists at once, and create a new object with those peer items

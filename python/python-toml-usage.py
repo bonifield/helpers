@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 
 # install the Python TOML module:
 #	sudo apt install python3-toml

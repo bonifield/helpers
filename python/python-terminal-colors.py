@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 # https://stackoverflow.com/questions/287871/how-to-print-colored-text-in-terminal-in-python
 # https://stackoverflow.com/questions/17439482/how-to-make-a-text-blink-in-shell-script
 # https://en.wikipedia.org/wiki/ANSI_escape_code#Colors

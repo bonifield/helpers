@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 
 # requires BeautifulSoup and an XML parser (not included with BeautifulSoup):
 # pip3 install bs4 lxml

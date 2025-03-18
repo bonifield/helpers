@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 # August 2020
 # 
 # basic example of using Pandas to generate a multi-line graph, with a legend, based on CSV data

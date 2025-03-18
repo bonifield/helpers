@@ -9,19 +9,29 @@ from elasticsearch.helpers import scan
 # Pandas
 import pandas as pd
 
+#=============
 # client object
+#=============
+
 es = Elasticsearch(
 	"https://elasticsearch.local:9200",
 	ca_certs="/path/to/ca-chain.cert.pem",
 	basic_auth=("elastic", "abcd1234")
 )
 
+#=============
 # check connection
+#=============
+
 es.ping
 if es.ping():
 	print("connection successful")
 else:
 	print("connection failed")
+
+#=============
+# upload to Elasticsearch
+#=============
 
 # sample document to upload, as a dictionary
 doc = {
@@ -36,7 +46,12 @@ es.index(index=index_name, document=doc, id="aaaa")
 
 # give elasticsearch time to ingest the sample document
 time.sleep(2)
+
+
+#=============
 # search for documents
+#=============
+
 search_result = es.search(index=index_name, query={"match_all": {}})
 print(" search results ".center(50, "="))
 print(search_result)
@@ -73,6 +88,10 @@ for result in scan_result:
 	print(r)
 	# add to massive list-of-dictionaries for dataframe conversion
 	for_pandas.append(r)
+
+#=============
+# Pandas
+#=============
 
 # convert to dataframe
 df = pd.DataFrame(for_pandas)

@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 
 # test a single server, or a comma-delimited string of servers
 # syslog-tester.py server1 514

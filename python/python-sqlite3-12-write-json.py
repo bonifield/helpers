@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 
 #================================================
 #
@@ -13,7 +13,7 @@ import json
 import sqlite3
 import sys
 import time
-from datetime import datetime
+from datetime import datetime, timezone
 from random import randint
 
 try:
@@ -35,11 +35,12 @@ tableName = "ALERTS"
 def generateJsonLog():
 	# simulates fetching a JSON document from another source
 	# create a timestamp
-	d = datetime.utcnow().timestamp()
+	d = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S.%f")[:-3] #.timestamp()
 	# provided epoch is already in utc time, hence not using datetime.utcfromtimestamp()
 	# create nonsense IPs for added effect
+	#	"time": datetime.fromtimestamp(d).strftime("%Y-%m-%d %H:%M:%S.%f")[:-3],
 	j = {
-		"time": datetime.fromtimestamp(d).strftime("%Y-%m-%d %H:%M:%S.%f")[:-3],
+		"time": d,
 		"epoch": d,
 		"rulename": "generic malware inbound test alert",
 		"hostname": "nycdc01",

@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 # August 2020
 #
 # basic example of combining all CSVs of a desired format into one working file,

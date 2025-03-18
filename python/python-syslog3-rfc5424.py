@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 
 # basic rfc5424 formatter
 # https://www.ietf.org/rfc/rfc5424.txt

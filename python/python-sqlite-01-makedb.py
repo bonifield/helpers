@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 
 import sys
 import sqlite3 as s3
@@ -10,11 +10,7 @@ except Exception as e:
 	print("Usage: script.py newDatabaseName")
 	sys.exit(1)
 
-# various ways to use timestamps
-#now = datetime.now().strftime('%Y-%m-%dT%H:%M:%S')
-#now = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
-#now = datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')
-now = datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')
+now = datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M:%S')
 
 # connect to the database
 conn = s3.connect(dbName)

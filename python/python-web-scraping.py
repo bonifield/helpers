@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 
 # sudo apt install chromium-chromedriver
 # pip3 install selenium selenium-wire beautifulsoup4 lxml html5lib

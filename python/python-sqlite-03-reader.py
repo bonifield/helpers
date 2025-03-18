@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 
 #
 # test with this query
@@ -9,9 +9,7 @@ import argparse, sys
 import sqlite3 as s3
 from datetime import datetime, timezone
 
-#now = datetime.now().strftime('%Y-%m-%dT%H:%M:%S')
-#now = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
-now = datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')
+now = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
 
 #
 #

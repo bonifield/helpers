@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 
 # lists are an organized collection of items (integers, strings, etc) in square brackets, and are comma-separated
 # lists can have duplicate values

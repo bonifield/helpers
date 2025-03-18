@@ -1,21 +1,20 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 
 import sys
 
-# saves input from stdin as a string; will append a line terminator
+# saves input from stdin as a string; appends a line terminator
 word = sys.stdin.readline()
 
-# size parameter (int) limits the input to 3 bytes
-# hitting the limit will not include a line terminator
-#word = sys.stdin.readline(3)
+# adding the size parameter (int) limits the input to x bytes
+#word = sys.stdin.readline(4)
 
 print("# not stripped")
-print([hex(ord(x)) for x in word]) # quick hexdump
+print([hex(ord(x)) for x in word]) # each character in hex
 print(word)
 
 print("# stripped")
 word = word.strip()
-print([hex(ord(x)) for x in word]) # quick hexdump
+print([hex(ord(x)) for x in word])
 print(word)
 
 '''

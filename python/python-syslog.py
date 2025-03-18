@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 
 # Usage: python-syslog.py [ip] [port]
 # https://en.wikipedia.org/wiki/Syslog

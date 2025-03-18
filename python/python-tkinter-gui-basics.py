@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 
 # if using Ubuntu
 # sudo apt install python3-tk

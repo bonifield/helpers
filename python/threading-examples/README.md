@@ -1,0 +1,29 @@
+- python-thread-dispatcher.py
+	- reliably start a daemon thread running an OS command, while allowing the calling function to return instantly
+- python-threading-01-randomSleep.py
+	- Basic thread creation; threads sleep then exit
+- python-threading-02-join.py
+	- Use a join() to lock the main process until threads have finished
+- python-threading-03-daemon.py
+	- Daemonizing threads; the threads terminate when the main thread exits
+- python-threading-04-FIFOqueue.py
+	- A first-in-first-out queue
+- python-threading-05-LIFOqueue.py
+	- A last-in-first-out queue
+- python-threading-06-priorityQueue.py
+	- A queue which empties based on prioritized values (0 = highest priority)
+- python-threading-07-fillQueue.py
+	- Using threads to fill a queue which has a maximum size
+- python-threading-08-joinWithQueue.py
+	- Use daemonized threads to process items in a queue, then use join() to ensure the queue is empty
+- python-threading-09-executorBasic.py
+	- Use ThreadPoolExecutor to create worker threads, define max_worker cap
+- python-threading-10-fillAndConsumeFromQueue.py
+	- Use one thread to fill a queue, while another thread consumes from the same queue
+- python-threading-11-multipleQueues.py
+	- Uses multiple threads to process multiple queues; the first thread fills queue1, the second thread shuffles queue1 items to queue2, and the third thread drains queue2
+- python-threading-12-processFiles.py
+	- Uses one thread to read from a file and push to a queue, and another thread to read the queue, transform items, and push to an output file.
+	- Note: using queues to process files line-by-line is VERY slow; this is just an example of converging multiple threads into a queue for a single output thread to safely write files.
+- python-threading-13-multipleQueues-daemonized.py
+	- a better method of using daemonized threads to load an input queue, multiple daemonized workers to consume the input queue and push to an output queue, and another daemonized thread to handle output
