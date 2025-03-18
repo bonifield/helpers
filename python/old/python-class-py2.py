@@ -20,18 +20,18 @@ class Human(object):
 		self.name = name
 		self.age = age
 		self.power = power
-	
+
 	def printName(self):
 		return self.name
-	
+
 	def nameAge(self):
 		print '%s is %d years old and has %s powers.' % (self.name, self.age, self.power)
-		
+
 	def updatePowers(self, pow):
 		""" creates an attribute that can be updated """
 		self.power = pow
 		print '%s actually has the power of %s!' % (self.name, self.power)
-		
+
 ##############
 # Child Class
 ##############
@@ -43,11 +43,11 @@ class Superhuman(Human):
 		super(Superhuman, self).__init__(name, age, power)
 		# initialize a variable unique to the child class
 		self.powerLevel = 9001
-		
+
 	def wowPowerLevel(self):
 		""" define a child class method """
 		print '%s has a power level of %d!' % (self.name, self.powerLevel)
-		
+
 ##############
 # Parent Class Examples
 ##############

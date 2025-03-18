@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 
 #=============
 #
@@ -19,20 +19,20 @@ class Human:
 		self.name = name
 		self.age = age
 		self.power = power
-	
-	def nameAge(self):
-		print('%s is %d years old and has %s powers.' % (self.name, self.age, self.power))
-		
-	def updatePowers(self, pow):
+
+	def name_age(self):
+		print(f"{self.name} is {self.age} years old and has {self.power} powers.")
+
+	def update_powers(self, pow):
 		""" creates an attribute that can be updated """
 		self.power = pow
-		print('%s has the power of %s.' % (self.name, self.power))
-		
-	def addPowers(self, pow):
+		print(f"{self.name} has the power of {self.power}.")
+
+	def add_powers(self, pow):
 		""" creates an attribute that can be updated """
 		self.power = self.power + " and " + pow
-		print('%s has the power of %s.' % (self.name, self.power))
-		
+		print(f"{self.name} has the power of {self.power}.")
+
 #=============
 # Child Class
 #=============
@@ -45,10 +45,10 @@ class Superhuman(Human):
 		# initialize a variable unique to the child class
 		self.powerLevel = 9001
 
-	def wowPowerLevel(self):
+	def wow_power_level(self):
 		""" define a child class method """
-		print('%s has a power level of %d!' % (self.name, self.powerLevel))
-		
+		print(f"{self.name} has a power level of {self.powerLevel}!")
+
 #=============
 # Parent Class Examples
 #=============
@@ -57,10 +57,10 @@ class Superhuman(Human):
 clark = Human('Clark Kent', 29, 'zero')
 
 # display Clark's name, age, and powers using a method in the parent class
-clark.nameAge()
+clark.name_age()
 
 # give Clark a superpower by updating his powers using a method in the parent class
-clark.updatePowers('flight')
+clark.update_powers('flight')
 
 #=============
 # Child Class Examples
@@ -70,13 +70,13 @@ clark.updatePowers('flight')
 superman = Superhuman('Superman', 29, 'flight')
 
 # display Superman's name, age, and powers using a method in the parent class
-superman.nameAge()
+superman.name_age()
 
 # give Superman another superpower by updating his powers using a method in the parent class
-superman.addPowers('heat vision')
+superman.add_powers('heat vision')
 
 # print Superman's power level using a method in the child class
-superman.wowPowerLevel()
+superman.wow_power_level()
 
 #=============
 # Results
