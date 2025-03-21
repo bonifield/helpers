@@ -13,5 +13,6 @@ def chunk_list(l, n) -> list:
 list_of_smaller_lists = list(chunk_list(large_list, chunk_size))
 
 print(list_of_smaller_lists)
-# output
-# [[1, 2, 3, 4, 5], [6, 7, 8, 9, 10], [11, 12, 13, 14, 15], [16, 17]]
+'''
+[[1, 2, 3, 4, 5], [6, 7, 8, 9, 10], [11, 12, 13, 14, 15], [16, 17]]
+'''

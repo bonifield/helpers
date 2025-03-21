@@ -74,3 +74,66 @@ for i in listb:
 print(listd)
 
 print()
+
+'''
+==============================
+
+two whole lists in raw form (one with duplicated values)
+['one', 'two', 3, 4, 'five']
+['six', 'seven', 'eight', 9, 10, 'eleven', 'eleven', 'eleven']
+
+making a unique list via list(set())
+[9, 10, 'six', 'eight', 'seven', 'eleven']
+
+access each item in the list with a "for" statement
+one
+two
+3
+4
+five
+
+==============================
+
+first item
+one
+
+everything until the 4th position (one, two, 3, 4)
+['one', 'two', 3, 4]
+
+only the 2nd through 4th positions (two, 3, 4)
+['two', 3, 4]
+
+every 2nd item
+['one', 3, 'five']
+
+list in reverse
+['five', 4, 3, 'two', 'one']
+
+==============================
+
+join two string-type items with a space
+one two
+
+force-convert all mixed-type items to string-type via generator, and join with a space
+one two 3 4 five
+
+force a mapping of all mixed-type items in a list to string-type, and join with a space
+one two 3 4 five
+
+==============================
+
+introducing a second list to the first one
+['six', 'seven', 'eight', 9, 10, 'eleven', 'eleven', 'eleven']
+
+concatenate two lists
+['one', 'two', 3, 4, 'five', 'six', 'seven', 'eight', 9, 10, 'eleven', 'eleven', 'eleven']
+
+concatenate two lists with only unique values
+['two', 'five', 3, 4, 9, 'six', 10, 'one', 'seven', 'eight', 'eleven']
+
+append the old list to the new one
+['one', 'two', 3, 4, 'five', 'six', 'seven', 'eight', 9, 10, 'eleven', 'eleven', 'eleven']
+
+extend the old list to the new one
+['one', 'two', 3, 4, 'five', 'six', 'seven', 'eight', 9, 10, 'eleven', 'eleven', 'eleven', 's', 'i', 'x', 's', 'e', 'v', 'e', 'n', 'e', 'i', 'g', 'h', 't', '9', '1', '0', 'e', 'l', 'e', 'v', 'e', 'n', 'e', 'l', 'e', 'v', 'e', 'n', 'e', 'l', 'e', 'v', 'e', 'n']
+'''
