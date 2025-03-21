@@ -7,7 +7,7 @@
 import logging
 import sys
 import time
-from datetime import datetime
+from datetime import datetime, timezone
 import logging.handlers
 
 try:
@@ -27,7 +27,7 @@ for server in servers:
 	my_logger.addHandler(handler)
 
 while True:
-	d = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%S.%f")[:-3]+"Z"
+	d = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S.%f")[:-3]+"Z"
 	my_logger.critical(d)
 #	my_logger.error(d)
 #	my_logger.warning(d)

@@ -18,7 +18,7 @@ import socket
 import sys
 import time
 import uuid
-from datetime import datetime
+from datetime import datetime, timezone
 import logging.handlers
 
 try:
@@ -49,7 +49,7 @@ except:
 
 # loop over various severities for testing on the remote server
 while True:
-	now = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%S.%f")[:-3]+"Z"
+	now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S.%f")[:-3]+"Z"
 	appname = "someapp"
 	try:
 		procid = os.getpid()
