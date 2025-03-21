@@ -23,8 +23,9 @@ print(f"u3\t{u3}")
 print(f"u4\t{u4}")
 print(f"u5\t{u5}")
 
-# output
-# u1	e4724802-a8de-11ee-a376-c91ecafa4429
-# u3	6fa459ea-ee8a-3ca4-894e-db77e160355e
-# u4	d11023e2-fcdd-4a39-b8b4-771251e68394
-# u5	886313e1-3b8a-5372-9b90-0c9aee199e5d
+'''
+u1	e4724802-a8de-11ee-a376-c91ecafa4429
+u3	6fa459ea-ee8a-3ca4-894e-db77e160355e
+u4	d11023e2-fcdd-4a39-b8b4-771251e68394
+u5	886313e1-3b8a-5372-9b90-0c9aee199e5d
+'''
