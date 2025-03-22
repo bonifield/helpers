@@ -43,6 +43,12 @@ sudo filebeat modules enable <module>
 
 then edit the `<module>.yml` config (now, minus the .disabled extension)
 
+## Packetbeat - Enable Process Monitoring
+add to `packetbeat.yml`
+```
+packetbeat.procs.enabled: true
+```
+
 ## Dashboards
 
 in `filebeat.yml` or the appropriate Beats configuration
