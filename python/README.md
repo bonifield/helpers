@@ -10,6 +10,8 @@
 	- fastest example of making asynchronous HTTP requests
 - python-argparse.py
 	- Basic way to add switches to a Python script (better than getopt)
+- python-argparse-2.py
+	- Pass parser.parse_args() iterable direcly to main()
 - python-args-kwargs.py
 	- using "\*args" and "\*\*kwargs" to easily expand interables
 - python-class-1.py
