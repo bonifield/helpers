@@ -53,6 +53,6 @@ Name: Bob Smith
 Age: 50
 Favorite Color: red
 
-# python3 python-argparse-2.py -f bob -l smith -a 50 -c red --simple
+$ python3 python-argparse-2.py -f bob -l smith -a 50 -c red --simple
 Bob Smith 50 red
 '''
