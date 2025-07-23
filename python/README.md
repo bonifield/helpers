@@ -27,6 +27,8 @@
 	- use with the dated sample CSVs in the sampledata folder
 - python-csv-worker_02_pandas_graph.py
 	- Use Pandas to create a multi-line graph from a given CSV (ex. as processed by python-csv-worker_01_combine.py) (usage: script file.csv)
+- python-dataclass.py
+	- Basic dataclass and typing usage
 - python-datetime-conversions.py
 	- Common uses for datetime and working with timestamps
 - python-datetime-get-utc.py
