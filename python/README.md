@@ -75,6 +75,8 @@
 	- Basic execution of OS commands with os and subprocess modules
 - python-polars.md
 	- Basic Polars syntax for working with dataframes
+- python-polars-cidr-lookup.py
+	- Check IP addresses in one dataframe, for CIDR matches in another dataframe, and enrich the IP dataframe with descriptions from the CIDR dataframe
 - python-redis-channel-publish.py
 	- Publish JSON events to a Redis channel
 - python-redis-channel-subscribe.py
