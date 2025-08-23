@@ -29,8 +29,6 @@ def main():
 
 if __name__ == '__main__':
 	start = time.time()
-	# get args
-	args = get_arguments()
 	main()
 	end = time.time()
 	print(f"script finished in {end - start} seconds")
