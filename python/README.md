@@ -59,8 +59,10 @@
 - 	- Create a simple GraphViz-style, Dot-notation force directed graph
 - python-hashes.py
 	- Use hashlib to generate multiple types hashes
+- python-ipaddress.py
+	- Work with IP addresses
 - python-itertools-zip.py
-	- use itertools.zip to get members of multiple lists simultaneously and create new tuples
+	- Use itertools.zip to get members of multiple lists simultaneously and create new tuples
 - python-json-printer.py
 	- Ingest then dump a JSON file for review
 - python-lambdas-filter-map.py
@@ -96,15 +98,15 @@
 - python-sqlite-03-reader.py
 	- Read records from a SQLite database (usage: ./python-sqlite-03-reader.py -i mydb -f Alice -a 42)
 - python-sqlite3-11-makedb.py
-	- connects to a SQLite3 database and creates a new table, if the table does not already exist
+	- Connects to a SQLite3 database and creates a new table, if the table does not already exist
 - python-sqlite3-12-write-json
-	- simulates acquiring a JSON object and inserting it into the SQLite3 database
+	- Simulates acquiring a JSON object and inserting it into the SQLite3 database
 - python-sqlite3-13-read-update.py
-	- simulates reading from the SQLite3 database, sending row data elsewhere, and updating the row to indicate it sent successfully
+	- Simulates reading from the SQLite3 database, sending row data elsewhere, and updating the row to indicate it sent successfully
 - python-sqlite3-14-delete.py
-	- simulates reading from the SQLite3 database and deleting rows that match a condition and a timeframe
+	- Simulates reading from the SQLite3 database and deleting rows that match a condition and a timeframe
 - python-stdin.py
-	- how to accept input from stdin, for piping data into a script
+	- How to accept input from stdin, for piping data into a script
 - python-string-formatting.py
 	- Examples of the string formatting mini-language
 - python-syslog.py
