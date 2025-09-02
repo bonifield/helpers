@@ -17,7 +17,7 @@ def get_arguments():
 	parser.add_argument("-a", "--number", dest="number", default=999, type=int, help="some number value")
 	parser.add_argument("--simple", dest="simple", action="store_true", help="some boolean value that is False unless specified, then it becomes True")
 
-	# mandatory switches - make a new argument group then set it to required
+	# mandatory switches - make a new argument group then make its arguments required
 	#req = parser.add_argument_group("required arguments")
 	#req.add_argument("-m", "--mandatory", dest="mand", type=str, help="some mandatory argument", required=True)
 
@@ -41,7 +41,7 @@ def main():
 
 if __name__ == '__main__':
 	start = time.time()
-	# get args
+	# get arguments
 	args = get_arguments()
 	main()
 	end = time.time()
