@@ -110,6 +110,10 @@ Mutual authentication
 
 	echo -n | openssl s_client -CAfile ca.crt -cert cert.crt -key key.pem -connect server:port
 
+View certificate chain, not just server certificate
+
+	echo -n | openssl s_client -showcerts -connect server:port
+
 Use environment variables
 
 	export SSL_CERT_FILE=/path/to/cert.crt
