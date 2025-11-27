@@ -87,6 +87,16 @@ force kill container that is stuck in a loop
 	# then you can interact with it again
 	docker run -it --user root <container-id|name> /bin/bash
 
+create a new network; defaults to driver `bridge`
+
+	docker network create testnet
+
+	docker network create \
+	    --driver \
+	    --subnet 192.168.5.0/24 \
+	    --gateway 192.168.5.1 \
+	    testnet
+
 ufw - allow traffic from other non-Docker apps to localhost 5000; substitute `lo` for an external interface if necessary
 
 	sudo ufw allow in on lo to any port <port>
