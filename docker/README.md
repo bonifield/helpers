@@ -92,7 +92,7 @@ create a new network; defaults to driver `bridge`
 	docker network create testnet
 
 	docker network create \
-	    --driver \
+	    --driver bridge \
 	    --subnet 192.168.5.0/24 \
 	    --gateway 192.168.5.1 \
 	    testnet
