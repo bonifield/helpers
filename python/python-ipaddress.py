@@ -7,6 +7,7 @@ import ipaddress
 
 
 ip = ipaddress.ip_address("192.168.1.1")
+ip2 = ipaddress.ip_address("10.10.10.10")
 
 
 print("compressed", ip.compressed)
@@ -54,7 +55,15 @@ print("net is a subnet of net2", net.subnet_of(net2))
 print("net2 is a subnet of net", net2.subnet_of(net))
 print("net is a supernet of net2", net.supernet_of(net2))
 print("net2 is a supernet of net", net2.supernet_of(net))
+print()
 
+
+def check_cidr(ip: str, cidr: str) -> bool:
+	"""Returns True if an IP address is within a given CIDR netblock."""
+	return ipaddress.ip_address(ip) in ipaddress.ip_network(cidr)
+
+
+print(check_cidr(ip2, net2))
 
 
 '''
@@ -92,4 +101,6 @@ net is a subnet of net2 False
 net2 is a subnet of net True
 net is a supernet of net2 True
 net2 is a supernet of net False
+
+True
 '''
