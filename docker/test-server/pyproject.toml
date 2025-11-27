@@ -1,0 +1,10 @@
+[project]
+name = "test-docker-uv-application"
+version = "0.1.0"
+description = "Test Docker application using uv."
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "flask>=3.1.2",
+    "requests>=2.32.5",
+]

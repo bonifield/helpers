@@ -1,0 +1,54 @@
+services:
+
+  # test-server runs a simple Flask server
+  # test-client connects to test-server, and writes output
+  #   to /tmp/time.log in a shared volume
+
+  test-server:
+    container_name: test-server
+    #restart: ONE OF: no (default), always, on-failure, unless-stopped (like always, but stops if stopped)
+    build:
+      context: ./test-server/
+      dockerfile: Dockerfile
+      # can also keep all in the same directory if you prefer chaos
+      #context: .
+      #dockerfile: dockerfile_test-server
+    ports:
+      - 5000:5000
+    networks:
+      - testnet
+    environment:
+      # mapping syntax (see "list syntax" below)
+      FLASK_APP: app.py
+      FLASK_DEBUG: 1
+      FLASK_RUN_HOST: 0.0.0.0
+    # disable IPv6, if not specified in daemon.json
+    #sysctls:
+    #  net.ipv6.conf.all.disable_ipv6: 1
+
+  test-client:
+    container_name: test-client
+    #restart: always
+    build:
+      context: ./test-client/
+      dockerfile: Dockerfile
+    depends_on:
+      - test-server
+    networks:
+      - testnet
+    # outside:inside container
+    # curl-time.sh writes to /tmp/time.log
+    volumes:
+      - /tmp:/tmp
+    environment:
+      # list syntax (see "mapping syntax" above)
+      - API_HOST=test-server
+      - API_PORT=5000
+      - OUTPUT_FILE=/tmp/time.log
+
+# custom networks and settings
+networks:
+  testnet:
+    driver: bridge
+    # swarm only
+    #driver: overlay
