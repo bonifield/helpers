@@ -2,6 +2,8 @@
 - config.ini
 	- Example settings to be used with the `configparser` module
 	- Meant to be used with `python-configparser-read.py`
+- python-abc-dataclasses.py
+	- demonstrates abstract base classes and dataclasses
 - python-aiohttp-1_fast.py
 	- basic yet fast example of making asynchronous HTTP requests
 - python-aiohttp-2_faster.py
