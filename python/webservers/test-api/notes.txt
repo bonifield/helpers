@@ -1,0 +1,18 @@
+uv init
+uv add flask pyopenssl
+uv run app.py
+# can remove main.py, readme, if desired, which are auto-created
+
+
+### OLD NOTES ###
+sudo apt install python3-virtualenv
+
+virtualenv myapp
+myapp/bin/pip install flask pyopenssl
+
+# make app.py
+
+chmod +x app.py
+./app.py
+
+# curl -k https://localhost:5000/json/

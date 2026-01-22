@@ -59,6 +59,8 @@
 - 	- Create a simple GraphViz-style, Dot-notation force directed graph
 - python-hashes.py
 	- Use hashlib to generate multiple types hashes
+- python-httpx.py
+	- Demonstrate HTTP(S) features
 - python-ipaddress.py
 	- Work with IP addresses
 - python-itertools-zip.py

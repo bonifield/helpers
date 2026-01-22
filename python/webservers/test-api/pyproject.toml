@@ -1,0 +1,11 @@
+[project]
+name = "test-api"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "flask>=3.1.2",
+    "httpx>=0.28.1",
+    "pyopenssl>=25.3.0",
+]
