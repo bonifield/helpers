@@ -40,6 +40,7 @@ Certificate Signing Requests (CSRs)
 PKCS7/P7B
 
 	openssl pkcs7 -in ca-chain.p7b -print_certs
+	openssl pkcs7 -in ca-chain.p7b -print_certs -out ca-chain.pem
 	openssl pkcs7 -in ca-chain.p7b -print_certs | openssl x509 -text -noout
 
 PKCS12/PFX
