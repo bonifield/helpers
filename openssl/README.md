@@ -120,6 +120,12 @@ Use environment variables
 	export SSL_CERT_FILE=/path/to/cert.crt
 	export SSL_CERT_DIR=/etc/ssl/certs/
 
+## Converting Formats
+
+P8 key to RSA (P1) "traditional" (`BEGIN PRIVATE KEY` to `BEGIN RSA PRIVATE KEY`)
+
+	openssl rsa -in key.pem -out key_rsa.pem -traditional
+
 ## Fingerprint Certificate
 
 Get SHA-256 fingerprint of a local certificate
