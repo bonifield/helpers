@@ -18,6 +18,7 @@ def get_arguments():
 	# single-switch / no arg booleans
 	parser.add_argument("--simple", dest="simple", action="store_true", help="simplified output")
 	# mandatory switches
+	# (coul also just set required=True in above objects instead of making a new argument group)
 	# make a new argument group, then set its options to required
 	req = parser.add_argument_group("required arguments")
 	req.add_argument("-c", "--color", dest="col", type=str, help="your favorite color", required=True)

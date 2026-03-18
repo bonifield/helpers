@@ -65,8 +65,8 @@
 	- Work with IP addresses
 - python-itertools-zip.py
 	- Use itertools.zip to get members of multiple lists simultaneously and create new tuples
-- python-json-printer.py
-	- Ingest then dump a JSON file for review
+- python-json.py
+	- Read and process JSON and NDJSON files
 - python-lambdas-filter-map.py
 	- How to use standalone lambda functions, as well as inside filter() and map()
 - python-lists-chunking.py
