@@ -93,20 +93,8 @@
 	- Using in-line regex and compiled regex objects
 - python-socket-ssl.py
 	- Send JSON over a TLS-wrapped socket
-- python-sqlite-01-makedb.py
-	- Make a SQLite database (usage: ./python-sqlite-01-writer.py mydb)
-- python-sqlite-02-writer.py
-	- Write records to a SQLite database (usage: ./python-sqlite-02-writer.py mydb)
-- python-sqlite-03-reader.py
-	- Read records from a SQLite database (usage: ./python-sqlite-03-reader.py -i mydb -f Alice -a 42)
-- python-sqlite3-11-makedb.py
-	- Connects to a SQLite3 database and creates a new table, if the table does not already exist
-- python-sqlite3-12-write-json
-	- Simulates acquiring a JSON object and inserting it into the SQLite3 database
-- python-sqlite3-13-read-update.py
-	- Simulates reading from the SQLite3 database, sending row data elsewhere, and updating the row to indicate it sent successfully
-- python-sqlite3-14-delete.py
-	- Simulates reading from the SQLite3 database and deleting rows that match a condition and a timeframe
+- python-sqlite-id-tracker.py
+	- Classful interactions with a SQLite3 database; does not use SQLAlchemy
 - python-stdin.py
 	- How to accept input from stdin, for piping data into a script
 - python-string-formatting.py
