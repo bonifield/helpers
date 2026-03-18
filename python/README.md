@@ -14,10 +14,6 @@
 	- Basic way to add switches to a Python script (better than getopt), and pass parser.parse_args() iterable direcly to main()
 - python-args-kwargs.py
 	- using "\*args" and "\*\*kwargs" to easily expand interables
-- python-class-1.py
-	- Creation and usage of parent and child classes, with output examples (Python 3)
-- python-class-2.py
-	- Creation and usage of parent and child classes, with output examples (Python 3)
 - python-collections-deque.py
 	- How to use deque to handle list-like objects, but with better options like left appends, extends, and pops
 - python-configparser-read.py
@@ -49,8 +45,6 @@
 	- queries Elasticsearch's SQL endpoint
 - elasticsearch-send-and-query.py
 	- send a document to Elasticsearch, retrieve a document using both search and scan (pagination), and create a Pandas DataFrame from the scan results
-- python-file-inout-processor.py
-	- How to read from one file, manipulate the content, and write to a separate output file.
 - python-files-folders.py
 	- Working with both regular and temporary files and folders
 - python-generators-comprehensions-yield.py
