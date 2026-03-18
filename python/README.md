@@ -75,6 +75,8 @@
 	- Check IP addresses in one dataframe, for CIDR matches in another dataframe, and enrich the IP dataframe with descriptions from the CIDR dataframe
 - python-polars.md
 	- Basic Polars syntax for working with dataframes
+- python-rdap.py
+	- Use [whoisit](https://github.com/meeb/whoisit) to perform RDAP lookups (the WHOIS replacement)
 - python-redis-channel-publish.py
 	- Publish JSON events to a Redis channel
 - python-redis-channel-subscribe.py
@@ -85,6 +87,8 @@
 	- Write (RPUSH) JSON events to a Redis list
 - python-regex.py
 	- Using in-line regex and compiled regex objects
+- python-requests.py
+	- Usage of Python 3's Requests library to interact with network/web objects
 - python-socket-ssl.py
 	- Send JSON over a TLS-wrapped socket
 - python-sqlite-id-tracker.py
@@ -103,21 +107,17 @@
 	- ANSI terminal color usage in Python
 - python-tkinter-gui-basics.py
 	- How to make a simple GUI in Python
-- python-toml-usage.py
+- python-tomllib.py
 	- How to read and process TOML-formatted configuration files
 - python-toml-weather-data.toml
 	- Sample TOML config file, for use with python-toml-usage.py
-- python-url-tools.py
+- python-urllib-parsing.py
 	- parse, quote/unquote, encode/decode URL components using html and urllib
 - python-uuid.py
 	- create Universally Unique Identifiers (UUID)
-- python-web-rdap.py
-	- Use [whoisit](https://github.com/meeb/whoisit) to perform RDAP lookups (the WHOIS replacement)
-- python-web-requests.py
-	- Usage of Python 3's Requests library to interact with network/web objects
 - python-web-scraping.py
 	- Examples of acquiring web content via Selenium-Wire, headless Chromium, and Requests
-- python-web-whois.py
+- python-whois-queries.py
 	- Use [python-whois](https://pypi.org/project/python-whois/) to perform WHOIS lookups
 - python-wifi-sniffing.py
 	- Use Scapy to sniff basic WiFi information, such as base station IDs and transmitting device addresses
