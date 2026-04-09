@@ -135,3 +135,12 @@ Get SHA-256 fingerprint of a local certificate
 Get SHA-256 fingerprint of a remote certificate (elasticsearch.local)
 
 	openssl s_client -connect elasticsearch.local:9200 -servername elasticsearch.local -showcerts </dev/null 2>/dev/null | openssl x509 -noout -fingerprint -sha256 -in /dev/stdin
+
+## Check if Certificate Matches Key
+
+Check that certificate matches key based on modulus (they **must match**)
+- omit the `| openssl sha256` to see the full modulus
+```
+openssl x509 -noout -modulus -in cert.pem | openssl sha256
+openssl rsa -noout -modulus -in key.pem | openssl sha256
+```
