@@ -29,6 +29,8 @@
 	- Common uses for datetime and working with timestamps
 - python-datetime-get-utc.py
 	- Prints UTC/GMT epoch and ISO 8601
+- python-decorators.py
+	- Demonstrates how decorators work, and has many example use cases
 - python-deepcopy.py
 	- Use a deepcopy of an object when shallow copies are not sufficient (create full duplicates of objects, which is more memory-intensive)
 - python-dictionaries.py
