@@ -144,3 +144,23 @@ Check that certificate matches key based on modulus (they **must match**)
 openssl x509 -noout -modulus -in cert.pem | openssl sha256
 openssl rsa -noout -modulus -in key.pem | openssl sha256
 ```
+
+## Update System Trust Store
+
+Ubuntu - must have `.crt` extension
+```
+sudo cp ca-chain.cert.pem /usr/local/share/ca-certificates/ca-chain.crt
+sudo update-ca-certificates
+```
+
+RHEL - can use `.pem`, `.crt`, or `.cer`
+```
+sudo cp ca-chain.cert.pem /etc/pki/ca-trust/source/anchors/
+sudo update-ca-trust
+```
+
+View system Trust Anchors (CAs) - RHEL and Ubuntu
+```
+trust list --filter=ca-anchors | less
+trust list --filter=ca-anchors | grep -B 2 -A 2 "DigiCert" | less
+```
