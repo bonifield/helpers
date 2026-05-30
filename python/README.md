@@ -41,6 +41,8 @@
 	- gets name servers, DNS A records, and optinally attempts zone transfers against the name servers
 - python-dotenv.py
 	- loads environment variables from a local `.env` file
+- python-elasticsearch-esql-to-polars.py
+	- Use Elastic's ES|QL with the Arrow response format to create zero-copy Polars dataframes
 - python-elasticsearch-query.py
 	- query Elasticsearch and load into Pandas and Polars dataframes
 - python-elasticsearch-query-sql.py

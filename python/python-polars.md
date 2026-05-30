@@ -558,6 +558,35 @@ shape: (7, 7)
 └───────────┴───────┴──────────────┴─────────────┴────────────────┴──────────────┴──────────────────┘
 ```
 
+sum horizontal numbers after joining multiple dataframes that all have a `count` column
+- joining these dataframes creates `count` and `count_right`
+- sums these columns into a new `total_count`
+- `.sum_horizontal()` ignores `null` values and treats them as `0`
+```
+df1 = pl.DataFrame({"fruit":["apples", "oranges", "pears"], "count":[5,3,1]})
+df2 = pl.DataFrame({"fruit":["apples", "oranges"], "count":[9,2]})
+
+df3 = df1.join(
+	df2, on="fruit", how="full", coalesce=True
+).select(
+	"fruit",
+	total = pl.sum_horizontal("count", "count_right")
+)
+
+print(df3)
+#
+shape: (3, 2)
+┌─────────┬───────┐
+│ fruit   ┆ total │
+│ ---     ┆ ---   │
+│ str     ┆ i64   │
+╞═════════╪═══════╡
+│ apples  ┆ 14    │
+│ oranges ┆ 5     │
+│ pears   ┆ 1     │
+└─────────┴───────┘
+```
+
 ## Filters
 
 ```
