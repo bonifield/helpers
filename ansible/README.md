@@ -7,17 +7,23 @@
 ```
 # ansible and ansible-playbook
 -K, --ask-become-pass
-   ask for privilege escalation password
+    ask for privilege escalation password
 
 -b, --become
-   run operations with become (does not imply password prompting)
+    run operations with become (does not imply password prompting)
 
 -i, --inventory, --inventory-file
-   specify  inventory  host  path  or comma separated host list. This argument may be specified multiple times.
+    specify  inventory  host  path  or comma separated host list. This argument may be specified multiple times.
 
 # ansible-playbook only
 -J, --ask-vault-password, --ask-vault-pass
-   ask for vault password
+    ask for vault password
+
+-T <seconds>, --timeout <seconds>
+    increase connection or task timeout
+
+-l <group>, --limit "group1,group2"
+    target a specific group in an inventory; [pattern documentation](https://docs.ansible.com/projects/ansible/latest/inventory_guide/intro_patterns.html)
 ```
 
 ## Inventories
@@ -128,6 +134,11 @@ playbooks can reference external tasks or run them directly
 run a playbook using an inventory
 ```
 ansible-playbook -JKbi inventory.yml playbook_myservers.yml
+```
+
+run a playbook using an inventory with a specific group targeted
+```
+ansible-playbook -JKbi inventory.yml --limit webservers playbook_myservers.yml
 ```
 
 run a playbook using localhost connections (for this example repo)
