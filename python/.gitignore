@@ -2,3 +2,5 @@
 *.sqlite
 *.sqlite3
 *.swp
+pyproject.toml
+uv.lock
