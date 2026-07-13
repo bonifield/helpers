@@ -650,9 +650,17 @@ shape: (8, 3)
 └─────┴──────┴───────┘
 ```
 
-## Conditional logic and concat_str()
+## Conditional logic using `when()`, `then()`, `otherwise()`, and "not" (`~`)
 
-Uses `when()`, `then()`, and `otherwise()` inside `with_columns()`
+This example uses `df.with_columns()` but you can also use it with `select()`, `filter()`, and other expressions
+- add a trailing comma (`,`) between each of the new columns
+- this creates a "status" column conditionally based on the action column, using `is_in()`
+	- note extra parentheses surrounding the "or" pipe (`|`) statement
+	- you may replace the list inside `is_in()` with an external Python list
+- this builds two string columns via concatenation using `pl.concat_str()` and `pl.lit("x")`
+	- `case_link` using `is_not_null()`
+	- `case_link2` with a tilde (`~`) to signify `not` with `is_null()`
+
 ```
 df = pl.DataFrame(
 	{
@@ -662,38 +670,37 @@ df = pl.DataFrame(
 	}
 )
 
-# create a "status" column conditionally based on the action column
-# then make a "case_link" column, using a literal string pl.lit() and a column pl.col(), separated by a slash
 df = df.with_columns(
-	# status column
-	# .is_in()
+	#
 	status = pl.when(pl.col("action").is_in(["block", "deny"]))
 		.then(pl.lit("review_needed"))
-		# note extra parentheses surrounding the "or" pipe statement
 		.when((pl.col("action") == "observe") | (pl.col("action") == "allow"))
 		.then(pl.lit("correlation_only"))
-		# note the comma ending the logic for this column's creation inside with_columns()
 		.otherwise(pl.lit("unknown")),
-	# string builder column, safely checks if columns aren't null
+	#
 	case_link = pl.when(pl.col("case_number").is_not_null())
+		.then(pl.concat_str([pl.lit("https://casemgmt.local"), pl.col("case_number")], separator="/"))
+		.otherwise(pl.lit(None)),
+	#
+	case_link_tilde = pl.when(~pl.col("case_number").is_null())
 		.then(pl.concat_str([pl.lit("https://casemgmt.local"), pl.col("case_number")], separator="/"))
 		.otherwise(pl.lit(None))
 )
 
 print(df)
 #
-shape: (5, 5)
-┌─────────┬───────────┬─────────────┬──────────────────┬────────────────────────────┐
-│ action  ┆ indicator ┆ case_number ┆ status           ┆ case_link                  │
-│ ---     ┆ ---       ┆ ---         ┆ ---              ┆ ---                        │
-│ str     ┆ str       ┆ i64         ┆ str              ┆ str                        │
-╞═════════╪═══════════╪═════════════╪══════════════════╪════════════════════════════╡
-│ block   ┆ bad1      ┆ 123         ┆ review_needed    ┆ https://casemgmt.local/123 │
-│ block   ┆ bad2      ┆ 123         ┆ review_needed    ┆ https://casemgmt.local/123 │
-│ observe ┆ ok1       ┆ 234         ┆ correlation_only ┆ https://casemgmt.local/234 │
-│ block   ┆ bad3      ┆ 456         ┆ review_needed    ┆ https://casemgmt.local/456 │
-│ allow   ┆ ok2       ┆ null        ┆ correlation_only ┆ null                       │
-└─────────┴───────────┴─────────────┴──────────────────┴────────────────────────────┘
+shape: (5, 6)
+┌─────────┬───────────┬─────────────┬──────────────────┬────────────────────────────┬────────────────────────────┐
+│ action  ┆ indicator ┆ case_number ┆ status           ┆ case_link                  ┆ case_link_tilde            │
+│ ---     ┆ ---       ┆ ---         ┆ ---              ┆ ---                        ┆ ---                        │
+│ str     ┆ str       ┆ i64         ┆ str              ┆ str                        ┆ str                        │
+╞═════════╪═══════════╪═════════════╪══════════════════╪════════════════════════════╪════════════════════════════╡
+│ block   ┆ bad1      ┆ 123         ┆ review_needed    ┆ https://casemgmt.local/123 ┆ https://casemgmt.local/123 │
+│ block   ┆ bad2      ┆ 123         ┆ review_needed    ┆ https://casemgmt.local/123 ┆ https://casemgmt.local/123 │
+│ observe ┆ ok1       ┆ 234         ┆ correlation_only ┆ https://casemgmt.local/234 ┆ https://casemgmt.local/234 │
+│ block   ┆ bad3      ┆ 456         ┆ review_needed    ┆ https://casemgmt.local/456 ┆ https://casemgmt.local/456 │
+│ allow   ┆ ok2       ┆ null        ┆ correlation_only ┆ null                       ┆ null                       │
+└─────────┴───────────┴─────────────┴──────────────────┴────────────────────────────┴────────────────────────────┘
 ```
 
 ## Create new column, based on other columns
