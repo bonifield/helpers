@@ -89,6 +89,12 @@ JKS - Import PKCS12 (contains both cert and key)
 	keytool -importkeystore -srckeystore some.p12 -srcstoretype pkcs12 -destkeystore NewOrExistingKeystore.jks
 	# to specify passwords and avoid prompts, add: -srcstorepass <src store password> -storepass <working store password> -keypass <private key password> -noprompt
 
+JKS - Import Multiple Certificates (will use the filename as the alias)
+
+	for i in `ls my-certs*.pem`; do	keytool -import -trustcacerts -file $i -alias $i -keystore NewOrExistingKeystore.jks [-storepass <password>]; done
+	# verify
+	keytool -list -keystore MyKeystore.jks
+
 ## Adding and Removing Passwords
 
 PKCS8 - Add a Password (creates a new AES256-encrypted P8 file); accepts multiple input types, not just other P8 files

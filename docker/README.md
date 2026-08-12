@@ -36,6 +36,25 @@ host-only network; app runs on port 5000
 	docker run -d --rm --name test-server \
 	    --network host test-server
 
+mount a local directory in read-only mode as a container directory
+- the "=" is optional
+- helpful to use `"$PATH_HOST:$PATH_CONTAINER"` in a Bash script
+
+	docker run --network=host --rm \
+	    -v "<host-path>:<container-path>:ro" \
+	    test server:latest
+
+
+## Export and Import Containers
+
+export tarball to be moved
+
+	docker save <container>:latest | gzip > container.tar.gz
+
+import tarball (user must be in the `docker` group or similar permissions)
+
+	docker load -i container.tar.gz
+
 
 ## Daemon Settings (`/etc/docker/daemon.json`)
 
@@ -120,4 +139,31 @@ dexec () {
 }
 # usage
 dexec <container-id|name>
+```
+
+systemd service `/etc/systemd/system/myapp.service`
+```
+[Unit]
+Description=My Application Name
+After=docker.service
+Requires=docker.service
+
+[Service]
+Restart=always
+RestartSec=8
+ExecStartPre=/usr/bin/docker stop myapp
+ExecStartPre=/usr/bin/docker rm myapp
+ExecStart=/usr/bin/docker run --rm --name myapp --network host --volume "<localpath>:<containerpath>:ro" myapp:latest
+ExecStop=/usr/bin/docker stop myapp
+
+[Install]
+WantedBy=multi-user.target
+```
+
+systemd commands
+```
+sudo systemctl daemon-reload
+sudo systemctl enable myapp.service
+sudo systemctl [start|stop|restart] myapp.service
+sudo journalctl -u myapp.service -f
 ```

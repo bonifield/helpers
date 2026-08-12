@@ -10,6 +10,7 @@ dependencies = [
     "bs4>=0.0.2",
     "html5lib>=1.1",
     "httpx>=0.28.1",
+    "loguru>=0.7.3",
     "lxml>=6.0.2",
     "polars>=1.42.1",
     "pyarrow>=24.0.0",

@@ -71,6 +71,8 @@
 	- Break one large list, into a list of smaller lists
 - python-lists.py
 	- How to use lists in Python
+- python-loguru.py
+	- Clean logging and formatting using loguru
 - python-matplotlib-timeline.py
 	- Create a labelled timeline using matplotlib
 - python-os-commands.py
