@@ -39,11 +39,12 @@ host-only network; app runs on port 5000
 mount a local directory in read-only mode as a container directory
 - the "=" is optional
 - helpful to use `"$PATH_HOST:$PATH_CONTAINER"` in a Bash script
-	```
-	docker run --network=host --rm \
-	    -v "<host-path>:<container-path>:ro" \
-	    test server:latest
-	```
+
+```
+docker run --network=host --rm \
+    -v "<host-path>:<container-path>:ro" \
+    test server:latest
+```
 
 
 ## Export and Import Containers
