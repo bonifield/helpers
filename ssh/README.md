@@ -84,3 +84,21 @@ Add a private key to the current agent session
 Combo alias
 
 	alias start-ssh='eval "$(ssh-agent -s)" && ssh-add /home/USERNAME/.ssh/USERNAME_id_rsa'
+
+## Proxying
+
+Configure `~/.ssh/config` to use `bastion` as a jump box for `10.0/8` and `*.local` using the `ProxyCommand` argument
+
+```
+Host bastion
+  Hostname 192.168.250.100
+  User supermod
+  PreferredAuthentications publickey,password,keyboard-interactive
+  IdentityFile ~/.ssh/supermod_key
+
+Host 10.* *.local
+  ProxyCommand ssh -W %h:%p bastion
+  User supermod
+  PreferredAuthentications publickey,password,keyboard-interactive
+  IdentityFile ~/.ssh/supermod_key
+```
