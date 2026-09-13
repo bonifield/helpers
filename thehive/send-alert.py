@@ -96,7 +96,7 @@ if alert_response.get("_id", None):
 	print(f"{alert_id=}")
 	print()
 	# https://thehive-project.github.io/TheHive4py/latest/reference/endpoints/#thehive4py.endpoints.alert.AlertEndpoint.add_attachment
-	filenames = ["./test1.txt", "./test2.txt"]
+	filenames = ["./files/test1.txt", "./files/test2.txt"]
 	# don't try to send any missing files
 	missing_files = [f for f in filenames if not os.path.isfile(f)]
 	if missing_files:

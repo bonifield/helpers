@@ -111,7 +111,7 @@ print()
 # https://thehive-project.github.io/TheHive4py/latest/reference/endpoints/#thehive4py.endpoints.case.CaseEndpoint.add_attachment
 #==================================
 
-filenames_for_case = ["./test3.txt", "./test4.txt"]
+filenames_for_case = ["./files/test3.txt", "./files/test4.txt"]
 # don't try to send any missing files
 missing_files = [f for f in filenames_for_case if not os.path.isfile(f)]
 if missing_files:
