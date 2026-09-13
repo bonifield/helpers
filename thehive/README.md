@@ -6,6 +6,14 @@
 - adding files to cases
 - downloading case files
 
+These scripts require you to have:
+- TheHive5 running
+- An organisation (note "s" not "z") named `homelab`
+- A user (that isn't the default admin) with an API key.
+- create a `.env` file containing `hive_api` and `hive_url`
+
+*This process, using the Docker version, takes ~3 minutes or less to get configured.*
+
 [Installation Methods](https://docs.strangebee.com/thehive/installation/installation-methods/)
 
 [API Docs](https://docs.strangebee.com/thehive/api-docs/)
