@@ -67,6 +67,7 @@ alert = {
 	"type": "host_sensor_alert",
 	"description": description,
 	"tlp": 1,
+	"pap": 2,
 	"sourceRef": str(uuid.uuid4()),
 	"source": "sensor_type",
 	"observables": observables,
