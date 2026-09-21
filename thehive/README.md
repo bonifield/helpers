@@ -20,6 +20,8 @@ These scripts require you to have:
 
 [thehive4py Python Docs](https://thehive-project.github.io/TheHive4py/latest/reference/client/)
 
+[thehive4py Offical Examples](https://github.com/TheHive-Project/TheHive4py/tree/main/examples)
+
 ### `uv run send-alert.py`
 
 new alert with `imported` status (promoted to case)
