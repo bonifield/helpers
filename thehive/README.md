@@ -3,22 +3,28 @@
 `send-alert.py`
 - sending an alert with observables
 - attaching files to that alert
+
 `send-alert-promote-to-case.py`
 - sending an alert with observables
 - attaching files to that alert
 - promoting the alert to a case
+
 `case-actions.py`
 - getting case ID and number
 - adding observables to a case using multiple methods
 - getting case observables
 - uploading and downloading case attachments
+
 `merge-alerts-into-cases.py`
 - using filters to locate relevant alerts by status, time, observable
 - merging alerts into a case
+
 `find-alerts-cases-observables.py`
 - using filters to locate relevant alerts and cases by status, time, observable
 - finding alerts with desired observables
 - finding cases with desired observables
+
+---
 
 These scripts require you to have:
 - TheHive5 running
