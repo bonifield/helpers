@@ -30,10 +30,10 @@ net = ipaddress.IPv4Network("10.0.0.0/8")
 # also has above is_* attributes
 
 
-print(f"{net.network_address=}")
-print(f"{net.broadcast_address=}")
-print(f"{net.hostmask=}")
-print(f"{net.netmask=}")
+print(f"{str(net.network_address)=}")
+print(f"{str(net.broadcast_address)=}")
+print(f"{str(net.hostmask)=}")
+print(f"{str(net.netmask)=}")
 print(f"{net.with_prefixlen=}")
 print(f"{net.compressed=}")
 print(f"{net.exploded=}")
@@ -81,10 +81,10 @@ ip.packed=b'\xc0\xa8\x01\x01'
 ip.reverse_pointer='1.1.168.192.in-addr.arpa'
 ip.version=4
 
-net.network_address=IPv4Address('10.0.0.0')
-net.broadcast_address=IPv4Address('10.255.255.255')
-net.hostmask=IPv4Address('0.255.255.255')
-net.netmask=IPv4Address('255.0.0.0')
+str(net.network_address)='10.0.0.0'
+str(net.broadcast_address)='10.255.255.255'
+str(net.hostmask)='0.255.255.255'
+str(net.netmask)='255.0.0.0'
 net.with_prefixlen='10.0.0.0/8'
 net.compressed='10.0.0.0/8'
 net.exploded='10.0.0.0/8'
