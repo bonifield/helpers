@@ -79,8 +79,9 @@ new_obs2 = InputObservable(
 	pap=2,
 	message="just a test ioc"
 )
-print(f"uploading observable: {new_obs1=}")
-print(f"uploading observable: {new_obs2=}")
+print(" add observables ".center(50, "="))
+print(f"adding observable: {new_obs1=}")
+print(f"adding observable: {new_obs2=}")
 print()
 #
 # method 1 using hive.case.create_observable()
@@ -101,6 +102,7 @@ print()
 # https://thehive-project.github.io/TheHive4py/latest/reference/endpoints/#thehive4py.endpoints.case.CaseEndpoint.find_observables
 #==================================
 
+print(" case observables ".center(50, "="))
 case_obs = hive.case.find_observables(case_id=CASE_ID)
 print(f"{case_obs=}")
 print()
@@ -120,6 +122,7 @@ else:
 	try:
 		# case_id (str), attachment_paths (list[str])
 		# not graceful - will throw errors if a file already exists
+		print(" upload files to case ".center(50, "="))
 		case_upload_response = hive.case.add_attachment(CASE_ID, filenames_for_case)
 		print(f"{case_upload_response=}")
 		print()
@@ -137,13 +140,11 @@ else:
 download_path = Path(f"./downloads/{CASE_NUMBER}")
 download_path.mkdir(parents=True, exist_ok=True)
 
+print(" downloading attachments ".center(50, "="))
 case_attachments = hive.case.find_attachments(case_id=CASE_ID)
 print(f"{case_attachments=}")
 
 for att in case_attachments:
 	print(att["_id"], att["name"])
-	#hive.organisation.download_attachment(att["_id"], f"./downloads/{CASE_NUMBER}/{att['name']}")
 	full_download_path = download_path / att["name"]
 	hive.organisation.download_attachment(att["_id"], full_download_path)
-
-

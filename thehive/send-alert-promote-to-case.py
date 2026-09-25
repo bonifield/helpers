@@ -111,3 +111,27 @@ if alert_response.get("_id", None):
 		print()
 else:
 	sys.exit(f"{alert_response=}")
+
+
+#==================================
+# promote the alert to a case
+# https://thehive-project.github.io/TheHive4py/latest/reference/endpoints/#thehive4py.endpoints.alert.AlertEndpoint.promote_to_case
+#==================================
+
+print(" promoting alert to case ".center(50, "="))
+promotion_response = hive.alert.promote_to_case(alert_id)
+print(f"{promotion_response=}")
+print()
+
+case_id = None
+case_number = None
+# check response code
+if getattr(promotion_response, "status_code", 200) in (200, 201):
+	if promotion_response.get("_id", None):
+		case_id = promotion_response["_id"] # NO: .lstrip("~").strip()
+		# the number that appears to users when a case is created, ex. "1234"
+		case_number = promotion_response["number"]
+		print(f"created case id {case_id}, case number {case_number}")
+		print()
+else:
+	sys.exit(f"could not promote alert {alert_id} to a case; response from TheHive: {promotion_response}")
