@@ -50,7 +50,8 @@ These scripts require you to have:
 
 ---
 
-### `uv run send-alert.py`
+### `uv run send-alert-promote-to-case.py`
+- or run `send-alert.py` to generate test alerts, without promoting them to a case
 
 new alert with `imported` status (promoted to case)
 
