@@ -88,8 +88,8 @@ case comment
 
 new task
 
-[!new task](images/case_task.png)
+![new task](images/case_task.png)
 
 task tasklogs (comments) with markdown and file attachment
 
-[!task tasklog](images/case_task_tasklog.png)
+![task tasklog](images/case_task_tasklog.png)
