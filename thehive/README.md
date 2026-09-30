@@ -24,6 +24,12 @@
 - finding alerts with desired observables
 - finding cases with desired observables
 
+`case-and-tasklog-comments.py`
+- add case comments
+- create a new task, if it doesn't exist already
+- add tasklog comments to the new task
+- attach files to the tasklog comment
+
 ---
 
 These scripts require you to have:
@@ -73,3 +79,17 @@ case description body
 case file attachments
 
 ![case file attachments](images/case_attachments.png)
+
+### `uv run case-and-tasklog-comments.py -c <id|number>`
+
+case comment
+
+![case comment](images/case_comment.png)
+
+new task
+
+[!new task](images/case_task.png)
+
+task tasklogs (comments) with markdown and file attachment
+
+[!task tasklog](images/case_task_tasklog.png)
