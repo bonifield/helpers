@@ -105,6 +105,8 @@ if alert_response.get("_id", None):
 		print(f"warning: could not find these files: {missing_files}")
 	else:
 		# alert_id (str), attachment_paths (list[str]), can_rename (bool)
+		# if you don't want to rename duplicate files, loop over them individually;
+		# an exception due to a file already existing, will stop the method from uploading the other files
 		print(" uploading file to alert ".center(50, "="))
 		upload_response = hive.alert.add_attachment(alert_id, filenames, can_rename=True)
 		print(f"{upload_response=}")
