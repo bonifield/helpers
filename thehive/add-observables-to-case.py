@@ -46,9 +46,7 @@ hive = TheHiveApi(
 
 def get_arguments():
 	"""Retrieves argparse values."""
-	# instantiate parser
 	parser = argparse.ArgumentParser(description="script description")
-	# optional switches
 	parser.add_argument("-c", "--case-number", dest="case_number", default="1", type=str, help="case number", required=True)
 	parser.add_argument("-f", "--file", dest="upload_filename", default="", type=str, help="filename (path) for file to upload")
 	return parser.parse_args()

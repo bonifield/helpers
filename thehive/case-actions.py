@@ -1,6 +1,11 @@
 #!/usr/bin/env python3
 
 
+# uv run case-actions.py -c 3
+# uv run case-actions.py -c 3 -f file1.txt [-f file2.txt ...]
+
+
+import argparse
 import os
 import sys
 from pathlib import Path
@@ -32,23 +37,21 @@ hive = TheHiveApi(
 	verify=False,
 )
 
-# for demonstration, hardcode these values
-# KEEP THE TILDE!
-CASE_ID = "~4325528"
-CASE_NUMBER = 5
-
 
 #==================================
-# convert user-visible case number, to case ID
-# ex. 1234 --> "~8638672"
-# https://thehive-project.github.io/TheHive4py/latest/reference/endpoints/#thehive4py.endpoints.case.CaseEndpoint.get
+# get arguments
 #==================================
 
-some_case = hive.case.get(case_id=str(CASE_NUMBER))
-real_case_id = some_case["_id"]
-print(f"{real_case_id=}")
-# note these variables aren't used below, since the case ID is hardcoded above
-print()
+def get_arguments():
+	"""Retrieves argparse values."""
+	parser = argparse.ArgumentParser(description="script description")
+	parser.add_argument("-c", "--case-number", dest="case_number", default="1", type=str, help="case number", required=True)
+	# use this to upload multiple files, each with -f, such as "-f file1.txt -f file2.txt ..."
+	parser.add_argument("-f", "--file", dest="upload_filename", action="append", default=[], type=str, help="filename (path) for file to upload")
+	return parser.parse_args()
+
+
+args = get_arguments()
 
 
 #==================================
@@ -86,11 +89,11 @@ print()
 #
 # method 1 using hive.case.create_observable()
 # hive.case.create_observable() NEEDS THE TILDE IN THE ID, SO DO NOT REMOVE IT
-obs_response_one = hive.case.create_observable(case_id=CASE_ID, observable=new_obs1)
+obs_response_one = hive.case.create_observable(case_id=args.case_number, observable=new_obs1)
 print(obs_response_one)
 #
 # method 2 using hive.observable.create_in_case()
-obs_response_two = hive.observable.create_in_case(case_id=CASE_ID, observable=new_obs2)
+obs_response_two = hive.observable.create_in_case(case_id=args.case_number, observable=new_obs2)
 print(obs_response_two)
 #
 # add these to a list then loop over it, using either method
@@ -103,32 +106,35 @@ print()
 #==================================
 
 print(" case observables ".center(50, "="))
-case_obs = hive.case.find_observables(case_id=CASE_ID)
+case_obs = hive.case.find_observables(case_id=args.case_number)
 print(f"{case_obs=}")
 print()
 
 
 #==================================
-# add case attachments
+# add case-level attachments
 # https://thehive-project.github.io/TheHive4py/latest/reference/endpoints/#thehive4py.endpoints.case.CaseEndpoint.add_attachment
 #==================================
 
-filenames_for_case = ["./files/test3.txt", "./files/test4.txt"]
+args.upload_filename.extend(["./files/test3.txt", "./files/test4.txt"])
 # don't try to send any missing files
-missing_files = [f for f in filenames_for_case if not os.path.isfile(f)]
+missing_files = [f for f in args.upload_filename if not os.path.isfile(f)]
 if missing_files:
 	print(f"warning: could not find these files: {missing_files}")
 else:
-	try:
-		# case_id (str), attachment_paths (list[str])
-		# not graceful - will throw errors if a file already exists
-		print(" upload files to case ".center(50, "="))
-		case_upload_response = hive.case.add_attachment(CASE_ID, filenames_for_case)
-		print(f"{case_upload_response=}")
-		print()
-	except Exception as e:
-		print(f"{e}")
-
+	for f in args.upload_filename:
+		# hive.case.add_attachment() is NOT graceful!
+		# if a file exists, it will not attempt to upload subsequent files, so loop over them instead
+		try:
+			print(f" upload {f} to case ".center(50, "="))
+			# case_id (str), attachment_paths (list[str])
+			f = [f]
+			case_upload_response = hive.case.add_attachment(args.case_number, f)
+			print(f"{case_upload_response=}")
+			print()
+		except Exception as e:
+			print(f"{e}")
+print()
 
 #==================================
 # get case attachments
@@ -137,14 +143,20 @@ else:
 #==================================
 
 # safely make the path first
-download_path = Path(f"./downloads/{CASE_NUMBER}")
+download_path = Path(f"./downloads/{args.case_number}")
 download_path.mkdir(parents=True, exist_ok=True)
 
-print(" downloading attachments ".center(50, "="))
-case_attachments = hive.case.find_attachments(case_id=CASE_ID)
+# get a list of all attachments
+print(f" case attachments to be downloaded ".center(50, "="))
+case_attachments = hive.case.find_attachments(case_id=args.case_number)
 print(f"{case_attachments=}")
+print()
 
+# download the attachments to the directory
+print(" downloading files ".center(50, "="))
 for att in case_attachments:
-	print(att["_id"], att["name"])
+	print(f'ID: {att["_id"]}, FILENAME: {att["name"]}')
 	full_download_path = download_path / att["name"]
 	hive.organisation.download_attachment(att["_id"], full_download_path)
+	print(full_download_path)
+print()
