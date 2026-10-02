@@ -53,7 +53,7 @@ These scripts require you to have:
 
 ---
 
-**anywhere you use [case_id](https://thehive-project.github.io/TheHive4py/latest/reference/endpoints/#thehive4py.endpoints.case.CaseId) you may use the case ID, such as "~1234", or the number displayed in the web view, such as "42" (string)**
+**Anywhere you use [case_id](https://thehive-project.github.io/TheHive4py/latest/reference/endpoints/#thehive4py.endpoints.case.CaseId) you may use the case ID, such as "~1234" (with tilde), or the number displayed in the web view, such as "42" (as a string)**
 ```
 hive.case.get(case_id="~1234")
 hive.case.get(case_id="42")
