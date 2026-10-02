@@ -30,6 +30,9 @@
 - add tasklog comments to the new task
 - attach files to the tasklog comment
 
+`add-observables-to-case.py`
+- add observables from a list or file to a given case
+
 ---
 
 These scripts require you to have:
@@ -47,6 +50,14 @@ These scripts require you to have:
 [thehive4py Python Docs](https://thehive-project.github.io/TheHive4py/latest/reference/client/)
 
 [thehive4py Offical Examples](https://github.com/TheHive-Project/TheHive4py/tree/main/examples)
+
+---
+
+**anywhere you use [case_id](https://thehive-project.github.io/TheHive4py/latest/reference/endpoints/#thehive4py.endpoints.case.CaseId) you may use the case ID, such as "~1234", or the number displayed in the web view, such as "42" (string)**
+```
+hive.case.get(case_id="~1234")
+hive.case.get(case_id="42")
+```
 
 ---
 
