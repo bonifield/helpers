@@ -2,9 +2,13 @@
 
 
 # run send-alert.py a few times before using this script
-# also hardcode your case number below (include the tilde)
+# then
+# uv run merge-alerts-into-case.py -c 3
+# or
+# uv run merge-alerts-into-case.py -c ~135384
 
 
+import argparse
 import json
 import os
 import sys
@@ -38,6 +42,20 @@ hive = TheHiveApi(
 	organisation="homelab",
 	verify=False,
 )
+
+
+#==================================
+# get arguments
+#==================================
+
+def get_arguments():
+	"""Retrieves argparse values."""
+	parser = argparse.ArgumentParser(description="script description")
+	parser.add_argument("-c", "--case-number", dest="case_number", default="1", type=str, help="case number", required=True)
+	return parser.parse_args()
+
+
+args = get_arguments()
 
 # case to import into for demo
 CASE_ID = "~4325528"
@@ -103,7 +121,7 @@ for alert_id in alerts_to_merge:
 	#### *** set your filter finds these things; the demo only looks for New or InProgress ***
 	try:
 		print(f"attempting to merge {alert_id}")
-		resp = hive.alert.merge_into_case(alert_id=alert_id, case_id=CASE_ID)
+		resp = hive.alert.merge_into_case(alert_id=alert_id, case_id=args.case_number)
 		print(resp)
 		print()
 	except Exception as e:

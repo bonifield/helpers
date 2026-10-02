@@ -1,28 +1,28 @@
 # TheHive API Examples
 
 `send-alert.py`
-- sending an alert with observables
-- attaching files to that alert
+- send an alert with observables
+- attach files to that alert
 
 `send-alert-promote-to-case.py`
-- sending an alert with observables
-- attaching files to that alert
-- promoting the alert to a case
+- send an alert with observables
+- attach files to that alert
+- promote the alert to a case
 
 `case-actions.py`
-- getting case ID and number
-- adding observables to a case using multiple methods
-- getting case observables
-- uploading and downloading case attachments
+- get case ID and number
+- add observables to a case using multiple methods
+- get case observables
+- upload and download case attachments
 
-`merge-alerts-into-cases.py`
-- using filters to locate relevant alerts by status, time, observable
-- merging alerts into a case
+`merge-alerts-into-case.py`
+- use filters to locate relevant alerts by status, time, observable
+- merge alerts into a case
 
 `find-alerts-cases-observables.py`
-- using filters to locate relevant alerts and cases by status, time, observable
-- finding alerts with desired observables
-- finding cases with desired observables
+- use filters to locate relevant alerts and cases by status, time, observable
+- find alerts with desired observables
+- find cases with desired observables
 
 `case-and-tasklog-comments.py`
 - add case comments
@@ -33,6 +33,9 @@
 `add-observables-to-case.py`
 - add observables from a list or file to a given case
 
+`tasklog-file-upload-only.py`
+- upload one or more files to a case task log, with an optional message
+
 ---
 
 These scripts require you to have:
@@ -40,6 +43,7 @@ These scripts require you to have:
 - An organisation (note "s" not "z") named `homelab`
 - A user (that isn't the default admin) with an API key
 - create a `.env` file containing `hive_api` and `hive_url`
+- TODO: add Docker quickstart notes
 
 *This process, using the Docker version, takes ~3 minutes or less to get configured.*
 

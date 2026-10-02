@@ -2,9 +2,9 @@
 
 
 # provide a case number
-#     uv run case-and-tasklog-comments.py -c 1
+#     uv run case-and-tasklog-comments.py -c 3
 # or provide a case ID
-#     uv run case-and-tasklog-comments.py -c ~1234
+#     uv run case-and-tasklog-comments.py -c ~135384
 
 
 
@@ -52,29 +52,13 @@ def get_arguments():
 	"""Retrieves argparse values."""
 	# instantiate parser
 	parser = argparse.ArgumentParser(description="script description")
-	# optional switches
 	parser.add_argument("-c", "--case-number", dest="case_number", default="1", type=str, help="case number", required=True)
+	#parser.add_argument("-t", "--task-name", dest="task_name", default="Block Files", type=str, help="task name")
 	parser.add_argument("-f", "--file", dest="upload_filename", default="files/tasklog_file.txt", type=str, help="filename (path) for file to upload")
 	return parser.parse_args()
 
 
 args = get_arguments()
-
-
-#==================================
-# make a case filter then pull the actual case _id value (~1234), if provided a number like 5678
-# https://thehive-project.github.io/TheHive4py/latest/reference/endpoints/#thehive4py.endpoints.case.CaseEndpoint.get
-#==================================
-
-# look for _id (~1234) or number value (1)
-if args.case_number.isdigit():
-	case_id = hive.case.get(case_id=str(args.case_number))["_id"]
-else:
-	case_id = args.case_number
-
-print(f"{case_id=}")
-
-case_filter = Eq("_id", case_id)
 
 
 #==================================
@@ -86,7 +70,8 @@ now_utc = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S.%f")[:-3] + "Z"
 
 comment = InputComment(message=f"Hello, world! The current time is {now_utc}")
 
-resp = hive.comment.create_in_case(case_id=case_id, comment=comment)
+print(" adding case comment ".center(50, "="))
+resp = hive.comment.create_in_case(case_id=args.case_number, comment=comment)
 print(resp)
 print()
 
@@ -106,7 +91,7 @@ print()
 # - the task wasn't otherwise created by an analyst
 # - the task got deleted
 
-tasks = hive.case.find_tasks(case_id=case_id)
+tasks = hive.case.find_tasks(case_id=args.case_number)
 print(f"{tasks=}")
 print()
 
@@ -120,7 +105,8 @@ for task in tasks:
 
 if not task_id:
 	task = InputTask(title="Observable Sweep")
-	resp = hive.case.create_task(case_id=case_id, task=task)
+	print(" creating task Observable Sweep ".center(50, "="))
+	resp = hive.case.create_task(case_id=args.case_number, task=task)
 	task_id = resp["_id"]
 	print(f'{resp["_id"]=}')
 	print(resp)
@@ -130,6 +116,7 @@ if not task_id:
 # note now we use InputTaskLog instead of InputComment
 task_log = InputTaskLog(message="Hello, world!")
 # applied to the task, not the case, hence task_id
+print(" sending task log comment ".center(50, "="))
 resp = hive.task_log.create(task_id=task_id, task_log=task_log)
 print(resp)
 print()
@@ -171,6 +158,7 @@ bulleted list
 """
 
 task_log = InputTaskLog(message=message)
+print(" sending task log markdown comment ".center(50, "="))
 resp = hive.task_log.create(task_id=task_id, task_log=task_log)
 # we'll attach a file to this task further below
 task_log_id = resp["_id"]
@@ -184,10 +172,10 @@ print()
 #==================================
 
 the_file = "files/tasklog_file.txt"
-# wrap all files in a list
+# wrap all files in a list; just loop over individual files in case an exception occurs, blocking subsequent uploads
 files_to_attach = [the_file]
+print(f" adding attachment to {task_log_id=} ".center(50, "="))
 resp = hive.task_log.add_attachment(task_log_id=task_log_id, attachment_paths=files_to_attach)
 print(resp)
 print()
-
 
