@@ -153,9 +153,9 @@ user-agent
 
 ### Misc Imports
 
-[main client](https://thehive-project.github.io/TheHive4py/latest/reference/client/): `from thehive4py import TheHiveApi`
-[observable creation](https://thehive-project.github.io/TheHive4py/latest/reference/types/#thehive4py.types.observable.InputObservable): `from thehive4py.types.observable import InputObservable`
-[query filters](https://thehive-project.github.io/TheHive4py/latest/reference/query/): `from thehive4py.query import Eq, Asc, Desc, Gte` (etc)
+- [main client](https://thehive-project.github.io/TheHive4py/latest/reference/client/): `from thehive4py import TheHiveApi`
+- [observable creation](https://thehive-project.github.io/TheHive4py/latest/reference/types/#thehive4py.types.observable.InputObservable): `from thehive4py.types.observable import InputObservable`
+- [query filters](https://thehive-project.github.io/TheHive4py/latest/reference/query/): `from thehive4py.query import Eq, Asc, Desc, Gte` (etc)
 
 ---
 
