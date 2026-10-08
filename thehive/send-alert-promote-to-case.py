@@ -59,7 +59,8 @@ This is an alert description body. Add useful data here. TheHive supports markdo
 - [Link to Points of Contact]()
 '''
 
-# tlp 1=green, 2=amber
+# tlp (sharing information) 0=clear, 1=green, 2=amber, 3=amber+strict, 4=red
+# pap (using information) 0=clear, 1=green, 2=amber, 3=red
 # all of these values should be constructed from sensor or SIEM data
 # sourceRef could be a Splunk documentId, Elasticsearch _id, or a unique sensor value, etc
 alert = {
