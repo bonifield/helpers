@@ -36,6 +36,9 @@
 `tasklog-file-upload-only.py`
 - upload one or more files to a case task log, with an optional message
 
+`download-case-and-tasklog-files.py`
+- download case and task-level files from a given case
+
 ---
 
 These scripts require you to have:
