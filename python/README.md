@@ -38,9 +38,11 @@
 - python-dictionary-flatten-unflatten.py
 	- Flatten a dictionary structure into single-string dotted notation, ex. "topkey.middlekey.bottomkey = value", and un-flatten back into a nested structure
 - python-dns.py
-	- gets name servers, DNS A records, and optinally attempts zone transfers against the name servers
+	- gets name servers, DNS A records, and optionally attempts zone transfers against the name servers
 - python-dotenv.py
 	- loads environment variables from a local `.env` file
+- python-duckdb.md
+	- many examples showing how to use DuckDB
 - python-elasticsearch-esql-to-polars-async.py
 	- Asynchronously send queries to one or more clusters using Elastic's ES|QL with the Arrow response format to create zero-copy Polars dataframes
 - python-elasticsearch-esql-to-polars.py
